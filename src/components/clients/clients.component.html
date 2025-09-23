@@ -13,7 +13,7 @@
       #marqueeContainer
       (mousemove)="onMouseMove($event)"
       (mouseleave)="onMouseLeave()"
-      class="mt-16 relative group"
+      class="mt-16 relative group overflow-hidden"
       [style.mask-image]="'linear-gradient(to right, transparent, black 10%, black 90%, transparent)'"
       [style.-webkit-mask-image]="'linear-gradient(to right, transparent, black 10%, black 90%, transparent)'"
       [style.perspective.px]="2000">
