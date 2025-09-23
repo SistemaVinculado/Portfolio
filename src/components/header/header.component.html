@@ -1,0 +1,124 @@
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" 
+        [class.bg-[#111111]/80]="isScrolled()" 
+        [class.backdrop-blur-md]="isScrolled()"
+        [class.-translate-y-full]="!isHeaderVisible()"
+        [class.translate-y-0]="isHeaderVisible()">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+    <div class="flex justify-between items-center h-20">
+      <a routerLink="/" (click)="closeMenu()" class="text-lg font-bold flex-shrink-0" appCursorHover>
+        L'Atelier Moraes
+      </a>
+
+      <!-- Desktop Navigation & CTA -->
+      <div class="hidden md:flex items-center gap-8">
+        <nav class="flex items-center gap-6 lg:gap-8 text-gray-300">
+          <a routerLink="/case-studies" class="hover:text-white transition-colors duration-300 py-2 link-underline" appCursorHover>Estudos de Caso</a>
+          <a routerLink="/about" class="hover:text-white transition-colors duration-300 py-2 link-underline" appCursorHover>Sobre Nós</a>
+          <a (click)="scrollTo('services')" class="hover:text-white transition-colors duration-300 py-2 link-underline cursor-pointer" appCursorHover>Serviços</a>
+          <a (click)="scrollTo('principles')" class="hover:text-white transition-colors duration-300 py-2 link-underline cursor-pointer" appCursorHover>Princípios</a>
+          <a (click)="scrollTo('process')" class="hover:text-white transition-colors duration-300 py-2 link-underline cursor-pointer" appCursorHover>Processo</a>
+          <a (click)="scrollTo('work')" class="hover:text-white transition-colors duration-300 py-2 link-underline cursor-pointer" appCursorHover>Tecnologias</a>
+          <a (click)="scrollTo('contact')" class="hover:text-white transition-colors duration-300 py-2 link-underline cursor-pointer" appCursorHover>Contato</a>
+        </nav>
+        <button type="button" (click)="openAiModal()" class="bg-white text-black rounded-full px-6 py-2.5 text-base font-semibold btn-fancy" appCursorHover>
+          <span class="btn-content">Iniciar um projeto</span>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button type="button" (click)="toggleMenu()" aria-label="Toggle Menu" class="md:hidden z-50 flex flex-col justify-around items-center w-8 h-8 py-1.5" appCursorHover>
+        <span class="block w-6 h-0.5 bg-white"></span>
+        <span class="block w-6 h-0.5 bg-white"></span>
+        <span class="block w-6 h-0.5 bg-white"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+@if (isMenuOpen()) {
+  <div 
+    class="fixed inset-0 bg-[#111111] z-[100]"
+    [class.animate-slide-in-right]="!isClosing()"
+    [class.animate-slide-out-right]="isClosing()">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 grid grid-rows-[auto_1fr_auto] h-screen">
+      <div class="flex justify-between items-center h-20">
+        <a routerLink="/" (click)="closeMenu()" class="text-lg font-bold text-white" appCursorHover>
+          L'Atelier Moraes
+        </a>
+        <button (click)="toggleMenu()" type="button" aria-label="Close Menu" class="relative z-50 w-8 h-8" appCursorHover>
+          <span class="absolute block w-6 h-0.5 bg-white transform rotate-45 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></span>
+          <span class="absolute block w-6 h-0.5 bg-white transform -rotate-45 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></span>
+        </button>
+      </div>
+
+      <div class="flex items-center">
+        <nav>
+          <ul class="space-y-6">
+            <li>
+              <a routerLink="/case-studies" (click)="closeMenu()" class="text-5xl md:text-7xl font-bold tracking-tighter block group flex items-baseline" appCursorHover>
+                <span class="text-xl md:text-2xl text-gray-500 mr-4 font-mono transition-colors duration-300 group-hover:text-white">01</span>
+                <span class="text-gray-400 transition-colors duration-300 group-hover:text-white">Estudos de Caso</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/about" (click)="closeMenu()" class="text-5xl md:text-7xl font-bold tracking-tighter block group flex items-baseline" appCursorHover>
+                <span class="text-xl md:text-2xl text-gray-500 mr-4 font-mono transition-colors duration-300 group-hover:text-white">02</span>
+                <span class="text-gray-400 transition-colors duration-300 group-hover:text-white">Sobre Nós</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="scrollTo('services')" class="text-5xl md:text-7xl font-bold tracking-tighter block cursor-pointer group flex items-baseline" appCursorHover>
+                <span class="text-xl md:text-2xl text-gray-500 mr-4 font-mono transition-colors duration-300 group-hover:text-white">03</span>
+                <span class="text-gray-400 transition-colors duration-300 group-hover:text-white">Serviços</span>
+              </a>
+            </li>
+             <li>
+              <a (click)="scrollTo('principles')" class="text-5xl md:text-7xl font-bold tracking-tighter block cursor-pointer group flex items-baseline" appCursorHover>
+                <span class="text-xl md:text-2xl text-gray-500 mr-4 font-mono transition-colors duration-300 group-hover:text-white">04</span>
+                <span class="text-gray-400 transition-colors duration-300 group-hover:text-white">Princípios</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="scrollTo('process')" class="text-5xl md:text-7xl font-bold tracking-tighter block cursor-pointer group flex items-baseline" appCursorHover>
+                <span class="text-xl md:text-2xl text-gray-500 mr-4 font-mono transition-colors duration-300 group-hover:text-white">05</span>
+                <span class="text-gray-400 transition-colors duration-300 group-hover:text-white">Processo</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="scrollTo('work')" class="text-5xl md:text-7xl font-bold tracking-tighter block cursor-pointer group flex items-baseline" appCursorHover>
+                <span class="text-xl md:text-2xl text-gray-500 mr-4 font-mono transition-colors duration-300 group-hover:text-white">06</span>
+                <span class="text-gray-400 transition-colors duration-300 group-hover:text-white">Tecnologias</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="scrollTo('contact')" class="text-5xl md:text-7xl font-bold tracking-tighter block cursor-pointer group flex items-baseline" appCursorHover>
+                <span class="text-xl md:text-2xl text-gray-500 mr-4 font-mono transition-colors duration-300 group-hover:text-white">07</span>
+                <span class="text-gray-400 transition-colors duration-300 group-hover:text-white">Contato</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="py-12 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-8">
+        <button type="button" (click)="openAiModal()" class="inline-block bg-white text-black rounded-full px-8 py-4 text-lg font-semibold btn-fancy" appCursorHover>
+          <span class="btn-content">Iniciar um projeto</span>
+        </button>
+        <div class="flex flex-col items-start sm:items-end gap-4 text-gray-300">
+            <div class="flex flex-wrap items-center justify-start sm:justify-end gap-x-6 gap-y-2">
+                <a href="#" class="hover:text-white transition-colors link-underline" appCursorHover>Dribbble</a>
+                <a href="#" class="hover:text-white transition-colors link-underline" appCursorHover>Instagram</a>
+                <a href="#" class="hover:text-white transition-colors link-underline" appCursorHover>Twitter</a>
+                <a href="#" class="hover:text-white transition-colors link-underline" appCursorHover>LinkedIn</a>
+            </div>
+            <div class="flex items-center gap-x-6 text-sm">
+                 <a href="https://facebook.com/lateliermoraes" target="_blank" rel="noopener" class="text-gray-300 hover:text-white transition-colors duration-300 flex items-center gap-2" appCursorHover>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v7.028C18.343 21.128 22 16.991 22 12z"></path></svg>
+                    <span>Siga-nos no Facebook</span>
+                </a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
