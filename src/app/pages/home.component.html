@@ -1,0 +1,86 @@
+<div class="min-h-screen flex flex-col relative">
+    <app-scrollspy-nav [navLinks]="navLinks()"></app-scrollspy-nav>
+
+    <div class="w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+      <app-intro
+        [clients]="clients()"
+        [stats]="stats()"
+        (scrollTo)="scrollTo($event.event, $event.href)">
+      </app-intro>
+    </div>
+      
+    <app-availability-marquee></app-availability-marquee>
+
+    <div class="w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+      <app-philosophy [principles]="philosophyPrinciples()"></app-philosophy>
+
+      <app-section-divider></app-section-divider>
+
+      <app-stellardev-ethos [ethosItems]="stellarDevEthos()"></app-stellardev-ethos>
+
+      <app-section-divider></app-section-divider>
+
+      <app-features
+        [services]="services()"
+        [engagementModels]="engagementModels()"
+        [technologies]="technologies()">
+      </app-features>
+      
+      <app-section-divider></app-section-divider>
+      
+      <app-work
+        [portfolioItems]="filteredPortfolioItems()"
+        [processSteps]="processSteps()"
+        [teamMembers]="teamMembers()"
+        [categories]="portfolioCategories()"
+        [activeCategory]="activePortfolioCategory()"
+        (openPortfolioModal)="openPortfolioModal($event)"
+        (filterChange)="onPortfolioFilterChange($event)">
+      </app-work>
+
+      <app-section-divider></app-section-divider>
+
+      <app-security-dashboard></app-security-dashboard>
+
+      <app-section-divider></app-section-divider>
+
+      <app-community
+        [jobOpenings]="jobOpenings()"
+        [labExperiments]="labExperiments()"
+        [blogPosts]="blogPosts()"
+        (scrollTo)="handleScrollToWithMessage($event)"
+        (openBlogModal)="openBlogModal($event)"
+        (openVisitorGlobe)="openVisitorGlobe()">
+      </app-community>
+
+      <app-section-divider></app-section-divider>
+
+      <app-social-proof
+        [testimonials]="testimonials()"
+        [awards]="awards()"
+        [faqs]="faqs()"
+        [openFaqQuestion]="openFaqQuestion()"
+        (toggleFaq)="toggleFaq($event)">
+      </app-social-proof>
+
+      <app-section-divider></app-section-divider>
+
+      <app-action-zone
+        [initialContactMessage]="contactFormMessage()"
+        (scrollTo)="handleScrollToWithMessage($event)">
+      </app-action-zone>
+    </div>
+</div>
+
+<!-- Modals and Overlays for Home Page -->
+@if (selectedPortfolioItem(); as item) {
+  <app-portfolio-modal [item]="item" (close)="closePortfolioModal()"></app-portfolio-modal>
+}
+
+@if (selectedBlogPost(); as post) {
+  <app-blog-modal [post]="post" (close)="closeBlogModal()"></app-blog-modal>
+}
+
+@if (showVisitorGlobe()) {
+  <app-visitor-globe (close)="closeVisitorGlobe()"></app-visitor-globe>
+}

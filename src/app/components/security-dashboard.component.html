@@ -1,0 +1,136 @@
+<section id="security" class="py-16 sm:py-24">
+  <div class="text-center mb-16 px-4">
+    <div class="relative inline-flex items-center justify-center">
+      <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Mission Control</h2>
+      <div class="relative ml-2">
+        <button (click)="toggleInfoTooltip()" aria-label="Show information about dashboard data" class="w-7 h-7 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors flex items-center justify-center">
+          <span class="font-bold text-sm">?</span>
+        </button>
+        @if (showInfoTooltip()) {
+          <div role="tooltip" class="absolute bottom-full right-0 mb-2 w-64 p-3 bg-white dark:bg-[#292639] rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 text-left animate-slide-up-fade-in text-sm text-gray-600 dark:text-gray-300">
+            Please note: The data in this dashboard is for demonstration purposes only and is simulated to showcase our monitoring capabilities.
+            <button (click)="toggleInfoTooltip()" aria-label="Close tooltip" class="absolute top-1 right-1 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+    <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Real-time insights into the performance, security, and integrity of our digital ecosystem.</p>
+  </div>
+
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 px-4 sm:px-6 lg:px-8">
+    <!-- Left Column: Live Log -->
+    <div appAnimateOnScroll delay="200ms" class="lg:col-span-1 bg-gray-900/90 dark:bg-black/50 backdrop-blur-sm rounded-2xl p-6 h-[600px] lg:h-[650px] flex flex-col border border-gray-700/50">
+      <h3 class="text-lg font-bold text-white mb-4 flex items-center">
+        <div class="w-2.5 h-2.5 bg-green-400 rounded-full mr-3 animate-pulse"></div>
+        StellarShield™ Live Feed
+      </h3>
+      <div #logContainer class="flex-grow overflow-y-auto pr-2 log-container text-xs font-mono">
+        @for(log of logEntries(); track $index) {
+          <div class="flex items-start mb-2">
+            <span class="text-gray-500 mr-3">{{ log.timestamp }}</span>
+            <span [class]="{
+              'text-cyan-400': log.level === 'INFO',
+              'text-yellow-400': log.level === 'WARN',
+              'text-red-500': log.level === 'CRITICAL',
+              'text-green-400': log.level === 'SUCCESS'
+            }" class="font-bold mr-3 flex-shrink-0 w-16">{{ log.level }}</span>
+            <p class="text-gray-300 break-words">{{ log.message }}</p>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Right Column: Tabs and Tables -->
+    <div appAnimateOnScroll delay="300ms" class="lg:col-span-2">
+      <!-- Summary Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        <div class="bg-white dark:bg-gray-800/30 p-4 rounded-xl border border-gray-100 dark:border-gray-700/50 text-center">
+          <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">Overall Performance</p>
+          <p class="text-3xl font-bold mt-1" [class]="getScoreColor(overallPerformanceScore())">{{ overallPerformanceScore() }}</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800/30 p-4 rounded-xl border border-gray-100 dark:border-gray-700/50 text-center">
+          <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">Critical Vulnerabilities</p>
+          <p class="text-3xl font-bold mt-1" [class]="criticalVulnerabilities() > 0 ? 'text-red-500 dark:text-red-400' : 'text-green-500 dark:text-green-400'">{{ criticalVulnerabilities() }}</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800/30 p-4 rounded-xl border border-gray-100 dark:border-gray-700/50 text-center">
+          <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">Threats Blocked (24h)</p>
+          <p class="text-3xl font-bold text-[#292639] dark:text-white mt-1">{{ threatsBlocked() }}</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 p-1.5 rounded-xl mb-6">
+        <button (click)="setTab('performance')" class="relative flex-1 text-center cursor-pointer px-4 py-2.5 text-sm font-semibold rounded-lg transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8A6B93]" [class]="activeTab() === 'performance' ? 'text-white' : 'text-gray-600 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-black/10'">
+          @if(activeTab() === 'performance') { <div class="absolute inset-0 bg-[#8A6B93] dark:bg-purple-500 rounded-lg -z-10"></div> }
+          Performance Audit
+        </button>
+        <button (click)="setTab('vulnerability')" class="relative flex-1 text-center cursor-pointer px-4 py-2.5 text-sm font-semibold rounded-lg transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8A6B93]" [class]="activeTab() === 'vulnerability' ? 'text-white' : 'text-gray-600 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-black/10'">
+          @if(activeTab() === 'vulnerability') { <div class="absolute inset-0 bg-[#8A6B93] dark:bg-purple-500 rounded-lg -z-10"></div> }
+          Vulnerability Scan
+        </button>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800/30 p-6 rounded-2xl border border-gray-100 dark:border-gray-700/50 min-h-[440px]">
+        @if (activeTab() === 'performance') {
+          <div class="animate-fade-in">
+            <div class="performance-table-grid gap-x-4 items-center text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200 dark:border-gray-700 pb-3 mb-3">
+              <div class="text-left">Page</div>
+              <div class="text-center">Perf</div>
+              <div class="text-center">Access</div>
+              <div class="text-center">SEO</div>
+              <div class="text-center">Load</div>
+              <div class="text-center">Status</div>
+            </div>
+            @for (report of performanceReports(); track report.page) {
+              <div class="performance-table-grid gap-x-4 items-center py-3 border-b border-gray-200 dark:border-gray-700/50 last:border-b-0">
+                <div class="font-semibold text-sm text-[#292639] dark:text-white truncate" [title]="report.page">{{ report.page }}</div>
+                @for(score of [report.lighthouseScore, report.accessibilityScore, report.seoScore]; track $index) {
+                  <div class="flex justify-center">
+                    <div class="relative w-9 h-9">
+                      <svg class="w-full h-full" viewBox="0 0 40 40">
+                        <circle cx="20" cy="20" r="16" class="stroke-gray-200 dark:stroke-gray-700" stroke-width="4" fill="transparent" />
+                        <circle cx="20" cy="20" r="16" class="progress-arc transition-all duration-500" [class]="getScoreColor(score)" stroke-width="4" fill="transparent" stroke-linecap="round" transform="rotate(-90 20 20)" [attr.stroke-dasharray]="circumference" [attr.stroke-dashoffset]="circumference * (1 - (score / 100))" />
+                      </svg>
+                      <span class="absolute inset-0 flex items-center justify-center text-xs font-bold" [class]="getScoreColor(score)">{{ score }}</span>
+                    </div>
+                  </div>
+                }
+                <div class="text-center font-semibold text-sm text-[#292639] dark:text-white">{{ report.loadTime }}ms</div>
+                <div class="flex items-center justify-center gap-2">
+                    @if (getStatusIcon(report.status); as icon) {
+                        <svg class="w-5 h-5 flex-shrink-0" [class]="icon.class" fill="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" [attr.d]="icon.path"></path></svg>
+                    }
+                    <span class="hidden xl:inline capitalize text-sm font-semibold" [class]="getStatusIcon(report.status).class">{{ report.status.replace('_', ' ') }}</span>
+                </div>
+              </div>
+            }
+          </div>
+        }
+        @if (activeTab() === 'vulnerability') {
+          <div class="animate-fade-in">
+             <div>
+               @for (scan of vulnerabilityScans(); track scan.id) {
+                <div class="py-4 border-b border-gray-200 dark:border-gray-700/50 last:border-b-0">
+                  <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                    <h4 class="font-bold text-[#292639] dark:text-white font-mono text-sm">{{ scan.id }}</h4>
+                    <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border" [class]="getSeverityClass(scan.severity)">{{ scan.severity }}</span>
+                  </div>
+                  <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ scan.summary }}</p>
+                  <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between text-xs">
+                    <span class="font-semibold text-gray-500 dark:text-gray-400">Component: <span class="font-bold text-[#292639] dark:text-white">{{ scan.component }}</span></span>
+                    @if(scan.status === 'Patched' && scan.patchedOn) {
+                      <span class="text-green-600 dark:text-green-400 font-bold">Patched on {{ scan.patchedOn }}</span>
+                    } @else {
+                      <span class="text-blue-600 dark:text-blue-400 font-bold">{{ scan.status }}</span>
+                    }
+                  </div>
+                </div>
+               }
+             </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

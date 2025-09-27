@@ -1,0 +1,44 @@
+<section id="ethos" class="py-16 sm:py-24">
+  <div class="text-center mb-16 px-4">
+    <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Our Ethos, Encoded</h2>
+    <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">STELLARDEV isn't just a name. It's the DNA of our approach, encoded into every project we undertake.</p>
+  </div>
+
+  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+    <!-- Left: Letters -->
+    <div appAnimateOnScroll class="lg:col-span-1 flex flex-row lg:flex-col items-center justify-center gap-2 lg:gap-3">
+      @for (item of ethosItems(); track item; let i = $index) {
+        <button 
+          (click)="selectEthos(i)"
+          class="w-12 h-12 lg:w-24 lg:h-16 flex items-center justify-center rounded-lg lg:rounded-xl text-2xl lg:text-4xl font-extrabold transition-all duration-300 transform"
+          [class]="activeIndex() === i 
+            ? 'bg-[#292639] dark:bg-white text-white dark:text-[#292639] scale-110 shadow-lg' 
+            : 'bg-gray-200 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500 hover:bg-gray-300 dark:hover:bg-gray-700/50 hover:scale-105'">
+          {{ item.letter }}
+        </button>
+      }
+    </div>
+    
+    <!-- Right: Content -->
+    <div class="lg:col-span-2 min-h-[300px]">
+      <div 
+        class="bg-white dark:bg-gray-800/30 p-8 sm:p-10 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700/50"
+        [class.fade-out]="isAnimatingOut()"
+        [class.fade-in]="!isAnimatingOut()">
+        @if (displayedEthos(); as ethos) {
+          <div class="flex items-start gap-6">
+            <div class="bg-[#EAE8E3] dark:bg-gray-700 w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-8 h-8 text-[#292639] dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="ethos.iconPath" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-3xl font-extrabold text-[#292639] dark:text-white tracking-tight">{{ ethos.title }}</h3>
+              <p class="mt-3 text-gray-600 dark:text-gray-400 text-base leading-relaxed">{{ ethos.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

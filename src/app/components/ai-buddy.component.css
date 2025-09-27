@@ -1,0 +1,81 @@
+:host {
+  display: block;
+}
+
+.chat-messages {
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+  scrollbar-color: #A087A7 #F5F3EF;
+}
+
+.dark .chat-messages {
+    scrollbar-color: #8A6B93 #292639;
+}
+
+.chat-messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background-color: #A087A7;
+  border-radius: 10px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+.dark .chat-messages::-webkit-scrollbar-thumb {
+    background-color: #8A6B93;
+}
+
+@keyframes typing-dot-animation {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1.0);
+  }
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #8A6B93;
+  border-radius: 50%;
+  animation: typing-dot-animation 1.4s infinite ease-in-out both;
+}
+
+.dark .typing-dot {
+    background-color: #A087A7;
+}
+
+/* Basic prose styles for Gemini response */
+.prose ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.prose li {
+    padding-left: 1.25rem;
+    position: relative;
+}
+.prose li::before {
+    content: '-';
+    position: absolute;
+    left: 0;
+    color: #8A6B93;
+}
+.dark .prose li::before {
+    color: #A087A7;
+}
+.prose p:first-child, .prose ul:first-child {
+    margin-top: 0;
+}
+.prose p:last-child, .prose ul:last-child {
+    margin-bottom: 0;
+}
+.prose strong {
+    font-weight: 700;
+}

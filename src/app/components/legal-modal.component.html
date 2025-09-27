@@ -1,0 +1,27 @@
+@if (content(); as c) {
+<div role="dialog" aria-modal="true" [attr.aria-labelledby]="c.title" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div (click)="close.emit()" class="fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-sm transition-opacity duration-300 ease-in-out animate-fade-in"></div>
+    <div class="relative w-full max-w-3xl max-h-[90vh] bg-white dark:bg-[#1C1A27] rounded-2xl shadow-xl overflow-y-auto transform transition-all duration-300 ease-in-out animate-slide-up-fade">
+    <div class="p-6 sm:p-8 md:p-10">
+        <div class="flex items-start justify-between">
+        <div>
+            <h3 [id]="c.title" class="text-2xl font-bold text-[#292639] dark:text-white">{{ c.title }}</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Last updated: {{ c.lastUpdated }}</p>
+        </div>
+        <button (click)="close.emit()" [attr.aria-label]="'Close ' + c.title" class="p-2 -mt-2 -mr-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+        </div>
+        <div class="mt-6 prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
+        @for (section of c.content; track section.text) {
+            @if (section.type === 'h2') {
+            <h2>{{ section.text }}</h2>
+            } @else {
+            <p>{{ section.text }}</p>
+            }
+        }
+        </div>
+    </div>
+    </div>
+</div>
+}

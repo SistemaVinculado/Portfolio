@@ -1,0 +1,193 @@
+/* StellarDev Agency Base Styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #F5F3EF;
+  --foreground: #1C1A27;
+  --primary-text: #292639;
+  --secondary-text: #52525B;
+  --accent: #8A6B93;
+  --accent-light: #EAE8E3;
+}
+
+.dark {
+  --background: #1C1A27;
+  --foreground: #F5F3EF;
+  --primary-text: #FFFFFF;
+  --secondary-text: #A1A1AA;
+  --accent: #A087A7;
+  --accent-light: #292639;
+}
+
+body {
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+body.no-transitions * {
+  transition: none !important;
+}
+
+/* Base styles for 3D transforms */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+/* Custom mask-image utilities */
+.mask-gradient-to-l {
+  -webkit-mask-image: linear-gradient(to left, black 70%, transparent 100%);
+  mask-image: linear-gradient(to left, black 70%, transparent 100%);
+}
+.mask-gradient-to-r {
+  -webkit-mask-image: linear-gradient(to right, black 70%, transparent 100%);
+  mask-image: linear-gradient(to right, black 70%, transparent 100%);
+}
+
+/* Custom scrollbar hiding utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
+/* Prose styles for legal/blog modals */
+.prose h2, .prose h3, .prose h4 {
+  color: var(--primary-text) !important;
+}
+
+/* Animations */
+@keyframes slide-up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up-fade {
+  animation: slide-up-fade 0.5s ease-out forwards;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-in-out forwards;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 1000px; /* Arbitrary large value */
+  }
+}
+
+.animate-slide-down {
+  overflow: hidden;
+  animation: slide-down 0.4s ease-in-out forwards;
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.5s ease-out forwards;
+  opacity: 0; /* Set initial state for animation */
+  animation-fill-mode: forwards;
+}
+
+@keyframes spin-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.animate-spin-reverse {
+  animation: spin-reverse 20s linear infinite;
+}
+
+/* Custom Cursor Hiding */
+@media (hover: hover) and (pointer: fine) {
+    body, a, button, [role="button"], .cursor-pointer {
+        cursor: none;
+    }
+}
+
+/* Custom Range Slider */
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: #EAE8E3; /* Light mode track */
+  border-radius: 5px;
+  outline: none;
+  opacity: 0.8;
+  transition: opacity .2s;
+}
+
+.dark input[type=range] {
+  background: #292639; /* Dark mode track */
+}
+
+input[type=range]:hover {
+  opacity: 1;
+}
+
+/* Thumb for Webkit browsers (Chrome, Safari, Opera, Edge) */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #8A6B93; /* Accent color */
+  cursor: pointer;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+  margin-top: -6px; /* Center thumb on track */
+}
+
+.dark input[type=range]::-webkit-slider-thumb {
+  border-color: #1C1A27;
+}
+
+/* Thumb for Firefox */
+input[type=range]::-moz-range-thumb {
+  width: 14px; /* Firefox requires border to be included in size */
+  height: 14px;
+  background: #8A6B93;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+}
+
+.dark input[type=range]::-moz-range-thumb {
+    border-color: #1C1A27;
+}

@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+.menu-overlay {
+  transition: opacity 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-container,
+.menu-panels-wrapper {
+  transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.submenu-active {
+  transform: translateX(-100%);
+}

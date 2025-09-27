@@ -1,0 +1,23 @@
+:host {
+    display: block;
+}
+
+.log-container::-webkit-scrollbar {
+  width: 4px;
+}
+.log-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.log-container::-webkit-scrollbar-thumb {
+  background-color: #4a475c;
+  border-radius: 4px;
+}
+.dark .log-container::-webkit-scrollbar-thumb {
+  background-color: #52525B;
+}
+
+.performance-table-grid {
+    display: grid;
+    /* 2fr for page, 1fr for 3 scores, 1fr for load time, auto for status */
+    grid-template-columns: 2fr repeat(3, 1fr) 1fr auto;
+}

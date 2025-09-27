@@ -1,0 +1,195 @@
+<section id="contact" class="py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-16">
+    <!-- Left side: Info Panel -->
+    <div class="lg:col-span-2">
+      <div appAnimateOnScroll>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Start a Conversation</h2>
+        <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">We're here to help you turn your vision into a reality. Fill out the form, and we'll be in touch within one business day.</p>
+      </div>
+
+      <div appAnimateOnScroll delay="100ms" class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <h3 class="text-lg font-bold text-[#292639] dark:text-white">Our Process</h3>
+        <ul class="mt-4 space-y-4">
+          @for (item of expectations; track item.title; let i = $index) {
+          <li class="flex items-start p-4 rounded-xl bg-gray-50/50 dark:bg-gray-800/20 transition-colors hover:bg-white/80 dark:hover:bg-gray-800/40">
+            <div class="bg-[#EAE8E3] dark:bg-gray-700 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 mr-4">
+              <svg class="w-6 h-6 text-[#8A6B93] dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" [attr.d]="item.iconPath" /></svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-[#292639] dark:text-white">{{ item.title }}</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">{{ item.description }}</p>
+            </div>
+          </li>
+          }
+        </ul>
+      </div>
+
+      <div appAnimateOnScroll delay="200ms" class="mt-12">
+        @if(emailInfo(); as info) {
+            <h3 class="text-lg font-bold text-[#292639] dark:text-white">Direct Channel</h3>
+            <a [href]="info.href" class="mt-4 group relative block p-6 rounded-2xl bg-white/50 dark:bg-gray-800/20 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 overflow-hidden transition-all duration-300 hover:border-[#8A6B93] dark:hover:border-purple-500 hover:shadow-xl hover:-translate-y-1">
+                <!-- Decorative elements -->
+                <div class="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-purple-100/50 dark:from-purple-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-x-1/2 -translate-y-1/2 rotate-45"></div>
+                <div class="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-purple-100/50 dark:from-purple-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-x-1/2 translate-y-1/2 rotate-45"></div>
+
+                <div class="relative z-10 flex items-center space-x-6">
+                    <div class="bg-[#EAE8E3] dark:bg-gray-700 w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-300 group-hover:bg-[#8A6B93] dark:group-hover:bg-purple-500">
+                        <svg class="w-8 h-8 text-[#292639] dark:text-gray-200 group-hover:text-white transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="info.iconPath" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-[#292639] dark:text-white">{{ info.title }}</h4>
+                        <span class="text-gray-600 dark:text-gray-400 font-semibold transition-all duration-300 group-hover:text-[#8A6B93] dark:group-hover:text-purple-400 group-hover:tracking-wider">
+                            {{ info.value }}
+                        </span>
+                    </div>
+                </div>
+            </a>
+        }
+      </div>
+
+       <div appAnimateOnScroll delay="300ms" class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <h3 class="text-lg font-bold text-[#292639] dark:text-white mb-4">Connect with us</h3>
+        <div class="flex items-center space-x-4">
+            @for(link of socialLinks(); track link.name) {
+                <a [href]="link.href" [attr.aria-label]="link.name" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#EAE8E3] dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-[#8A6B93] hover:text-white dark:hover:bg-purple-500 transition-all duration-300 transform hover:scale-110">
+                    <svg class="w-5 h-5" fill="currentColor" [attr.viewBox]="link.viewBox || '0 0 24 24'">
+                        <path [attr.d]="link.iconPath"></path>
+                    </svg>
+                </a>
+            }
+        </div>
+      </div>
+    </div>
+
+    <!-- Right side: Form -->
+    <div class="lg:col-span-3">
+        <div appAnimateOnScroll delay="100ms" class="bg-white dark:bg-gray-800/30 p-8 sm:p-10 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700/50">
+        @switch (formStatus()) {
+            @case ('success') {
+            <div class="flex flex-col items-center justify-center text-center h-full min-h-[400px]">
+                <div class="bg-green-100 dark:bg-green-900/50 p-4 rounded-full">
+                <svg class="w-10 h-10 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                </div>
+                <h3 class="mt-6 text-2xl font-bold text-[#292639] dark:text-white">Thank you, {{ submittedName() }}!</h3>
+                <p class="mt-2 text-gray-600 dark:text-gray-400">We've received your message and will get back to you shortly.</p>
+                <button (click)="resetForm()" class="mt-8 bg-[#EAE8E3] dark:bg-gray-700 text-[#292639] dark:text-gray-200 px-5 py-2.5 rounded-full font-semibold hover:bg-opacity-80 dark:hover:bg-opacity-70 transition-all duration-300">
+                Send Another Message
+                </button>
+            </div>
+            }
+            @default {
+            <form [formGroup]="contactForm" (ngSubmit)="submitForm()" class="space-y-6">
+                <fieldset>
+                    <legend class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">I'm interested in...</legend>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="relative flex items-center justify-center p-3 border rounded-lg cursor-pointer transition-colors" [class]="contactForm.get('inquiryType')?.value === 'project' ? 'bg-purple-50 dark:bg-purple-900/20 border-purple-400 dark:border-purple-600' : 'bg-gray-50 dark:bg-gray-700/50 border-gray-300 dark:border-gray-600'">
+                            <input type="radio" value="project" formControlName="inquiryType" class="sr-only">
+                            <span class="text-sm font-medium text-gray-800 dark:text-gray-200">A New Project</span>
+                        </label>
+                        <label class="relative flex items-center justify-center p-3 border rounded-lg cursor-pointer transition-colors" [class]="contactForm.get('inquiryType')?.value === 'general' ? 'bg-purple-50 dark:bg-purple-900/20 border-purple-400 dark:border-purple-600' : 'bg-gray-50 dark:bg-gray-700/50 border-gray-300 dark:border-gray-600'">
+                            <input type="radio" value="general" formControlName="inquiryType" class="sr-only">
+                            <span class="text-sm font-medium text-gray-800 dark:text-gray-200">A General Question</span>
+                        </label>
+                    </div>
+                </fieldset>
+
+                @if(contactForm.get('inquiryType')?.value === 'project') {
+                    <div class="animate-slide-down grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="serviceOfInterest" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">Service of Interest</label>
+                            <select id="serviceOfInterest" formControlName="serviceOfInterest" class="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-[#292639] dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8A6B93] focus:border-[#8A6B93] transition-colors">
+                                <option value="" disabled>Select a service</option>
+                                @for(service of services(); track service.id) {
+                                <option [value]="service.id">{{ service.title }}</option>
+                                }
+                            </select>
+                            @if (contactForm.get('serviceOfInterest')?.invalid && contactForm.get('serviceOfInterest')?.touched) {
+                                <p class="mt-1 text-xs text-red-600 dark:text-red-400">Please select a service.</p>
+                            }
+                        </div>
+                        <div>
+                            <label for="budget" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">Estimated Budget</label>
+                            <select id="budget" formControlName="budget" class="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-[#292639] dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8A6B93] focus:border-[#8A6B93] transition-colors">
+                                <option value="" disabled>Select a range</option>
+                                <option value="<25k">&lt; $25,000</option>
+                                <option value="25k-75k">$25,000 - $75,000</option>
+                                <option value=">75k">$75,000+</option>
+                            </select>
+                            @if (contactForm.get('budget')?.invalid && contactForm.get('budget')?.touched) {
+                                <p class="mt-1 text-xs text-red-600 dark:text-red-400">Please select a budget.</p>
+                            }
+                        </div>
+                    </div>
+                }
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">Full Name</label>
+                        <input type="text" id="name" formControlName="name" class="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-[#292639] dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8A6B93] focus:border-[#8A6B93] transition-colors">
+                        @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+                            <p class="mt-1 text-xs text-red-600 dark:text-red-400">
+                                @if (contactForm.get('name')?.errors?.['required']) {
+                                    Full name is required.
+                                } @else if (contactForm.get('name')?.errors?.['minlength']) {
+                                    Name must be at least 2 characters.
+                                }
+                            </p>
+                        }
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">Email Address</label>
+                        <input type="email" id="email" formControlName="email" class="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-[#292639] dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8A6B93] focus:border-[#8A6B93] transition-colors">
+                        @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+                            <p class="mt-1 text-xs text-red-600 dark:text-red-400">
+                            @if (contactForm.get('email')?.errors?.['required']) {
+                                Email is required.
+                            } @else if (contactForm.get('email')?.errors?.['email']) {
+                                Please enter a valid email address.
+                            }
+                            </p>
+                        }
+                    </div>
+                </div>
+
+                <div>
+                <label for="company" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">Company (Optional)</label>
+                <input type="text" id="company" formControlName="company" class="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-[#292639] dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8A6B93] focus:border-[#8A6B93] transition-colors">
+                </div>
+
+                <div>
+                <label for="message" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">Message</label>
+                <textarea id="message" formControlName="message" rows="5" class="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-[#292639] dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8A6B93] focus:border-[#8A6B93] transition-colors" [placeholder]="contactForm.get('inquiryType')?.value === 'project' ? 'Tell us about your project...' : 'What can we help you with?'"></textarea>
+                @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+                    <p class="mt-1 text-xs text-red-600 dark:text-red-400">
+                        @if (contactForm.get('message')?.errors?.['required']) {
+                            Message is required.
+                        } @else if (contactForm.get('message')?.errors?.['minlength']) {
+                            Message must be at least 10 characters.
+                        }
+                    </p>
+                }
+                </div>
+                <div>
+                <button type="submit" [disabled]="contactForm.invalid || formStatus() === 'submitting'" class="w-full bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639] px-6 py-3.5 rounded-full font-semibold hover:bg-opacity-90 dark:hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 disabled:bg-gray-400 disabled:dark:bg-gray-600 disabled:scale-100 disabled:cursor-not-allowed flex items-center justify-center">
+                    @if (formStatus() === 'submitting') {
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span>Sending...</span>
+                    } @else {
+                    <span>Send Message</span>
+                    }
+                </button>
+                </div>
+            </form>
+            }
+        }
+        </div>
+    </div>
+  </div>
+</section>

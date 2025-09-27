@@ -1,0 +1,38 @@
+<div class="hidden md:flex fixed top-0 left-2 md:left-4 lg:left-8 h-full w-6 md:w-8 z-30 flex-col items-center justify-center pointer-events-none">
+  <div class="relative h-3/5 w-full flex justify-center">
+    <!-- Track Line -->
+    <div class="absolute top-0 left-1/2 -ml-px h-full w-0.5 bg-gray-200 dark:bg-gray-700/50"></div>
+    <!-- Progress Line -->
+    <div 
+      class="absolute top-0 left-1/2 -ml-px h-full w-0.5 bg-[#8A6B93] dark:bg-purple-500"
+      [style.height.%]="scrollProgress() * 100">
+    </div>
+
+    <!-- Traveling Dot with Pulse -->
+    <div 
+      class="absolute left-1/2 -translate-x-1/2 w-4 h-4 flex items-center justify-center pointer-events-auto"
+      [style.top.%]="scrollProgress() * 100">
+        <div class="pulse absolute w-full h-full rounded-full bg-white opacity-50"></div>
+        <div class="relative w-2 h-2 rounded-full bg-white shadow-md"></div>
+    </div>
+
+    <!-- Section Markers -->
+    @for(section of sectionPositions(); track section.id) {
+        <a 
+            [href]="'#' + section.id"
+            (click)="scrollToSection($event, section.id)"
+            class="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 transition-all duration-300 group pointer-events-auto cursor-pointer"
+            [style.top.%]="section.percent * 100"
+            [class]="activeSectionId() === section.id 
+                ? 'bg-[#8A6B93] dark:bg-purple-500 border-white scale-150' 
+                : passedSectionIds().has(section.id)
+                    ? 'bg-[#8A6B93] dark:bg-purple-500 border-transparent scale-100'
+                    : 'bg-gray-200 dark:bg-gray-700/50 border-transparent hover:scale-125'">
+            
+            <span class="absolute left-full ml-4 w-max px-3 py-1 text-sm font-semibold text-white dark:text-[#292639] bg-[#292639] dark:bg-gray-100 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+                {{ section.label }}
+            </span>
+        </a>
+    }
+  </div>
+</div>

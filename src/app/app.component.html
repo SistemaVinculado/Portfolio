@@ -1,0 +1,62 @@
+<app-interactive-background></app-interactive-background>
+<app-custom-cursor></app-custom-cursor>
+
+@if (isLoading()) {
+  <app-cosmic-preloader [isLoading]="isLoading()"></app-cosmic-preloader>
+} @else {
+  <div class="min-h-screen flex flex-col relative">
+    <app-header 
+      [navLinks]="navLinks()" 
+      [theme]="theme()"
+      [isMobileMenuOpen]="isMobileMenuOpen()"
+      (toggleTheme)="toggleTheme()"
+      (toggleMobileMenu)="toggleMobileMenu()"
+      (closeMobileMenu)="closeMobileMenu()">
+    </app-header>
+    
+    <main class="flex-grow">
+      <router-outlet></router-outlet>
+    </main>
+
+    <app-footer
+      [currentYear]="currentYear"
+      [navLinks]="navLinks()"
+      (openPrivacyModal)="openPrivacyModal()"
+      (openTermsModal)="openTermsModal()">
+    </app-footer>
+
+    <!-- Floating Action Buttons Container -->
+    <div 
+      class="fixed right-6 z-40 flex flex-col items-center gap-4 transition-[bottom] duration-300"
+      [class]="showCookieBanner() ? 'bottom-28 sm:bottom-24' : 'bottom-6'">
+      @if(showBackToTop()) {
+        <div class="animate-slide-up-fade-in">
+          <app-back-to-top (backToTop)="scrollToTop()"></app-back-to-top>
+        </div>
+      }
+      <button (click)="openAiBuddy()" aria-label="Open AI Project Architect" class="bg-gradient-to-br from-purple-500 to-indigo-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 transform cursor-pointer">
+        <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 01-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 013.09-3.09L12 5.25l2.846.813a4.5 4.5 0 013.09 3.09L21.75 12l-2.846.813a4.5 4.5 0 01-3.09 3.09z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  @if(showAiBuddy()) {
+    <app-ai-buddy (close)="closeAiBuddy()"></app-ai-buddy>
+  }
+
+  @if(showCookieBanner()) {
+    <div class="animate-slide-up-fade">
+      <app-cookie-banner (accept)="acceptCookies()"></app-cookie-banner>
+    </div>
+  }
+
+  @if (showPrivacyModal()) {
+    <app-legal-modal [content]="privacyPolicy()" (close)="closePrivacyModal()"></app-legal-modal>
+  }
+
+  @if (showTermsModal()) {
+    <app-legal-modal [content]="termsOfService()" (close)="closeTermsModal()"></app-legal-modal>
+  }
+}

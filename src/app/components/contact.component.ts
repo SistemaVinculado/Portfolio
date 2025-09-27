@@ -1,0 +1,110 @@
+import { Component, ChangeDetectionStrategy, input, signal, effect, inject, computed } from '@angular/core';
+import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
+import { DataService } from '../data.service';
+
+@Component({
+  selector: 'app-contact',
+  standalone: true,
+  imports: [ReactiveFormsModule, AnimateOnScrollDirective],
+  templateUrl: './contact.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ContactComponent {
+  private dataService = inject(DataService);
+
+  initialMessage = input<string | null>(null);
+  
+  contactInfo = this.dataService.contactInfo;
+  socialLinks = this.dataService.socialLinks;
+  services = this.dataService.services;
+
+  formStatus = signal<'idle' | 'submitting' | 'success'>('idle');
+  submittedName = signal('');
+  
+  contactForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    company: new FormControl(''),
+    inquiryType: new FormControl('project', Validators.required),
+    serviceOfInterest: new FormControl('', Validators.required),
+    budget: new FormControl('', Validators.required),
+    message: new FormControl('', [Validators.required, Validators.minLength(10)])
+  });
+
+  expectations = [
+    {
+      title: 'Rapid Response',
+      description: 'Expect a reply within one business day to schedule our initial chat.',
+      iconPath: 'M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z'
+    },
+    {
+      title: 'Discovery Call',
+      description: 'A deep dive into your vision, goals, and technical requirements.',
+      iconPath: 'M12 18v-5.25m0 0a6.01 6.01 0 001.5-.184m-1.5.184a6.01 6.01 0 01-1.5-.184m3.75 7.482c.075-.015.15-.03.225-.045m-3.975 0a6.017 6.017 0 01-2.225-.045M12 18c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z'
+    },
+    {
+      title: 'Custom Proposal',
+      description: 'A detailed, no-obligation proposal with a project roadmap and timeline.',
+      iconPath: 'M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z'
+    }
+  ];
+
+  emailInfo = computed(() => this.contactInfo().find(c => c.title === 'Email Us'));
+
+  constructor() {
+    effect(() => {
+      const message = this.initialMessage();
+      if (message) {
+        this.contactForm.patchValue({ message });
+      }
+    });
+
+    // Add conditional validators based on the inquiry type
+    this.contactForm.get('inquiryType')?.valueChanges.subscribe(type => {
+      const serviceControl = this.contactForm.get('serviceOfInterest');
+      const budgetControl = this.contactForm.get('budget');
+
+      if (type === 'project') {
+        serviceControl?.setValidators(Validators.required);
+        budgetControl?.setValidators(Validators.required);
+      } else {
+        serviceControl?.clearValidators();
+        budgetControl?.clearValidators();
+        serviceControl?.setValue('');
+        budgetControl?.setValue('');
+      }
+      serviceControl?.updateValueAndValidity();
+      budgetControl?.updateValueAndValidity();
+    });
+  }
+
+  submitForm(): void {
+    if (this.contactForm.invalid) {
+      this.contactForm.markAllAsTouched();
+      return;
+    }
+    this.formStatus.set('submitting');
+    this.submittedName.set(this.contactForm.get('name')?.value || '');
+    console.log('Form Submitted!', this.contactForm.value);
+    
+    // Simulate network request
+    setTimeout(() => {
+      this.formStatus.set('success');
+    }, 2000);
+  }
+
+  resetForm(): void {
+    this.contactForm.reset({
+      name: '',
+      email: '',
+      company: '',
+      inquiryType: 'project',
+      serviceOfInterest: '',
+      budget: '',
+      message: ''
+    });
+    this.formStatus.set('idle');
+    this.submittedName.set('');
+  }
+}

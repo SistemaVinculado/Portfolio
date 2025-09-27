@@ -1,0 +1,108 @@
+<!-- Careers Section -->
+<section id="careers" class="py-16 sm:py-24 bg-[#EAE8E3] dark:bg-[#292639] rounded-3xl">
+    <div class="text-center mb-12 px-4">
+      <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Join Our Team</h2>
+      <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">We're looking for passionate, creative, and dedicated individuals to join our mission.</p>
+    </div>
+    <div class="max-w-4xl mx-auto space-y-6 px-4 sm:px-6 lg:px-8">
+      @for (job of jobOpenings(); track job.position; let i = $index) {
+        <div appAnimateOnScroll [delay]="(i * 100) + 'ms'" class="bg-white dark:bg-gray-800/30 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700/50 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <h3 class="text-xl font-bold text-[#292639] dark:text-white">{{ job.position }}</h3>
+            <div class="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400 mt-1">
+              <span>{{ job.location }}</span>
+              <span class="w-1 h-1 bg-gray-400 rounded-full"></span>
+              <span>{{ job.type }}</span>
+            </div>
+          </div>
+          <a (click)="onScrollTo($event, '#contact', 'I\'m interested in the ' + job.position + ' position.')" href="#contact" class="bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639] px-5 py-2.5 rounded-full font-semibold hover:bg-opacity-90 dark:hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 whitespace-nowrap">
+            Apply Now
+          </a>
+        </div>
+      }
+    </div>
+</section>
+
+<!-- StellarDev Labs Section -->
+<section id="labs" class="py-16 sm:py-24">
+    <div class="text-center mb-16">
+        <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">StellarDev Labs</h2>
+        <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Exploring the future of digital interaction. Our space for innovation, experimentation, and open-source contributions.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        @for (experiment of labExperiments(); track experiment.title; let i = $index) {
+            @if (experiment.id === 'code-matrix') {
+                <div appAnimateOnScroll [delay]="(i * 100) + 'ms'" class="bg-white/50 dark:bg-gray-900 p-8 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col group relative overflow-hidden h-96 md:h-auto min-h-[450px]">
+                    <app-code-matrix></app-code-matrix>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent p-8 flex flex-col justify-end z-10">
+                        <div>
+                            <div class="bg-gray-900/50 backdrop-blur-sm w-16 h-16 rounded-xl flex items-center justify-center">
+                                <svg class="w-8 h-8 text-gray-200" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="experiment.iconPath" />
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold mt-6 text-white">{{ experiment.title }}</h3>
+                            <p class="text-gray-300 mt-2 text-base leading-relaxed flex-grow">{{ experiment.description }}</p>
+                            <div class="mt-6 flex flex-wrap gap-2">
+                                @for (tag of experiment.tags; track tag) {
+                                    <span class="bg-gray-200/20 text-white text-xs font-semibold px-3 py-1 rounded-full backdrop-blur-sm">{{ tag }}</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            } @else {
+                <div appAnimateOnScroll [delay]="(i * 100) + 'ms'" class="bg-white/50 dark:bg-gray-800/30 backdrop-blur-sm p-8 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col group">
+                    <div class="bg-[#EAE8E3] dark:bg-gray-700 w-16 h-16 rounded-xl flex items-center justify-center">
+                    <svg class="w-8 h-8 text-[#292639] dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="experiment.iconPath" />
+                    </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mt-6 text-[#292639] dark:text-white">{{ experiment.title }}</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mt-2 text-base leading-relaxed flex-grow">{{ experiment.description }}</p>
+                    <div class="mt-6 flex flex-wrap gap-2">
+                        @for (tag of experiment.tags; track tag) {
+                        <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 text-xs font-semibold px-3 py-1 rounded-full">{{ tag }}</span>
+                        }
+                    </div>
+                    <div class="mt-8">
+                        <button (click)="handleLabClick(experiment)" class="font-semibold text-[#292639] dark:text-gray-200 inline-flex items-center group-hover:text-[#8A6B93] dark:group-hover:text-purple-400 transition-colors duration-300">
+                        @if (experiment.title === 'Real-time Visitor Globe') {
+                            Launch Experiment
+                        } @else {
+                            View Experiment
+                        }
+                        <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </button>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</section>
+
+<!-- Blog/Insights Section -->
+<section id="insights" class="py-16 sm:py-24">
+    <div class="text-center mb-12 px-4">
+        <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Latest Insights</h2>
+        <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Stay ahead of the curve with our latest articles on design, technology, and strategy.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 sm:px-6 lg:px-8">
+        @for (post of blogPosts(); track post.title; let i = $index) {
+        <div appAnimateOnScroll [delay]="(i * 100) + 'ms'" class="group bg-white dark:bg-gray-800/30 rounded-2xl overflow-hidden shadow-sm border border-gray-200/50 dark:border-gray-700/50 flex flex-col">
+            <button (click)="openBlogModal.emit(post)" class="w-full text-left focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-[#F5F3EF] dark:focus:ring-offset-[#1C1A27] focus:ring-[#8A6B93] rounded-2xl">
+            <img [ngSrc]="post.imageUrl" [alt]="post.title" width="800" height="600" class="w-full h-auto object-cover rounded-t-2xl">
+            <div class="p-6 flex flex-col flex-grow">
+                <p class="text-sm font-semibold text-[#8A6B93] dark:text-purple-400">{{ post.category }}</p>
+                <h3 class="text-xl font-bold mt-2 text-[#292639] dark:text-white">{{ post.title }}</h3>
+                <p class="mt-2 text-gray-600 dark:text-gray-400 text-base leading-relaxed flex-grow">{{ post.excerpt }}</p>
+                <span class="mt-4 font-semibold text-[#292639] dark:text-gray-200 inline-flex items-center group-hover:text-[#8A6B93] dark:group-hover:text-purple-400 transition-colors duration-300">
+                Read More
+                <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </span>
+            </div>
+            </button>
+        </div>
+        }
+    </div>
+</section>

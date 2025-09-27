@@ -1,0 +1,67 @@
+:host {
+  display: block;
+}
+
+.icon-container {
+  /* For 3D perspective */
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.icon-wrapper {
+  /* The part that will lift up */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 10;
+}
+
+.bearing-ring {
+  position: absolute;
+  border-radius: 50%;
+  border-style: solid;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 5;
+}
+
+.bearing-outer {
+  width: 120%;
+  height: 120%;
+  border-width: 2px;
+  border-color: #8A6B93;
+  transform: scale(0.5) rotate(0deg);
+}
+
+.bearing-inner {
+  width: 90%;
+  height: 90%;
+  border-width: 1px;
+  border-style: dashed;
+  border-color: #8A6B93;
+  transform: scale(1.5) rotate(0deg);
+}
+
+.dark .bearing-ring {
+  border-color: #A087A7;
+}
+
+/* Hover state on the parent button */
+button:hover .icon-wrapper {
+  transform: translateY(-4px) translateZ(10px);
+  box-shadow: 0 10px 20px rgba(41, 38, 57, 0.1);
+}
+
+.dark button:hover .icon-wrapper {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+button:hover .bearing-ring {
+  opacity: 0.8;
+}
+
+button:hover .bearing-outer {
+  transform: scale(1) rotate(90deg);
+}
+
+button:hover .bearing-inner {
+  transform: scale(1) rotate(-90deg);
+}

@@ -1,0 +1,68 @@
+<div role="dialog" aria-modal="true" aria-labelledby="ai-buddy-title" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div (click)="close.emit()" class="fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-sm transition-opacity duration-300 ease-in-out animate-fade-in"></div>
+  
+  <div class="relative w-full max-w-lg h-[80vh] max-h-[700px] bg-white/80 dark:bg-[#1C1A27]/80 backdrop-blur-xl rounded-2xl shadow-2xl transform transition-all duration-300 ease-in-out animate-slide-up-fade flex flex-col overflow-hidden border border-gray-200 dark:border-gray-700">
+    <app-generative-art></app-generative-art>
+    
+    <header class="relative z-10 flex items-center justify-between p-4 border-b border-gray-200/50 dark:border-gray-700/50 flex-shrink-0">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 01-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 013.09-3.09L12 5.25l2.846.813a4.5 4.5 0 013.09 3.09L21.75 12l-2.846.813a4.5 4.5 0 01-3.09 3.09z" />
+          </svg>
+        </div>
+        <div>
+          <h3 id="ai-buddy-title" class="font-bold text-lg text-[#292639] dark:text-white">AI Project Architect</h3>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Powered by Gemini</p>
+        </div>
+      </div>
+      <button (click)="close.emit()" aria-label="Close chat" class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+    </header>
+
+    <div #chatContainer class="relative z-10 flex-grow p-4 overflow-y-auto chat-messages">
+      @for(message of displayMessages(); track $index) {
+        <div class="flex mb-4 animate-slide-up-fade-in" [class.justify-end]="message.role === 'user'">
+          <div class="max-w-xs md:max-w-md p-3 rounded-2xl" [class]="message.role === 'user' ? 'bg-[#8A6B93] text-white rounded-br-lg' : message.isError ? 'bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300 rounded-bl-lg' : 'bg-gray-200/80 dark:bg-gray-700/80 text-[#292639] dark:text-gray-200 rounded-bl-lg'">
+            <div class="prose prose-sm dark:prose-invert max-w-none" [innerHTML]="message.htmlContent"></div>
+          </div>
+        </div>
+      }
+      @if (isLoading()) {
+        <div class="flex mb-4 animate-slide-up-fade-in">
+          <div class="max-w-xs p-3 rounded-2xl bg-gray-200/80 dark:bg-gray-700/80 rounded-bl-lg flex items-center space-x-1.5">
+            <span class="typing-dot"></span>
+            <span class="typing-dot" style="animation-delay: 0.2s;"></span>
+            <span class="typing-dot" style="animation-delay: 0.4s;"></span>
+          </div>
+        </div>
+      }
+       @if (error()) {
+         <div class="flex mb-4 animate-slide-up-fade-in">
+          <div class="max-w-xs md:max-w-md p-3 rounded-2xl bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300 rounded-bl-lg">
+            {{ error() }}
+          </div>
+        </div>
+       }
+    </div>
+
+    <footer class="relative z-10 p-4 border-t border-gray-200/50 dark:border-gray-700/50 flex-shrink-0">
+      <form (submit)="onSendMessage($event)">
+        <div class="relative">
+          <input 
+            type="text" 
+            name="prompt"
+            placeholder="e.g., a fitness tracker..." 
+            [disabled]="isLoading()"
+            autocomplete="off"
+            class="w-full pl-4 pr-12 py-3 bg-gray-100 dark:bg-gray-800 border-2 border-transparent focus:border-[#8A6B93] dark:focus:border-purple-500 rounded-full focus:outline-none focus:ring-0 transition-colors text-[#292639] dark:text-white"
+          >
+          <button type="submit" [disabled]="isLoading()" aria-label="Send message" class="absolute inset-y-0 right-0 flex items-center justify-center w-12 h-full text-gray-400 hover:text-[#8A6B93] dark:hover:text-purple-400 disabled:text-gray-300 dark:disabled:text-gray-600 disabled:cursor-not-allowed transition-colors">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg>
+          </button>
+        </div>
+      </form>
+    </footer>
+  </div>
+</div>

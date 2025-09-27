@@ -1,0 +1,52 @@
+:host {
+  display: block;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-container {
+  overflow: hidden;
+  /* Faded edges */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+.marquee-content {
+  display: flex;
+  animation-name: marqueeScroll;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+}
+
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+.marquee-track {
+    display: flex;
+    align-items: stretch; /* Make cards same height */
+    flex-shrink: 0;
+    gap: 2rem; /* 32px */
+    padding: 0 1rem; /* for half gap on ends */
+}
+
+.marquee-item {
+  width: 90vw;
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) { /* sm breakpoint */
+  .marquee-item {
+    width: 400px;
+  }
+}
+
+@media (min-width: 1024px) { /* lg breakpoint */
+  .marquee-item {
+    width: 450px;
+  }
+}
