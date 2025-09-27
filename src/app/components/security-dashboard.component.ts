@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 import { DataService } from '../data.service';
 import { LogEntry } from '../models';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 @Component({
   selector: 'app-security-dashboard',
   standalone: true,
-  imports: [CommonModule, AnimateOnScrollDirective],
+  imports: [CommonModule, AnimateOnScrollDirective, TranslatePipe],
   templateUrl: './security-dashboard.component.html',
   styleUrls: ['./security-dashboard.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

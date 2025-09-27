@@ -10,7 +10,6 @@ import { VisitorGlobeComponent } from '../components/visitor-globe.component';
 import { CtaComponent } from '../components/cta.component';
 import { Router } from '@angular/router';
 import { LanguageService } from '../services/language.service';
-import { SectionDividerComponent } from '../components/section-divider.component';
 
 @Component({
   selector: 'app-insights-page',
@@ -20,8 +19,7 @@ import { SectionDividerComponent } from '../components/section-divider.component
     CommunityComponent,
     BlogModalComponent,
     VisitorGlobeComponent,
-    CtaComponent,
-    SectionDividerComponent
+    CtaComponent
   ],
   templateUrl: './insights-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

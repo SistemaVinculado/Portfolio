@@ -12,13 +12,12 @@ import { CtaComponent } from '../components/cta.component';
 import { Router } from '@angular/router';
 import { LanguageService } from '../services/language.service';
 import { TranslatePipe } from '../pipes/translate.pipe';
-import { SectionDividerComponent } from '../components/section-divider.component';
 
 
 @Component({
   selector: 'app-work-page',
   standalone: true,
-  imports: [PageHeaderComponent, WorkComponent, PortfolioModalComponent, CtaComponent, AnimateOnScrollDirective, TranslatePipe, SectionDividerComponent],
+  imports: [PageHeaderComponent, WorkComponent, PortfolioModalComponent, CtaComponent, AnimateOnScrollDirective, TranslatePipe],
   templateUrl: './work-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

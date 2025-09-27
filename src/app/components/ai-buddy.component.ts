@@ -5,11 +5,12 @@ import { ChatMessage } from '../models';
 import { GenerativeArtComponent } from './generative-art.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { LanguageService } from '../services/language.service';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 @Component({
   selector: 'app-ai-buddy',
   standalone: true,
-  imports: [GenerativeArtComponent],
+  imports: [GenerativeArtComponent, TranslatePipe],
   templateUrl: './ai-buddy.component.html',
   styleUrls: ['./ai-buddy.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

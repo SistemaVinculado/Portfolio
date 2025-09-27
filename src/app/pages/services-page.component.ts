@@ -7,12 +7,11 @@ import { FeaturesComponent } from '../components/features.component';
 import { CtaComponent } from '../components/cta.component';
 import { Router } from '@angular/router';
 import { LanguageService } from '../services/language.service';
-import { SectionDividerComponent } from '../components/section-divider.component';
 
 @Component({
   selector: 'app-services-page',
   standalone: true,
-  imports: [PageHeaderComponent, FeaturesComponent, CtaComponent, SectionDividerComponent],
+  imports: [PageHeaderComponent, FeaturesComponent, CtaComponent],
   templateUrl: './services-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
