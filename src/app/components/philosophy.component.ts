@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, signal, inject, SecurityContext, co
 import { DomSanitizer } from '@angular/platform-browser';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 import { Philosophy } from '../models';
-import { TranslatePipe } from '../pipes/translate.pipe';
+import { TextContentService } from '../services/text-content.service';
 
 interface Card {
   title: string;
@@ -14,12 +14,17 @@ interface Card {
 @Component({
   selector: 'app-philosophy',
   standalone: true,
-  imports: [AnimateOnScrollDirective, TranslatePipe],
+  imports: [AnimateOnScrollDirective],
   templateUrl: './philosophy.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhilosophyComponent {
   private sanitizer = inject(DomSanitizer);
+  private textContentService = inject(TextContentService);
+
+  t(key: string): string {
+    return this.textContentService.get(key)();
+  }
   
   principles = input.required<Philosophy[]>();
 

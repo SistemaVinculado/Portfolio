@@ -1,6 +1,7 @@
-import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { PortfolioItem } from '../models';
+import { TextContentService } from '../services/text-content.service';
 
 @Component({
   selector: 'app-portfolio-modal',
@@ -10,6 +11,11 @@ import { PortfolioItem } from '../models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PortfolioModalComponent {
+  private textContentService = inject(TextContentService);
   item = input.required<PortfolioItem>();
   close = output<void>();
+
+  t(key: string): string {
+    return this.textContentService.get(key)();
+  }
 }

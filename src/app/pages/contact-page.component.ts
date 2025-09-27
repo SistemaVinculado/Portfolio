@@ -7,7 +7,7 @@ import { ContactComponent } from '../components/contact.component';
 import { SocialProofComponent } from '../components/social-proof.component';
 import { SectionDividerComponent } from '../components/section-divider.component';
 import { Router } from '@angular/router';
-import { LanguageService } from '../services/language.service';
+import { TextContentService } from '../services/text-content.service';
 
 @Component({
   selector: 'app-contact-page',
@@ -19,11 +19,11 @@ import { LanguageService } from '../services/language.service';
 export class ContactPageComponent {
   private dataService: DataService = inject(DataService);
   private router: Router = inject(Router);
-  private languageService: LanguageService = inject(LanguageService);
+  private textContentService: TextContentService = inject(TextContentService);
 
   // Page Header Content
-  pageTitle = this.languageService.get('pages.contact.title');
-  pageSubtitle = this.languageService.get('pages.contact.subtitle');
+  pageTitle = this.textContentService.get('pages.contact.title');
+  pageSubtitle = this.textContentService.get('pages.contact.subtitle');
 
   // Data signals from DataService
   faqs = this.dataService.faqs;

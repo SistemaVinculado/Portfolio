@@ -1,6 +1,6 @@
 import { Injectable, inject, effect } from '@angular/core';
 import { GoogleGenAI, Chat, GenerateContentResponse } from '@google/genai';
-import { LanguageService } from './language.service';
+import { TextContentService } from './text-content.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +8,9 @@ import { LanguageService } from './language.service';
 export class GeminiService {
   private ai: GoogleGenAI;
   private chat: Chat | null = null;
-  private langService = inject(LanguageService);
+  private textService = inject(TextContentService);
 
-  private systemInstruction = this.langService.get('geminiSystemInstruction');
+  private systemInstruction = this.textService.get('geminiSystemInstruction');
 
   constructor() {
     // This assumes process.env.API_KEY is available in the execution environment,
@@ -23,10 +23,8 @@ export class GeminiService {
     this.ai = new GoogleGenAI({ apiKey });
 
     effect(() => {
-      // This effect will run whenever the language changes, resetting the chat.
-      // FIX: The `currentLanguage` property does not exist. 
-      // To establish reactivity, we depend on a computed signal that uses the translations.
-      this.systemInstruction(); // Establish dependency on language change.
+      // This effect will run whenever the language (or any text content) changes, resetting the chat.
+      this.systemInstruction(); // Establish dependency
       this.resetChat();
     });
   }

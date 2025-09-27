@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { BlogPost, PortfolioItem } from '../models';
 import { DataService } from '../data.service';
-import { LanguageService } from '../services/language.service';
+import { TextContentService } from '../services/text-content.service';
 
 // Component Imports
 import { IntroComponent } from '../components/intro.component';
@@ -16,7 +16,6 @@ import { AvailabilityMarqueeComponent } from '../components/availability-marquee
 import { SectionDividerComponent } from '../components/section-divider.component';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 import { NgOptimizedImage } from '@angular/common';
-import { TranslatePipe } from '../pipes/translate.pipe';
 import { ScrollspyNavComponent } from '../components/scrollspy-nav.component';
 
 
@@ -35,7 +34,6 @@ import { ScrollspyNavComponent } from '../components/scrollspy-nav.component';
     VisitorGlobeComponent,
     AvailabilityMarqueeComponent,
     SectionDividerComponent,
-    TranslatePipe,
     ScrollspyNavComponent,
   ],
   templateUrl: './home.component.html',
@@ -47,7 +45,7 @@ export class HomeComponent {
   private platformId = inject(PLATFORM_ID);
   private document: Document = inject(DOCUMENT);
   private dataService: DataService = inject(DataService);
-  private languageService = inject(LanguageService);
+  private textContentService = inject(TextContentService);
   
   openFaqQuestion = signal<string | null>(null);
   selectedPortfolioItem = signal<PortfolioItem | null>(null);
@@ -84,6 +82,10 @@ export class HomeComponent {
     });
   }
 
+  t(key: string): string {
+    return this.textContentService.get(key)();
+  }
+
   // Data signals from DataService
   clients = this.dataService.clients;
   stats = this.dataService.stats;
@@ -94,11 +96,11 @@ export class HomeComponent {
   faqs = this.dataService.faqs;
 
   scrollSpyNavLinks = computed(() => [
-    { label: this.languageService.get('home.servicesOverview.title')(), href: '#services-overview' },
-    { label: this.languageService.get('home.featuredWork.title')(), href: '#featured-work' },
-    { label: this.languageService.get('home.socialProof.testimonialsTitle')(), href: '#social-proof' },
-    { label: this.languageService.get('home.actionZone.pricingTitle')(), href: '#pricing' },
-    { label: this.languageService.get('components.contact.title')(), href: '#contact' }
+    { label: this.textContentService.get('home.servicesOverview.title')(), href: '#services-overview' },
+    { label: this.textContentService.get('home.featuredWork.title')(), href: '#featured-work' },
+    { label: this.textContentService.get('home.socialProof.testimonialsTitle')(), href: '#social-proof' },
+    { label: this.textContentService.get('home.actionZone.pricingTitle')(), href: '#pricing' },
+    { label: this.textContentService.get('components.contact.title')(), href: '#contact' }
   ]);
   
   toggleFaq(question: string): void {

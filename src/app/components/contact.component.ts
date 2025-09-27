@@ -2,20 +2,22 @@ import { Component, ChangeDetectionStrategy, input, signal, effect, inject, comp
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 import { DataService } from '../data.service';
-import { TranslatePipe } from '../pipes/translate.pipe';
-import { LanguageService } from '../services/language.service';
+import { TextContentService } from '../services/text-content.service';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ReactiveFormsModule, AnimateOnScrollDirective, TranslatePipe],
+  imports: [ReactiveFormsModule, AnimateOnScrollDirective],
   templateUrl: './contact.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent {
   private dataService = inject(DataService);
-  private languageService = inject(LanguageService);
-  private t = this.languageService.get.bind(this.languageService);
+  private textContentService = inject(TextContentService);
+  
+  t(key: string, params?: { [key: string]: any }): string {
+    return this.textContentService.getWithParams(key, params);
+  }
   
   initialMessage = input<string | null>(null);
   

@@ -10,8 +10,7 @@ import { SocialProofComponent } from '../components/social-proof.component';
 import { SectionDividerComponent } from '../components/section-divider.component';
 import { CtaComponent } from '../components/cta.component';
 import { Router } from '@angular/router';
-import { LanguageService } from '../services/language.service';
-import { TranslatePipe } from '../pipes/translate.pipe';
+import { TextContentService } from '../services/text-content.service';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 
 @Component({
@@ -25,7 +24,6 @@ import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.direct
     SectionDividerComponent,
     CtaComponent,
     NgOptimizedImage,
-    TranslatePipe,
     AnimateOnScrollDirective
   ],
   templateUrl: './about-page.component.html',
@@ -34,11 +32,15 @@ import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.direct
 export class AboutPageComponent {
   private dataService: DataService = inject(DataService);
   private router: Router = inject(Router);
-  private languageService: LanguageService = inject(LanguageService);
+  private textContentService: TextContentService = inject(TextContentService);
+
+  t(key: string): string {
+    return this.textContentService.get(key)();
+  }
 
   // Page Header Content
-  pageTitle = this.languageService.get('pages.about.title');
-  pageSubtitle = this.languageService.get('pages.about.subtitle');
+  pageTitle = this.textContentService.get('pages.about.title');
+  pageSubtitle = this.textContentService.get('pages.about.subtitle');
 
   // Data signals from DataService
   philosophyPrinciples = this.dataService.philosophyPrinciples;

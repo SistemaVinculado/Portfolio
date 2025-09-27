@@ -16,7 +16,7 @@
             }
         </button>
         <a routerLink="/contact" class="bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639] px-5 py-2.5 rounded-full font-semibold hover:bg-opacity-90 dark:hover:bg-gray-200 transition-all duration-300 transform hover:scale-105">
-            {{ 'header.startConsultation' | translate }}
+            {{ t('header.startConsultation') }}
         </a>
     </div>
     <!-- Mobile Menu Button -->
@@ -81,7 +81,7 @@
                         </nav>
                         <div class="mt-auto pt-4">
                             <a routerLink="/contact" (click)="closeMobileMenu.emit()" class="w-full text-center bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639] px-5 py-3 rounded-full font-semibold hover:bg-opacity-90 dark:hover:bg-gray-200 transition-colors">
-                                {{ 'header.startConsultation' | translate }}
+                                {{ t('header.startConsultation') }}
                             </a>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                              <header class="flex items-center justify-between mb-8">
                                 <button (click)="closeSubMenu()" class="flex items-center text-lg font-bold text-[#292639] dark:text-white p-2 -ml-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-colors">
                                      <svg class="w-6 h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
-                                    {{ 'header.back' | translate }}
+                                    {{ t('header.back') }}
                                 </button>
                                 <a [routerLink]="subMenu.href" (click)="closeMobileMenu.emit()" class="text-2xl font-bold tracking-tight text-[#292639] dark:text-white hover:text-purple-400">{{ subMenu.label }}</a>
                             </header>

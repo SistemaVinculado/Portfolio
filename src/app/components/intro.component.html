@@ -84,7 +84,7 @@
     <!-- Trusted By Section -->
     <div class="max-w-5xl mx-auto" appAnimateOnScroll>
       <p class="text-center text-sm font-semibold uppercase text-gray-500 dark:text-gray-400 tracking-wider">
-        {{ 'home.intro.trustedBy' | translate }}
+        {{ t('home.intro.trustedBy') }}
       </p>
       <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
         @for (client of clients(); track client.name; let i = $index) {
@@ -120,9 +120,9 @@
     <div class="mt-20 grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
       <!-- Left side -->
       <div class="lg:col-span-3 flex flex-col items-start space-y-8">
-        <h1 appAnimateOnScroll class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tighter text-[#292639] dark:text-white" [innerHTML]="'home.intro.heroTitle' | translate">
+        <h1 appAnimateOnScroll class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tighter text-[#292639] dark:text-white" [innerHTML]="t('home.intro.heroTitle')">
         </h1>
-        <button appAnimateOnScroll delay="100ms" (click)="onScrollTo($event, '#services')" [attr.aria-label]="'home.intro.scrollToServices' | translate" class="w-14 h-14 rounded-full bg-[#EAE8E3] dark:bg-gray-700 flex items-center justify-center cursor-pointer hover:bg-opacity-80 dark:hover:bg-opacity-70 transition-all duration-300">
+        <button appAnimateOnScroll delay="100ms" (click)="onScrollTo($event, '#services')" [attr.aria-label]="t('home.intro.scrollToServices')" class="w-14 h-14 rounded-full bg-[#EAE8E3] dark:bg-gray-700 flex items-center justify-center cursor-pointer hover:bg-opacity-80 dark:hover:bg-opacity-70 transition-all duration-300">
           <svg class="w-7 h-7 text-gray-700 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m0 0l-6-6m6 6l6-6" />
           </svg>
@@ -132,24 +132,24 @@
       <!-- Right side -->
       <div class="lg:col-span-2 flex flex-col items-start space-y-8">
         <p appAnimateOnScroll class="text-gray-600 dark:text-gray-400 leading-relaxed max-w-md text-base">
-          {{ 'home.intro.heroSubtitle' | translate }}
+          {{ t('home.intro.heroSubtitle') }}
         </p>
         <div appAnimateOnScroll delay="100ms" class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <button (click)="onScrollTo($event, '#portfolio')" class="bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639] px-5 py-3 rounded-full font-semibold flex items-center space-x-2.5 hover:bg-opacity-90 dark:hover:bg-gray-200 transition-all duration-300 transform hover:scale-105">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.125c0 1.326-.816 2.4-1.875 2.4H5.625c-1.06 0-1.875-1.074-1.875-2.4V14.15M15.75 13.5v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a3.375 3.375 0 00-3.375 3.375V13.5m11.25 0h-11.25" />
             </svg>
-            <span>{{ 'home.intro.viewCommissions' | translate }}</span>
+            <span>{{ t('home.intro.viewCommissions') }}</span>
           </button>
           <button (click)="onScrollTo($event, '#contact')" class="bg-[#EAE8E3] dark:bg-gray-700 text-[#292639] dark:text-gray-200 px-5 py-3 rounded-full font-semibold flex items-center space-x-2.5 hover:bg-opacity-80 dark:hover:bg-opacity-70 transition-all duration-300 transform hover:scale-105">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
               <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0h18" />
             </svg>
-            <span>{{ 'home.intro.initiateConsultation' | translate }}</span>
+            <span>{{ t('home.intro.initiateConsultation') }}</span>
           </button>
         </div>
         <div appAnimateOnScroll delay="200ms" class="pt-4">
-            <button (click)="toggleDetails()" class="w-14 h-14 rounded-full bg-[#EAE8E3] dark:bg-gray-700 flex items-center justify-center cursor-pointer hover:bg-opacity-80 dark:hover:bg-opacity-70 transition-all duration-300 group" [attr.aria-label]="'home.intro.toggleDetails' | translate">
+            <button (click)="toggleDetails()" class="w-14 h-14 rounded-full bg-[#EAE8E3] dark:bg-gray-700 flex items-center justify-center cursor-pointer hover:bg-opacity-80 dark:hover:bg-opacity-70 transition-all duration-300 group" [attr.aria-label]="t('home.intro.toggleDetails')">
                 <svg class="w-7 h-7 text-gray-700 dark:text-gray-300 transition-transform duration-500 ease-in-out" [class.rotate-180]="isDetailsExpanded()">
                     <path fill="currentColor" d="M12.707,15.707a1,1,0,0,1-1.414,0L5.636,10.05A1,1,0,0,1,6.343,8.636H17.657a1,1,0,0,1,.707,1.707Z" />
                 </svg>
@@ -162,8 +162,8 @@
     @if (isDetailsExpanded()) {
         <div class="mt-16 animate-slide-down">
             <div class="text-center mb-12" appAnimateOnScroll>
-                <h2 class="text-3xl font-bold text-[#292639] dark:text-white tracking-tight">{{ 'home.intro.cipherTitle' | translate }}</h2>
-                <p class="mt-3 max-w-2xl mx-auto text-gray-600 dark:text-gray-400">{{ 'home.intro.cipherSubtitle' | translate }}</p>
+                <h2 class="text-3xl font-bold text-[#292639] dark:text-white tracking-tight">{{ t('home.intro.cipherTitle') }}</h2>
+                <p class="mt-3 max-w-2xl mx-auto text-gray-600 dark:text-gray-400">{{ t('home.intro.cipherSubtitle') }}</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
                 <!-- Pillar 1: Architectural Purity -->
@@ -173,8 +173,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h6M9 11.25h6M9 15.75h6M9 20.25h6M4.5 6.75h.75v.75H4.5v-.75zm.75 4.5h-.75v-.75h.75v.75zm-.75 4.5h.75v.75H4.5v-.75zm14.25-8.25h-.75v-.75h.75v.75zm-.75 4.5h.75v.75h-.75v-.75zm.75 4.5h-.75v-.75h.75v.75z" />
                          </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-[#292639] dark:text-white">{{ 'home.intro.pillar1Title' | translate }}</h3>
-                    <p class="mt-2 text-gray-600 dark:text-gray-400">{{ 'home.intro.pillar1Desc' | translate }}</p>
+                    <h3 class="text-xl font-bold text-[#292639] dark:text-white">{{ t('home.intro.pillar1Title') }}</h3>
+                    <p class="mt-2 text-gray-600 dark:text-gray-400">{{ t('home.intro.pillar1Desc') }}</p>
                 </div>
                 <!-- Pillar 2: Kinetic Grace -->
                 <div appAnimateOnScroll delay="200ms">
@@ -183,8 +183,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                          </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-[#292639] dark:text-white">{{ 'home.intro.pillar2Title' | translate }}</h3>
-                    <p class="mt-2 text-gray-600 dark:text-gray-400">{{ 'home.intro.pillar2Desc' | translate }}</p>
+                    <h3 class="text-xl font-bold text-[#292639] dark:text-white">{{ t('home.intro.pillar2Title') }}</h3>
+                    <p class="mt-2 text-gray-600 dark:text-gray-400">{{ t('home.intro.pillar2Desc') }}</p>
                 </div>
                 <!-- Pillar 3: Semantic Signature -->
                 <div appAnimateOnScroll delay="300ms">
@@ -193,8 +193,8 @@
                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-3.182-3.182m3.182 0l-3.182 3.182" />
                          </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-[#292639] dark:text-white">{{ 'home.intro.pillar3Title' | translate }}</h3>
-                    <p class="mt-2 text-gray-600 dark:text-gray-400">{{ 'home.intro.pillar3Desc' | translate }}</p>
+                    <h3 class="text-xl font-bold text-[#292639] dark:text-white">{{ t('home.intro.pillar3Title') }}</h3>
+                    <p class="mt-2 text-gray-600 dark:text-gray-400">{{ t('home.intro.pillar3Desc') }}</p>
                 </div>
             </div>
         </div>

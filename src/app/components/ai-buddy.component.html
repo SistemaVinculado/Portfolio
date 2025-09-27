@@ -12,8 +12,8 @@
           </svg>
         </div>
         <div>
-          <h3 id="ai-buddy-title" class="font-bold text-lg text-[#292639] dark:text-white">{{ 'aiBuddy.title' | translate }}</h3>
-          <p class="text-xs text-gray-500 dark:text-gray-400">{{ 'aiBuddy.poweredBy' | translate }}</p>
+          <h3 id="ai-buddy-title" class="font-bold text-lg text-[#292639] dark:text-white">{{ t('aiBuddy.title') }}</h3>
+          <p class="text-xs text-gray-500 dark:text-gray-400">{{ t('aiBuddy.poweredBy') }}</p>
         </div>
       </div>
       <button (click)="close.emit()" aria-label="Close chat" class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
@@ -53,7 +53,7 @@
           <input 
             type="text" 
             name="prompt"
-            [placeholder]="'aiBuddy.placeholder' | translate" 
+            [placeholder]="t('aiBuddy.placeholder')" 
             [disabled]="isLoading()"
             autocomplete="off"
             class="w-full pl-4 pr-12 py-3 bg-gray-100 dark:bg-gray-800 border-2 border-transparent focus:border-[#8A6B93] dark:focus:border-purple-500 rounded-full focus:outline-none focus:ring-0 transition-colors text-[#292639] dark:text-white"

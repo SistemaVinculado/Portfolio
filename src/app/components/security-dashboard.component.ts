@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 import { DataService } from '../data.service';
 import { LogEntry } from '../models';
-import { TranslatePipe } from '../pipes/translate.pipe';
+import { TextContentService } from '../services/text-content.service';
 
 @Component({
   selector: 'app-security-dashboard',
   standalone: true,
-  imports: [CommonModule, AnimateOnScrollDirective, TranslatePipe],
+  imports: [CommonModule, AnimateOnScrollDirective],
   templateUrl: './security-dashboard.component.html',
   styleUrls: ['./security-dashboard.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,6 +17,12 @@ export class SecurityDashboardComponent implements OnInit, OnDestroy {
   @ViewChild('logContainer') private logContainer!: ElementRef<HTMLDivElement>;
   
   private dataService = inject(DataService);
+  private textContentService = inject(TextContentService);
+
+  t(key: string): string {
+    return this.textContentService.get(key)();
+  }
+
   private logInterval: number | undefined;
   private updateInterval: number | undefined;
   private nextLogId = 0;

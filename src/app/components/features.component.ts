@@ -3,18 +3,24 @@ import { DOCUMENT } from '@angular/common';
 import { Service, EngagementModel, Technology } from '../models';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 import { TechnologyConstellationComponent } from './technology-constellation.component';
-import { TranslatePipe } from '../pipes/translate.pipe';
+import { TextContentService } from '../services/text-content.service';
 
 @Component({
   selector: 'app-features',
   standalone: true,
-  imports: [AnimateOnScrollDirective, TechnologyConstellationComponent, TranslatePipe],
+  imports: [AnimateOnScrollDirective, TechnologyConstellationComponent],
   templateUrl: './features.component.html',
   styleUrls: ['./features.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeaturesComponent {
   private document: Document = inject(DOCUMENT);
+  private textContentService = inject(TextContentService);
+
+  t(key: string): string {
+    return this.textContentService.get(key)();
+  }
+  
   services = input.required<Service[]>();
   engagementModels = input.required<EngagementModel[]>();
   technologies = input.required<Technology[]>();

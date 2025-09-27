@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output, inject } from '@angular/core';
 import { LegalContent } from '../models';
+import { TextContentService } from '../services/text-content.service';
 
 @Component({
   selector: 'app-legal-modal',
@@ -8,6 +9,11 @@ import { LegalContent } from '../models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LegalModalComponent {
+  private textContentService = inject(TextContentService);
   content = input.required<LegalContent>();
   close = output<void>();
+
+  t(key: string): string {
+    return this.textContentService.get(key)();
+  }
 }

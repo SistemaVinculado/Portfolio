@@ -21,14 +21,14 @@
           <h2 class="text-2xl font-bold">{{ overallStatus().message }}</h2>
           <div class="flex items-center justify-center gap-2 mt-1">
             <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-            <p class="text-sm">{{ 'pages.status.lastUpdated' | translate }} {{ lastUpdated() | date:'mediumTime' }}</p>
+            <p class="text-sm">{{ t('pages.status.lastUpdated') }} {{ lastUpdated() | date:'mediumTime' }}</p>
           </div>
         </div>
     </div>
   
     <!-- Systems List -->
     <section class="mb-16">
-      <h3 class="text-2xl font-bold mb-6 text-[#292639] dark:text-white">{{ 'pages.status.coreSystems' | translate }}</h3>
+      <h3 class="text-2xl font-bold mb-6 text-[#292639] dark:text-white">{{ t('pages.status.coreSystems') }}</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @for (system of systemStatuses(); track system.name; let i = $index) {
           <div appAnimateOnScroll [delay]="(i * 100) + 'ms'" class="bg-white dark:bg-gray-800/30 p-6 rounded-xl border border-gray-200 dark:border-gray-700/50">
@@ -47,7 +47,7 @@
   
     <!-- Incident History -->
     <section>
-      <h3 class="text-2xl font-bold mb-8 text-[#292639] dark:text-white">{{ 'pages.status.integrityLog' | translate }}</h3>
+      <h3 class="text-2xl font-bold mb-8 text-[#292639] dark:text-white">{{ t('pages.status.integrityLog') }}</h3>
       <div class="space-y-8">
         @for (incident of incidents(); track incident.title; let i = $index) {
           <div appAnimateOnScroll [delay]="(i * 100) + 'ms'" class="bg-white dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700/50 overflow-hidden">
@@ -90,8 +90,8 @@
               <svg class="w-12 h-12 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <p class="font-semibold text-xl">{{ 'pages.status.noIncidents' | translate }}</p>
-              <p class="mt-2">{{ 'pages.status.noIncidentsHint' | translate }}</p>
+              <p class="font-semibold text-xl">{{ t('pages.status.noIncidents') }}</p>
+              <p class="mt-2">{{ t('pages.status.noIncidentsHint') }}</p>
           </div>
         }
       </div>
@@ -117,7 +117,7 @@
               <svg class="w-12 h-12 text-gray-500 dark:text-gray-400 mb-1 group-hover:text-[#8A6B93] dark:group-hover:text-purple-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.472-2.472a3.375 3.375 0 000-4.773L12.293 6.293a3.375 3.375 0 00-4.773 0L6.293 7.511a3.375 3.375 0 000 4.774l2.472 2.472M11.42 15.17l-2.472 2.472a3.375 3.375 0 01-4.773 0L2.25 15.722a3.375 3.375 0 010-4.774l2.472-2.472" />
               </svg>
-              <span class="font-bold text-sm text-[#292639] dark:text-white">{{ 'pages.status.inDevelopmentTitle' | translate }}</span>
+              <span class="font-bold text-sm text-[#292639] dark:text-white">{{ t('pages.status.inDevelopmentTitle') }}</span>
               <span class="text-xs text-gray-500 dark:text-gray-400">Details</span>
           </button>
         </div>
@@ -126,9 +126,9 @@
             <div 
                 role="tooltip"
                 class="absolute bottom-full mb-4 w-72 p-4 bg-white dark:bg-[#292639] rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 text-left animate-slide-up-fade-in left-1/2 -translate-x-1/2">
-                <h4 class="font-bold text-[#292639] dark:text-white">{{ 'pages.status.inDevelopmentTitle' | translate }}</h4>
+                <h4 class="font-bold text-[#292639] dark:text-white">{{ t('pages.status.inDevelopmentTitle') }}</h4>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                    {{ 'pages.status.inDevelopmentMessage' | translate }}
+                    {{ t('pages.status.inDevelopmentMessage') }}
                 </p>
                 <button (click)="toggleDevelopmentInfo()" aria-label="Close information tooltip" class="absolute top-2 right-2 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>

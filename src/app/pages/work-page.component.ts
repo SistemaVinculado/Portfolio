@@ -10,14 +10,13 @@ import { WorkComponent } from '../components/work.component';
 import { PortfolioModalComponent } from '../components/portfolio-modal.component';
 import { CtaComponent } from '../components/cta.component';
 import { Router } from '@angular/router';
-import { LanguageService } from '../services/language.service';
-import { TranslatePipe } from '../pipes/translate.pipe';
+import { TextContentService } from '../services/text-content.service';
 
 
 @Component({
   selector: 'app-work-page',
   standalone: true,
-  imports: [PageHeaderComponent, WorkComponent, PortfolioModalComponent, CtaComponent, AnimateOnScrollDirective, TranslatePipe],
+  imports: [PageHeaderComponent, WorkComponent, PortfolioModalComponent, CtaComponent, AnimateOnScrollDirective],
   templateUrl: './work-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -26,11 +25,15 @@ export class WorkPageComponent implements OnInit, OnDestroy {
   private router: Router = inject(Router);
   private titleService: Title = inject(Title);
   private metaService: Meta = inject(Meta);
-  private languageService: LanguageService = inject(LanguageService);
+  private textContentService: TextContentService = inject(TextContentService);
+
+  t(key: string): string {
+    return this.textContentService.get(key)();
+  }
 
   // Page Header Content
-  pageTitle = this.languageService.get('pages.work.title');
-  pageSubtitle = this.languageService.get('pages.work.subtitle');
+  pageTitle = this.textContentService.get('pages.work.title');
+  pageSubtitle = this.textContentService.get('pages.work.subtitle');
 
   selectedPortfolioItem = signal<PortfolioItem | null>(null);
 

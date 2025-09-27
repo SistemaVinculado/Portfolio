@@ -7,24 +7,27 @@ import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.direct
 import { SectionDividerComponent } from '../components/section-divider.component';
 import { Router } from '@angular/router';
 import { StellarDevEthosComponent } from '../components/stellardev-ethos.component';
-import { LanguageService } from '../services/language.service';
-import { TranslatePipe } from '../pipes/translate.pipe';
+import { TextContentService } from '../services/text-content.service';
 
 @Component({
   selector: 'app-careers-page',
   standalone: true,
-  imports: [PageHeaderComponent, AnimateOnScrollDirective, SectionDividerComponent, StellarDevEthosComponent, TranslatePipe],
+  imports: [PageHeaderComponent, AnimateOnScrollDirective, SectionDividerComponent, StellarDevEthosComponent],
   templateUrl: './careers-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CareersPageComponent {
   private dataService = inject(DataService);
   private router = inject(Router);
-  private languageService = inject(LanguageService);
+  private textContentService = inject(TextContentService);
+
+  t(key: string): string {
+    return this.textContentService.get(key)();
+  }
 
   // Page Header Content
-  pageTitle = this.languageService.get('pages.careers.title');
-  pageSubtitle = this.languageService.get('pages.careers.subtitle');
+  pageTitle = this.textContentService.get('pages.careers.title');
+  pageSubtitle = this.textContentService.get('pages.careers.subtitle');
 
   // Data signals from DataService
   stellarDevEthos = this.dataService.stellarDevEthos;

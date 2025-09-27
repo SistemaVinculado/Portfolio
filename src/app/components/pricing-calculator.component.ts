@@ -4,8 +4,7 @@ import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.direct
 import { DataService } from '../data.service';
 import { Subscription } from 'rxjs';
 import { startWith } from 'rxjs/operators';
-import { TranslatePipe } from '../pipes/translate.pipe';
-import { LanguageService } from '../services/language.service';
+import { TextContentService } from '../services/text-content.service';
 
 interface CipherFacet {
   name: 'Architectural Purity' | 'Kinetic Grace' | 'Semantic Signature';
@@ -15,14 +14,18 @@ interface CipherFacet {
 @Component({
   selector: 'app-pricing-calculator',
   standalone: true,
-  imports: [ReactiveFormsModule, AnimateOnScrollDirective, TranslatePipe],
+  imports: [ReactiveFormsModule, AnimateOnScrollDirective],
   templateUrl: './pricing-calculator.component.html',
   styleUrls: ['./pricing-calculator.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PricingCalculatorComponent implements OnInit, OnDestroy {
   private dataService = inject(DataService);
-  private languageService = inject(LanguageService);
+  private textContentService = inject(TextContentService);
+
+  t(key: string, params?: { [key: string]: any }): string {
+    return this.textContentService.getWithParams(key, params);
+  }
   
   // Make these public for template access
   calculatorScopes = this.dataService.calculatorScopes;

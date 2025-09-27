@@ -6,7 +6,7 @@ import { PageHeaderComponent } from '../components/page-header.component';
 import { FeaturesComponent } from '../components/features.component';
 import { CtaComponent } from '../components/cta.component';
 import { Router } from '@angular/router';
-import { LanguageService } from '../services/language.service';
+import { TextContentService } from '../services/text-content.service';
 
 @Component({
   selector: 'app-services-page',
@@ -18,11 +18,11 @@ import { LanguageService } from '../services/language.service';
 export class ServicesPageComponent {
   private dataService: DataService = inject(DataService);
   private router: Router = inject(Router);
-  private languageService: LanguageService = inject(LanguageService);
+  private textContentService: TextContentService = inject(TextContentService);
 
   // Page Header Content
-  pageTitle = this.languageService.get('pages.services.title');
-  pageSubtitle = this.languageService.get('pages.services.subtitle');
+  pageTitle = this.textContentService.get('pages.services.title');
+  pageSubtitle = this.textContentService.get('pages.services.subtitle');
 
   // Data signals from DataService
   services = this.dataService.services;

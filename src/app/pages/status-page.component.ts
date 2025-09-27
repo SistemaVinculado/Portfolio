@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SystemStatusService } from '../services/system-status.service';
 import { SystemStatus, Incident } from '../models';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
-import { LanguageService } from '../services/language.service';
-import { TranslatePipe } from '../pipes/translate.pipe';
+import { TextContentService } from '../services/text-content.service';
 
 type OverallStatus = {
   type: 'operational' | 'degraded' | 'outage' | 'maintenance';
@@ -14,17 +13,21 @@ type OverallStatus = {
 @Component({
   selector: 'app-status-page',
   standalone: true,
-  imports: [CommonModule, AnimateOnScrollDirective, TranslatePipe],
+  imports: [CommonModule, AnimateOnScrollDirective],
   templateUrl: './status-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusPageComponent {
   private systemStatusService = inject(SystemStatusService);
-  private languageService = inject(LanguageService);
+  private textContentService = inject(TextContentService);
 
   // Page Header Content
-  pageTitle = this.languageService.get('pages.status.title');
-  pageSubtitle = this.languageService.get('pages.status.subtitle');
+  pageTitle = this.textContentService.get('pages.status.title');
+  pageSubtitle = this.textContentService.get('pages.status.subtitle');
+  
+  t(key: string): string {
+    return this.textContentService.get(key)();
+  }
   
   systemStatuses = this.systemStatusService.systemStatuses;
   incidents = this.systemStatusService.incidents;
@@ -39,12 +42,12 @@ export class StatusPageComponent {
     const degradedCount = statuses.filter(s => s.status === 'degraded').length;
     
     if (outageCount > 0) {
-      return { type: 'outage', message: this.languageService.get('pages.status.overallStatus.outage')() };
+      return { type: 'outage', message: this.textContentService.get('pages.status.overallStatus.outage')() };
     }
     if (degradedCount > 0) {
-      return { type: 'degraded', message: this.languageService.get('pages.status.overallStatus.degraded')() };
+      return { type: 'degraded', message: this.textContentService.get('pages.status.overallStatus.degraded')() };
     }
-    return { type: 'operational', message: this.languageService.get('pages.status.overallStatus.operational')() };
+    return { type: 'operational', message: this.textContentService.get('pages.status.overallStatus.operational')() };
   });
 
   statusStyles = computed(() => {

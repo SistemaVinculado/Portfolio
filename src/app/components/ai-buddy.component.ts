@@ -4,13 +4,12 @@ import { GeminiService } from '../services/gemini.service';
 import { ChatMessage } from '../models';
 import { GenerativeArtComponent } from './generative-art.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { LanguageService } from '../services/language.service';
-import { TranslatePipe } from '../pipes/translate.pipe';
+import { TextContentService } from '../services/text-content.service';
 
 @Component({
   selector: 'app-ai-buddy',
   standalone: true,
-  imports: [GenerativeArtComponent, TranslatePipe],
+  imports: [GenerativeArtComponent],
   templateUrl: './ai-buddy.component.html',
   styleUrls: ['./ai-buddy.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,8 +22,11 @@ export class AiBuddyComponent {
   private geminiService = inject(GeminiService);
   private sanitizer: DomSanitizer = inject(DomSanitizer);
   private platformId = inject(PLATFORM_ID);
-  private languageService = inject(LanguageService);
-  private t = this.languageService.get.bind(this.languageService);
+  private textContentService = inject(TextContentService);
+  
+  t(key: string): string {
+    return this.textContentService.get(key)();
+  }
 
   private nextMessageId = 0;
   messages = signal<ChatMessage[]>([]);
@@ -68,7 +70,7 @@ export class AiBuddyComponent {
       }
     } catch (e) {
       console.error(e);
-      this.error.set(this.t('aiBuddy.connectionError')());
+      this.error.set(this.t('aiBuddy.connectionError'));
       this.messages.set([]);
     } finally {
       this.isLoading.set(false);
@@ -111,7 +113,7 @@ export class AiBuddyComponent {
             if (lastMsg.role === 'model' && lastMsg.content === '') {
                 msgs.pop();
             }
-            return [...msgs, { id: this.nextMessageId++, role: 'model', content: this.t('aiBuddy.streamError')(), isError: true }];
+            return [...msgs, { id: this.nextMessageId++, role: 'model', content: this.t('aiBuddy.streamError'), isError: true }];
         });
     } finally {
         this.isLoading.set(false);

@@ -1,17 +1,23 @@
-import { Component, ChangeDetectionStrategy, input, signal, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, signal, OnInit, inject } from '@angular/core';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 import { StellarDevEthos } from '../models';
-import { TranslatePipe } from '../pipes/translate.pipe';
+import { TextContentService } from '../services/text-content.service';
 
 @Component({
   selector: 'app-stellardev-ethos',
   standalone: true,
-  imports: [AnimateOnScrollDirective, TranslatePipe],
+  imports: [AnimateOnScrollDirective],
   templateUrl: './stellardev-ethos.component.html',
   styleUrls: ['./stellardev-ethos.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StellarDevEthosComponent implements OnInit {
+  private textContentService = inject(TextContentService);
+  
+  t(key: string): string {
+    return this.textContentService.get(key)();
+  }
+
   ethosItems = input.required<StellarDevEthos[]>();
   
   activeIndex = signal(0);

@@ -3,12 +3,12 @@
     <!-- Left side: Info Panel -->
     <div class="lg:col-span-2">
       <div appAnimateOnScroll>
-        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">{{ 'components.contact.title' | translate }}</h2>
-        <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">{{ 'components.contact.subtitle' | translate }}</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">{{ t('components.contact.title') }}</h2>
+        <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">{{ t('components.contact.subtitle') }}</p>
       </div>
 
       <div appAnimateOnScroll delay="100ms" class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-        <h3 class="text-lg font-bold text-[#292639] dark:text-white">{{ 'components.contact.processTitle' | translate }}</h3>
+        <h3 class="text-lg font-bold text-[#292639] dark:text-white">{{ t('components.contact.processTitle') }}</h3>
         <ul class="mt-4 space-y-4">
           @for (item of expectations; track item.key; let i = $index) {
           <li class="flex items-start p-4 rounded-xl bg-gray-50/50 dark:bg-gray-800/20 transition-colors hover:bg-white/80 dark:hover:bg-gray-800/40">
@@ -16,8 +16,8 @@
               <svg class="w-6 h-6 text-[#8A6B93] dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" [attr.d]="item.iconPath" /></svg>
             </div>
             <div>
-              <h4 class="font-semibold text-[#292639] dark:text-white">{{ 'components.contact.expectations.' + item.key + '.title' | translate }}</h4>
-              <p class="text-sm text-gray-600 dark:text-gray-400">{{ 'components.contact.expectations.' + item.key + '.description' | translate }}</p>
+              <h4 class="font-semibold text-[#292639] dark:text-white">{{ t('components.contact.expectations.' + item.key + '.title') }}</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">{{ t('components.contact.expectations.' + item.key + '.description') }}</p>
             </div>
           </li>
           }
@@ -25,7 +25,7 @@
       </div>
 
       <div appAnimateOnScroll delay="200ms" class="mt-12">
-        <h3 class="text-lg font-bold text-[#292639] dark:text-white">{{ 'components.contact.directChannel' | translate }}</h3>
+        <h3 class="text-lg font-bold text-[#292639] dark:text-white">{{ t('components.contact.directChannel') }}</h3>
         <div class="mt-4 space-y-4">
             @for(info of contactInfo(); track info.title) {
                 <a [href]="info.href" target="_blank" class="group relative block p-6 rounded-2xl bg-white/50 dark:bg-gray-800/20 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 overflow-hidden transition-all duration-300 hover:border-[#8A6B93] dark:hover:border-purple-500 hover:shadow-xl hover:-translate-y-1">
@@ -55,7 +55,7 @@
       </div>
 
        <div appAnimateOnScroll delay="300ms" class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-        <h3 class="text-lg font-bold text-[#292639] dark:text-white mb-4">{{ 'components.contact.connect' | translate }}</h3>
+        <h3 class="text-lg font-bold text-[#292639] dark:text-white mb-4">{{ t('components.contact.connect') }}</h3>
         <div class="flex items-center space-x-4">
             @for(link of socialLinks(); track link.name) {
                 <a [href]="link.href" [attr.aria-label]="link.name" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#EAE8E3] dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-[#8A6B93] hover:text-white dark:hover:bg-purple-500 transition-all duration-300 transform hover:scale-110">
@@ -79,25 +79,25 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 </div>
-                <h3 class="mt-6 text-2xl font-bold text-[#292639] dark:text-white">{{ 'components.contact.successTitle' | translate: { name: submittedName() } }}</h3>
-                <p class="mt-2 text-gray-600 dark:text-gray-400">{{ 'components.contact.successMessage' | translate }}</p>
+                <h3 class="mt-6 text-2xl font-bold text-[#292639] dark:text-white">{{ t('components.contact.successTitle', { name: submittedName() }) }}</h3>
+                <p class="mt-2 text-gray-600 dark:text-gray-400">{{ t('components.contact.successMessage') }}</p>
                 <button (click)="resetForm()" class="mt-8 bg-[#EAE8E3] dark:bg-gray-700 text-[#292639] dark:text-gray-200 px-5 py-2.5 rounded-full font-semibold hover:bg-opacity-80 dark:hover:bg-opacity-70 transition-all duration-300">
-                {{ 'components.contact.submitAnother' | translate }}
+                {{ t('components.contact.submitAnother') }}
                 </button>
             </div>
             }
             @default {
             <form [formGroup]="contactForm" (ngSubmit)="submitForm()" class="space-y-6">
                 <fieldset>
-                    <legend class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{{ 'components.contact.inquiryType' | translate }}</legend>
+                    <legend class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{{ t('components.contact.inquiryType') }}</legend>
                     <div class="grid grid-cols-2 gap-3">
                         <label class="relative flex items-center justify-center p-3 border rounded-lg cursor-pointer transition-colors" [class]="contactForm.get('inquiryType')?.value === 'project' ? 'bg-purple-50 dark:bg-purple-900/20 border-purple-400 dark:border-purple-600' : 'bg-gray-50 dark:bg-gray-700/50 border-gray-300 dark:border-gray-600'">
                             <input type="radio" value="project" formControlName="inquiryType" class="sr-only">
-                            <span class="text-sm font-medium text-gray-800 dark:text-gray-200">{{ 'components.contact.newCommission' | translate }}</span>
+                            <span class="text-sm font-medium text-gray-800 dark:text-gray-200">{{ t('components.contact.newCommission') }}</span>
                         </label>
                         <label class="relative flex items-center justify-center p-3 border rounded-lg cursor-pointer transition-colors" [class]="contactForm.get('inquiryType')?.value === 'general' ? 'bg-purple-50 dark:bg-purple-900/20 border-purple-400 dark:border-purple-600' : 'bg-gray-50 dark:bg-gray-700/50 border-gray-300 dark:border-gray-600'">
                             <input type="radio" value="general" formControlName="inquiryType" class="sr-only">
-                            <span class="text-sm font-medium text-gray-800 dark:text-gray-200">{{ 'components.contact.generalQuestion' | translate }}</span>
+                            <span class="text-sm font-medium text-gray-800 dark:text-gray-200">{{ t('components.contact.generalQuestion') }}</span>
                         </label>
                     </div>
                 </fieldset>
@@ -105,27 +105,27 @@
                 @if(contactForm.get('inquiryType')?.value === 'project') {
                     <div class="animate-slide-down grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
-                            <label for="serviceOfInterest" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">{{ 'components.contact.serviceLabel' | translate }}</label>
+                            <label for="serviceOfInterest" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">{{ t('components.contact.serviceLabel') }}</label>
                             <select id="serviceOfInterest" formControlName="serviceOfInterest" class="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-[#292639] dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8A6B93] focus:border-[#8A6B93] transition-colors">
-                                <option value="" disabled>{{ 'components.contact.servicePlaceholder' | translate }}</option>
+                                <option value="" disabled>{{ t('components.contact.servicePlaceholder') }}</option>
                                 @for(service of services(); track service.id) {
                                 <option [value]="service.id">{{ service.title }}</option>
                                 }
                             </select>
                             @if (contactForm.get('serviceOfInterest')?.invalid && contactForm.get('serviceOfInterest')?.touched) {
-                                <p class="mt-1 text-xs text-red-600 dark:text-red-400">{{ 'components.contact.serviceError' | translate }}</p>
+                                <p class="mt-1 text-xs text-red-600 dark:text-red-400">{{ t('components.contact.serviceError') }}</p>
                             }
                         </div>
                         <div>
-                            <label for="budget" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">{{ 'components.contact.budgetLabel' | translate }}</label>
+                            <label for="budget" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">{{ t('components.contact.budgetLabel') }}</label>
                             <select id="budget" formControlName="budget" class="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-[#292639] dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8A6B93] focus:border-[#8A6B93] transition-colors">
-                                <option value="" disabled>{{ 'components.contact.budgetPlaceholder' | translate }}</option>
+                                <option value="" disabled>{{ t('components.contact.budgetPlaceholder') }}</option>
                                 @for(option of budgetOptions(); track option.value) {
                                   <option [value]="option.value">{{ option.label }}</option>
                                 }
                             </select>
                             @if (contactForm.get('budget')?.invalid && contactForm.get('budget')?.touched) {
-                                <p class="mt-1 text-xs text-red-600 dark:text-red-400">{{ 'components.contact.budgetError' | translate }}</p>
+                                <p class="mt-1 text-xs text-red-600 dark:text-red-400">{{ t('components.contact.budgetError') }}</p>
                             }
                         </div>
                     </div>
@@ -133,27 +133,27 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                        <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">{{ 'components.contact.nameLabel' | translate }}</label>
+                        <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">{{ t('components.contact.nameLabel') }}</label>
                         <input type="text" id="name" formControlName="name" class="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-[#292639] dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8A6B93] focus:border-[#8A6B93] transition-colors">
                         @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
                             <p class="mt-1 text-xs text-red-600 dark:text-red-400">
                                 @if (contactForm.get('name')?.errors?.['required']) {
-                                    {{ 'components.contact.nameRequired' | translate }}
+                                    {{ t('components.contact.nameRequired') }}
                                 } @else if (contactForm.get('name')?.errors?.['minlength']) {
-                                    {{ 'components.contact.nameMinLength' | translate }}
+                                    {{ t('components.contact.nameMinLength') }}
                                 }
                             </p>
                         }
                     </div>
                     <div>
-                        <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">{{ 'components.contact.emailLabel' | translate }}</label>
+                        <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">{{ t('components.contact.emailLabel') }}</label>
                         <input type="email" id="email" formControlName="email" class="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-[#292639] dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8A6B93] focus:border-[#8A6B93] transition-colors">
                         @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
                             <p class="mt-1 text-xs text-red-600 dark:text-red-400">
                             @if (contactForm.get('email')?.errors?.['required']) {
-                                {{ 'components.contact.emailRequired' | translate }}
+                                {{ t('components.contact.emailRequired') }}
                             } @else if (contactForm.get('email')?.errors?.['email']) {
-                                {{ 'components.contact.emailInvalid' | translate }}
+                                {{ t('components.contact.emailInvalid') }}
                             }
                             </p>
                         }
@@ -161,19 +161,19 @@
                 </div>
 
                 <div>
-                <label for="company" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">{{ 'components.contact.companyLabel' | translate }}</label>
+                <label for="company" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">{{ t('components.contact.companyLabel') }}</label>
                 <input type="text" id="company" formControlName="company" class="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-[#292639] dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8A6B93] focus:border-[#8A6B93] transition-colors">
                 </div>
 
                 <div>
-                <label for="message" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">{{ 'components.contact.messageLabel' | translate }}</label>
-                <textarea id="message" formControlName="message" rows="5" class="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-[#292639] dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8A6B93] focus:border-[#8A6B93] transition-colors" [placeholder]="(contactForm.get('inquiryType')?.value === 'project' ? 'components.contact.messagePlaceholderProject' : 'components.contact.messagePlaceholderGeneral') | translate"></textarea>
+                <label for="message" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">{{ t('components.contact.messageLabel') }}</label>
+                <textarea id="message" formControlName="message" rows="5" class="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 text-[#292639] dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8A6B93] focus:border-[#8A6B93] transition-colors" [placeholder]="t(contactForm.get('inquiryType')?.value === 'project' ? 'components.contact.messagePlaceholderProject' : 'components.contact.messagePlaceholderGeneral')"></textarea>
                 @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
                     <p class="mt-1 text-xs text-red-600 dark:text-red-400">
                         @if (contactForm.get('message')?.errors?.['required']) {
-                            {{ 'components.contact.messageRequired' | translate }}
+                            {{ t('components.contact.messageRequired') }}
                         } @else if (contactForm.get('message')?.errors?.['minlength']) {
-                            {{ 'components.contact.messageMinLength' | translate }}
+                            {{ t('components.contact.messageMinLength') }}
                         }
                     </p>
                 }
@@ -185,9 +185,9 @@
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    <span>{{ 'components.contact.submitting' | translate }}</span>
+                    <span>{{ t('components.contact.submitting') }}</span>
                     } @else {
-                    <span>{{ 'components.contact.submit' | translate }}</span>
+                    <span>{{ t('components.contact.submit') }}</span>
                     }
                 </button>
                 </div>

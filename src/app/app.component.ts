@@ -1,8 +1,8 @@
-import { Component, ChangeDetectionStrategy, signal, inject, Renderer2, effect, PLATFORM_ID, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, inject, Renderer2, effect, PLATFORM_ID, OnInit, OnDestroy, computed } from '@angular/core';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { DataService } from './data.service';
-import { LanguageService } from './services/language.service';
+import { TextContentService } from './services/text-content.service';
 
 // New Component Imports
 import { HeaderComponent } from './components/header.component';
@@ -14,7 +14,6 @@ import { LegalModalComponent } from './components/legal-modal.component';
 import { InteractiveBackgroundComponent } from './components/interactive-background.component';
 import { CustomCursorComponent } from './components/custom-cursor.component';
 import { CookieBannerComponent } from './components/cookie-banner.component';
-import { TranslatePipe } from './pipes/translate.pipe';
 
 @Component({
   selector: 'app-root',
@@ -29,8 +28,7 @@ import { TranslatePipe } from './pipes/translate.pipe';
     LegalModalComponent,
     InteractiveBackgroundComponent,
     CustomCursorComponent,
-    CookieBannerComponent,
-    TranslatePipe
+    CookieBannerComponent
   ],
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,7 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   private document: Document = inject(DOCUMENT);
   private dataService: DataService = inject(DataService);
-  private languageService = inject(LanguageService);
+  private textService = inject(TextContentService);
   
   title = 'StellarDev';
   currentYear = new Date().getFullYear();
@@ -54,6 +52,8 @@ export class AppComponent implements OnInit, OnDestroy {
   showAiBuddy = signal(false);
   showCookieBanner = signal(false);
   showUpdateBanner = signal(false);
+
+  updateBannerHtml = this.textService.get('app.updateBanner');
 
   private onScrollListener!: () => void;
 

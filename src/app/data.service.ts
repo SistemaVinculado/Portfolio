@@ -41,14 +41,14 @@ import { PORTFOLIO_ITEMS, PROCESS_STEPS } from './data/portfolio.data';
 import { PERFORMANCE_REPORTS, SECURITY_METRICS, VULNERABILITY_SCANS } from './data/security.data';
 import { ENGAGEMENT_MODELS, SERVICES, TECHNOLOGIES } from './data/services.data';
 import { INCIDENTS, SYSTEM_STATUSES } from './data/status.data';
-import { LanguageService } from './services/language.service';
+import { TextContentService } from './services/text-content.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  private langService = inject(LanguageService);
-  private t = this.langService.get.bind(this.langService);
+  private textService = inject(TextContentService);
+  private t = this.textService.get.bind(this.textService);
 
   // --- Translated Signals ---
   
@@ -266,14 +266,12 @@ export class DataService {
     issuer: this.t(`awards.award${i+1}.issuer`)(),
   })));
 
-  // FIX: Corrected self-reference from `this.dataService` to `this`.
   securityMetrics = computed(() => this.securityMetricsSignal().map((metric, i) => ({
     ...metric,
     metric: this.t(`security.metrics.${i}.metric`)(),
     description: this.t(`security.metrics.${i}.description`)(),
   })));
 
-  // FIX: Corrected self-reference from `this.dataService` to `this`.
   vulnerabilityScans = computed(() => this.vulnerabilityScansSignal().map((scan, i) => ({
     ...scan,
     severity: this.t(`security.severities.${scan.severity.toLowerCase()}`)(),

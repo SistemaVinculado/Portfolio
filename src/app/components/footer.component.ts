@@ -1,17 +1,23 @@
-import { Component, ChangeDetectionStrategy, input, output, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output, signal, inject } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { NavLink } from '../models';
-import { TranslatePipe } from '../pipes/translate.pipe';
+import { TextContentService } from '../services/text-content.service';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, TranslatePipe],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './footer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
+  private textContentService = inject(TextContentService);
+
+  t(key: string, params?: { [key: string]: any }): string {
+    return this.textContentService.getWithParams(key, params);
+  }
+
   currentYear = input.required<number>();
   navLinks = input.required<NavLink[]>();
   

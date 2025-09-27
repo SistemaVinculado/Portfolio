@@ -1,13 +1,13 @@
 <section class="bg-[#292639] dark:bg-gray-800 rounded-3xl" appAnimateOnScroll>
     <div class="max-w-4xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
       <h2 class="text-4xl font-extrabold text-white sm:text-5xl tracking-tighter">
-        {{ 'cta.title' | translate }}
+        {{ t('cta.title') }}
       </h2>
       <p class="mt-4 text-lg leading-6 text-gray-300 dark:text-gray-400 max-w-2xl mx-auto">
-        {{ 'cta.subtitle' | translate }}
+        {{ t('cta.subtitle') }}
       </p>
       <button (click)="onScrollTo($event, '#contact')" class="mt-8 inline-block bg-white text-[#292639] px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-lg">
-        {{ 'cta.button' | translate }}
+        {{ t('cta.button') }}
       </button>
     </div>
 </section>

@@ -4,7 +4,7 @@ import { SecurityDashboardComponent } from '../components/security-dashboard.com
 import { CtaComponent } from '../components/cta.component';
 import { SectionDividerComponent } from '../components/section-divider.component';
 import { Router } from '@angular/router';
-import { LanguageService } from '../services/language.service';
+import { TextContentService } from '../services/text-content.service';
 
 @Component({
   selector: 'app-security-page',
@@ -15,11 +15,11 @@ import { LanguageService } from '../services/language.service';
 })
 export class SecurityPageComponent {
   private router: Router = inject(Router);
-  private languageService: LanguageService = inject(LanguageService);
+  private textContentService: TextContentService = inject(TextContentService);
   
   // Page Header Content
-  pageTitle = this.languageService.get('pages.security.title');
-  pageSubtitle = this.languageService.get('pages.security.subtitle');
+  pageTitle = this.textContentService.get('pages.security.title');
+  pageSubtitle = this.textContentService.get('pages.security.subtitle');
 
   onScrollTo(payload: { event: Event; href: string }): void {
     payload.event.preventDefault();

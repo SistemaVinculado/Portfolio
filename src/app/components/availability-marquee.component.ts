@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, signal, computed, inject } from '@angular/core';
-import { LanguageService } from '../services/language.service';
+import { TextContentService } from '../services/text-content.service';
 
 @Component({
   selector: 'app-availability-marquee',
@@ -9,13 +9,13 @@ import { LanguageService } from '../services/language.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AvailabilityMarqueeComponent {
-  private languageService: LanguageService = inject(LanguageService);
+  private textContentService: TextContentService = inject(TextContentService);
 
   private baseMessages = computed(() => [
-    this.languageService.get('marquee.msg1')(),
-    this.languageService.get('marquee.msg2')(),
-    this.languageService.get('marquee.msg3')(),
-    this.languageService.get('marquee.msg4')(),
+    this.textContentService.get('marquee.msg1')(),
+    this.textContentService.get('marquee.msg2')(),
+    this.textContentService.get('marquee.msg3')(),
+    this.textContentService.get('marquee.msg4')(),
   ]);
 
   // Repeat the messages to fill the marquee width sufficiently

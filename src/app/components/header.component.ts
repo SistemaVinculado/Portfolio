@@ -3,19 +3,23 @@ import { RouterLink } from '@angular/router';
 import { NavLink, MegaMenuLink, MegaMenuGroup } from '../models';
 import { MenuStarfieldComponent } from './menu-starfield.component';
 import { DataService } from '../data.service';
-import { LanguageService } from '../services/language.service';
-import { TranslatePipe } from '../pipes/translate.pipe';
+import { TextContentService } from '../services/text-content.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, MenuStarfieldComponent, TranslatePipe],
+  imports: [RouterLink, MenuStarfieldComponent],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   private dataService = inject(DataService);
+  private textContentService = inject(TextContentService);
+
+  t(key: string): string {
+    return this.textContentService.get(key)();
+  }
 
   navLinks = input.required<NavLink[]>();
   theme = input.required<'light' | 'dark'>();

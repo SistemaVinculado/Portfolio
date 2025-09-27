@@ -1,19 +1,25 @@
-import { Component, ChangeDetectionStrategy, input, output, signal, computed } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output, signal, computed, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { Testimonial, Award, FaqItem } from '../models';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 import { HighlightPipe } from '../pipes/highlight.pipe';
-import { TranslatePipe } from '../pipes/translate.pipe';
+import { TextContentService } from '../services/text-content.service';
 
 @Component({
   selector: 'app-social-proof',
   standalone: true,
-  imports: [AnimateOnScrollDirective, NgOptimizedImage, HighlightPipe, TranslatePipe],
+  imports: [AnimateOnScrollDirective, NgOptimizedImage, HighlightPipe],
   templateUrl: './social-proof.component.html',
   styleUrls: ['./social-proof.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SocialProofComponent {
+  private textContentService = inject(TextContentService);
+
+  t(key: string): string {
+    return this.textContentService.get(key)();
+  }
+  
   // --- Component Inputs & Outputs ---
   testimonials = input.required<Testimonial[]>();
   awards = input.required<Award[]>();

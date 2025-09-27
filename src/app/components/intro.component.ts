@@ -1,17 +1,23 @@
-import { Component, ChangeDetectionStrategy, input, output, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output, signal, inject } from '@angular/core';
 import { Client, StatItem } from '../models';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 import { CountUpDirective } from '../directives/count-up.directive';
-import { TranslatePipe } from '../pipes/translate.pipe';
+import { TextContentService } from '../services/text-content.service';
 
 @Component({
   selector: 'app-intro',
   standalone: true,
-  imports: [AnimateOnScrollDirective, CountUpDirective, TranslatePipe],
+  imports: [AnimateOnScrollDirective, CountUpDirective],
   templateUrl: './intro.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IntroComponent {
+  private textContentService = inject(TextContentService);
+
+  t(key: string): string {
+    return this.textContentService.get(key)();
+  }
+
   clients = input.required<Client[]>();
   stats = input.required<StatItem[]>();
 

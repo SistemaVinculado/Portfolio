@@ -1,10 +1,10 @@
 <div class="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-[#292639]/95 backdrop-blur-sm shadow-[0_-2px_10px_rgba(0,0,0,0.1)] dark:shadow-[0_-2px_10px_rgba(0,0,0,0.3)] z-40">
     <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
     <p class="text-sm text-gray-700 dark:text-gray-300">
-        {{ 'components.cookieBanner.message' | translate }}
+        {{ t('components.cookieBanner.message') }}
     </p>
     <button (click)="accept.emit()" class="bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639] px-5 py-2 rounded-full font-semibold hover:bg-opacity-90 dark:hover:bg-gray-200 transition-colors duration-300 whitespace-nowrap">
-        {{ 'components.cookieBanner.accept' | translate }}
+        {{ t('components.cookieBanner.accept') }}
     </button>
     </div>
 </div>
