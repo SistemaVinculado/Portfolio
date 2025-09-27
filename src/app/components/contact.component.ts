@@ -37,17 +37,10 @@ export class ContactComponent {
   });
 
   budgetOptions = computed(() => {
-    if (this.languageService.currentLanguage() === 'pt-BR') {
-      return [
-        { value: '<100k', label: '< R$100.000' },
-        { value: '100k-300k', label: 'R$100.000 - R$300.000' },
-        { value: '>300k', label: 'R$300.000+' },
-      ];
-    }
     return [
-      { value: '<25k', label: '< $25,000' },
-      { value: '25k-75k', label: '$25,000 - $75,000' },
-      { value: '>75k', label: '$75,000+' },
+      { value: '<100k', label: '< R$100.000' },
+      { value: '100k-300k', label: 'R$100.000 - R$300.000' },
+      { value: '>300k', label: 'R$300.000+' },
     ];
   });
 
@@ -65,8 +58,6 @@ export class ContactComponent {
       iconPath: 'M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z'
     }
   ];
-
-  emailInfo = computed(() => this.contactInfo().find(c => c.title === 'Email Us'));
 
   constructor() {
     effect(() => {
@@ -106,34 +97,30 @@ export class ContactComponent {
 
     const formData = this.contactForm.value;
     const recipient = 'membership.actuallydev@gmail.com';
-    const isPtBr = this.languageService.currentLanguage() === 'pt-BR';
-
-    const inquiryTypeText = formData.inquiryType === 'project' 
-      ? (isPtBr ? 'Comissão' : 'Commission') 
-      : (isPtBr ? 'Geral' : 'General');
+    
+    const inquiryTypeText = formData.inquiryType === 'project' ? 'Comissão' : 'Geral';
       
     const subject = `[StellarDev Commission Inquiry] ${inquiryTypeText} - ${formData.name}`;
 
-    let body = isPtBr ? "Nova Consulta de Comissão\n" : "New Commission Inquiry\n";
+    let body = "Nova Consulta de Comissão\n";
     body += "========================\n\n";
-    body += isPtBr ? `Nome: ${formData.name}\n` : `Name: ${formData.name}\n`;
+    body += `Nome: ${formData.name}\n`;
     body += `Email: ${formData.email}\n`;
     if (formData.company) {
-      body += isPtBr ? `Empresa: ${formData.company}\n` : `Company: ${formData.company}\n`;
+      body += `Empresa: ${formData.company}\n`;
     }
-    body += isPtBr ? `Tipo de Consulta: ${formData.inquiryType === 'project' ? 'Nova Comissão' : 'Pergunta Geral'}\n`
-                  : `Inquiry Type: ${formData.inquiryType === 'project' ? 'New Commission' : 'General Question'}\n`;
+    body += `Tipo de Consulta: ${formData.inquiryType === 'project' ? 'Nova Comissão' : 'Pergunta Geral'}\n`;
     
     if (formData.inquiryType === 'project') {
         const selectedService = this.services().find(s => s.id === formData.serviceOfInterest);
-        const serviceTitle = selectedService ? selectedService.title : (isPtBr ? 'N/A' : 'N/A');
-        body += isPtBr ? `Serviço de Interesse: ${serviceTitle}\n` : `Service of Interest: ${serviceTitle}\n`;
+        const serviceTitle = selectedService ? selectedService.title : 'N/A';
+        body += `Serviço de Interesse: ${serviceTitle}\n`;
         const selectedBudget = this.budgetOptions().find(opt => opt.value === formData.budget);
         const budgetLabel = selectedBudget ? selectedBudget.label : formData.budget;
-        body += isPtBr ? `Orçamento Estimado: ${budgetLabel}\n` : `Estimated Budget: ${budgetLabel}\n`;
+        body += `Orçamento Estimado: ${budgetLabel}\n`;
     }
 
-    body += `\n--- ${isPtBr ? 'Mensagem' : 'Message'} ---\n\n${formData.message}\n`;
+    body += `\n--- Mensagem ---\n\n${formData.message}\n`;
 
     const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 

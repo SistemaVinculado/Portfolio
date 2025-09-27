@@ -25,28 +25,33 @@
       </div>
 
       <div appAnimateOnScroll delay="200ms" class="mt-12">
-        @if(emailInfo(); as info) {
-            <h3 class="text-lg font-bold text-[#292639] dark:text-white">{{ 'components.contact.directChannel' | translate }}</h3>
-            <a [href]="info.href" class="mt-4 group relative block p-6 rounded-2xl bg-white/50 dark:bg-gray-800/20 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 overflow-hidden transition-all duration-300 hover:border-[#8A6B93] dark:hover:border-purple-500 hover:shadow-xl hover:-translate-y-1">
-                <!-- Decorative elements -->
-                <div class="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-purple-100/50 dark:from-purple-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-x-1/2 -translate-y-1/2 rotate-45"></div>
-                <div class="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-purple-100/50 dark:from-purple-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-x-1/2 translate-y-1/2 rotate-45"></div>
+        <h3 class="text-lg font-bold text-[#292639] dark:text-white">{{ 'components.contact.directChannel' | translate }}</h3>
+        <div class="mt-4 space-y-4">
+            @for(info of contactInfo(); track info.title) {
+                <a [href]="info.href" target="_blank" class="group relative block p-6 rounded-2xl bg-white/50 dark:bg-gray-800/20 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 overflow-hidden transition-all duration-300 hover:border-[#8A6B93] dark:hover:border-purple-500 hover:shadow-xl hover:-translate-y-1">
+                    <!-- Decorative elements -->
+                    <div class="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-purple-100/50 dark:from-purple-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-x-1/2 -translate-y-1/2 rotate-45"></div>
+                    <div class="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-purple-100/50 dark:from-purple-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-x-1/2 translate-y-1/2 rotate-45"></div>
 
-                <div class="relative z-10 flex items-center space-x-6">
-                    <div class="bg-[#EAE8E3] dark:bg-gray-700 w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-300 group-hover:bg-[#8A6B93] dark:group-hover:bg-purple-500">
-                        <svg class="w-8 h-8 text-[#292639] dark:text-gray-200 group-hover:text-white transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="info.iconPath" />
-                        </svg>
+                    <div class="relative z-10 flex items-center space-x-6">
+                        <div class="bg-[#EAE8E3] dark:bg-gray-700 w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-300 group-hover:bg-[#8A6B93] dark:group-hover:bg-purple-500">
+                            <svg class="w-8 h-8 text-[#292639] dark:text-gray-200 group-hover:text-white transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="info.iconPath" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-[#292639] dark:text-white">{{ info.title }}</h4>
+                            <span class="text-gray-600 dark:text-gray-400 font-semibold transition-all duration-300 group-hover:text-[#8A6B93] dark:group-hover:text-purple-400 group-hover:tracking-wider break-all">
+                                {{ info.value }}
+                            </span>
+                            @if (info.description) {
+                              <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ info.description }}</p>
+                            }
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="text-xl font-bold text-[#292639] dark:text-white">{{ info.title }}</h4>
-                        <span class="text-gray-600 dark:text-gray-400 font-semibold transition-all duration-300 group-hover:text-[#8A6B93] dark:group-hover:text-purple-400 group-hover:tracking-wider break-all">
-                            {{ info.value }}
-                        </span>
-                    </div>
-                </div>
-            </a>
-        }
+                </a>
+            }
+        </div>
       </div>
 
        <div appAnimateOnScroll delay="300ms" class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">

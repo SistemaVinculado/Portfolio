@@ -131,7 +131,10 @@
       "title": "Inicie uma Consulta",
       "subtitle": "O primeiro passo para comissionar um legado digital é o diálogo inicial. Por favor, forneça os detalhes de sua visão, e entraremos em contato para determinar se uma consulta formal é apropriada.",
       "processTitle": "Nosso Processo",
-      "directChannel": "Canal Direto",
+      "directChannel": "Canais Diretos",
+      "Email": "Envie-nos um E-mail",
+      "WhatsApp": "Converse no WhatsApp",
+      "whatsappHint": "Número internacional. O código do país (+1) é necessário.",
       "connect": "Conecte-se conosco",
       "successTitle": "Obrigado, {{name}}.",
       "successMessage": "Sua consulta foi recebida. Analisaremos sua visão e responderemos dentro de um dia útil para discutir os próximos passos potenciais.",
@@ -153,7 +156,7 @@
       "emailInvalid": "Por favor, insira um endereço de e-mail válido.",
       "companyLabel": "Empresa (Opcional)",
       "messageLabel": "Descreva Sua Visão",
-      "messagePlaceholderProject": "Conte-nos sobre seu projeto...",
+      "messagePlaceholderProject": "Descreva os objetivos, desafios e o escopo geral do seu projeto...",
       "messagePlaceholderGeneral": "Como podemos ajudar?",
       "messageRequired": "A mensagem é obrigatória.",
       "messageMinLength": "A mensagem deve ter pelo menos 10 caracteres.",
@@ -485,44 +488,44 @@
   },
   "ethos": {
     "S": {
-      "title": "Estratégico",
-      "description": "Nosso processo está enraizado na perícia arquitetural. Não escrevemos apenas código; construímos projetos estratégicos que alinham a tecnologia com resultados de negócios tangíveis. Cada engajamento começa com uma imersão profunda em seu cenário de mercado e metas operacionais, garantindo que o produto final não seja meramente funcional, mas um poderoso motor para o crescimento e uma vantagem competitiva definitiva."
+      "title": "Soberano",
+      "description": "Nossa abordagem é soberana, fundamentada na perícia arquitetural. Não apenas escrevemos código; forjamos projetos estratégicos que alinham tecnologia a resultados de negócio tangíveis, garantindo que cada obra seja um poderoso motor para o crescimento e uma vantagem competitiva definitiva."
     },
     "T": {
-      "title": "Sob Medida",
-      "description": "Rejeitamos a noção de soluções de tamanho único. Como um mestre alfaiate, praticamos o artesanato digital, construindo aplicações sob medida que são meticulosamente esculpidas para se ajustarem aos contornos únicos de seu negócio. Da arquitetura personalizada a interfaces de usuário perfeitas, cada elemento é projetado para amplificar a identidade de sua marca e otimizar seus fluxos de trabalho específicos."
+      "title": "Talhado",
+      "description": "Rejeitamos soluções genéricas. Como um mestre artesão, praticamos um artesanato digital sob medida, talhando aplicações que se ajustam perfeitamente aos contornos únicos do seu negócio. Cada elemento é projetado para amplificar sua marca e otimizar seus fluxos de trabalho."
     },
     "E": {
       "title": "Elegante",
-      "description": "Definimos elegância como o casamento perfeito entre forma e função. É a arte de ocultar uma imensa complexidade por trás de uma interface intuitiva e centrada no ser humano. Essa filosofia se estende ao nosso código, que é escrito com clareza e eficiência que garantem tanto o desempenho quanto a manutenibilidade, resultando em experiências digitais que são tão poderosas por baixo do capô quanto belas na superfície."
+      "description": "Definimos elegância como a fusão perfeita entre forma e função, ocultando imensa complexidade por trás de uma interface intuitiva. Nossas criações são tão poderosas em sua essência quanto belas em sua aparência, garantindo experiências memoráveis."
     },
     "L": {
-      "title": "Duradouro",
-      "description": "Nosso trabalho é projetado para a longevidade. Construímos ativos digitais, não produtos descartáveis. Ao focar em arquiteturas escaláveis, bases de código duráveis e escolhas tecnológicas visionárias, garantimos que sua aplicação seja um investimento duradouro que pode se adaptar, crescer e prosperar junto com seu negócio, permanecendo resiliente contra as marés mutáveis da tecnologia."
+      "title": "Legado",
+      "description": "Nosso trabalho é projetado para a longevidade. Construímos ativos digitais, não produtos descartáveis. Com arquiteturas escaláveis e tecnologias visionárias, garantimos que sua aplicação seja um legado duradouro, resistindo ao avanço implacável da tecnologia."
     },
     "L2": {
-      "title": "Enxuto (Lean)",
-      "description": "A eficiência é a pedra angular de nossa metodologia. Praticamos os princípios enxutos para eliminar incansavelmente o desperdício, focando cada grama de esforço no que entrega o máximo valor aos seus usuários e ao seu resultado final. Através de sprints ágeis e disciplinados, garantimos um ciclo de entrega rápido e iterativo que leva seu produto ao mercado mais rapidamente, sem nunca sacrificar a qualidade meticulosa que é nossa marca registrada."
+      "title": "Lapidado",
+      "description": "A eficiência é a essência de nossa metodologia. Lapidamos o processo para eliminar o supérfluo, focando cada esforço no que entrega máximo valor. Através de ciclos ágeis, garantimos uma entrega rápida e iterativa, sem nunca sacrificar a qualidade meticulosa que é nossa marca."
     },
     "A": {
-      "title": "Ágil",
-      "description": "Em um mundo digital dinâmico, a rigidez é um passivo. Nosso processo ágil é nossa vantagem estratégica, projetado para abraçar a mudança e aproveitar o poder do feedback contínuo. Operamos em ciclos transparentes e iterativos, garantindo que você seja parte integrante da jornada de desenvolvimento e que o produto final esteja perfeitamente adaptado para atender às demandas de mercado e necessidades de usuário em evolução."
+      "title": "Adaptável",
+      "description": "Em um mundo dinâmico, a rigidez é uma desvantagem. Nosso processo ágil é nossa vantagem estratégica, projetado para abraçar a mudança e o feedback contínuo. Operamos em ciclos transparentes, garantindo que o produto final seja perfeitamente adaptado às evoluções do mercado."
     },
     "R": {
-      "title": "Robusto",
-      "description": "A robustez é um mandato inegociável. Nossas aplicações são fortificadas desde o início com protocolos de segurança de nível empresarial e projetadas para um desempenho resiliente. Através de testes exaustivos e garantia de qualidade automatizada, entregamos soluções testadas em batalha que operam sem falhas sob pressão, protegendo seus dados e garantindo confiabilidade inabalável para seus usuários."
+      "title": "Resiliente",
+      "description": "A resiliência é um mandato inegociável. Nossas aplicações são fortificadas desde o início com segurança de nível empresarial e engenharia para desempenho impecável. Entregamos soluções testadas em cenários reais, que operam sem falhas sob pressão."
     },
     "D": {
-      "title": "Determinado",
-      "description": "Somos mais do que um fornecedor; somos seu parceiro digital dedicado. Nossa equipe é movida por uma paixão intrínseca pelo ofício e um compromisso inabalável com o seu sucesso. Somos proativos por natureza, constantemente olhando para o horizonte para identificar oportunidades de inovação que não apenas atenderão aos seus requisitos, mas impulsionarão ativamente seus negócios."
+      "title": "Dedicado",
+      "description": "Somos mais que um fornecedor; somos seu parceiro digital dedicado. Nossa equipe é movida por uma paixão intrínseca pelo ofício e um compromisso inabalável com o seu sucesso. Somos proativos por natureza, sempre buscando inovações que impulsionarão ativamente seus negócios."
     },
     "E2": {
-      "title": "Em Evolução",
-      "description": "A estagnação é inimiga da excelência. Somos uma cultura de aprendizes perpétuos, dedicados à evolução contínua de nossas habilidades e processos. Nosso compromisso com pesquisa e desenvolvimento garante que estejamos sempre dominando a próxima geração de ferramentas e técnicas, permitindo-nos construir soluções à prova de futuro que aproveitam o melhor que o mundo digital tem a oferecer."
+      "title": "Evolutivo",
+      "description": "A estagnação é o oposto da excelência. Somos uma cultura de aprendizado perpétuo, dedicados à evolução contínua de nossas habilidades. Nosso compromisso com a vanguarda tecnológica nos permite construir soluções à prova de futuro que aproveitam o melhor do mundo digital."
     },
     "V": {
       "title": "Visionário",
-      "description": "Acreditamos que o verdadeiro poder da tecnologia reside em sua capacidade de dar vida a ideias visionárias. Atuamos como seus parceiros na inovação, olhando além do roteiro imediato para explorar o que é possível. Ao fundir o pensamento ambicioso com a execução de elite, ajudamos você a criar não apenas uma aplicação, mas um produto digital visionário que pode definir o futuro de sua indústria."
+      "description": "Acreditamos que o verdadeiro poder da tecnologia é dar vida a ideias visionárias. Atuamos como parceiros na inovação, olhando além do imediato para explorar o que é possível. Ao fundir pensamento ambicioso com execução de elite, ajudamos a criar um produto que pode definir o futuro da sua indústria."
     }
   },
   "processSteps": {
@@ -591,22 +594,22 @@
   },
   "testimonials": {
     "t1": {
-      "quote": "Este lugar está reservado para um futuro líder da indústria. Construímos parcerias que redefinem mercados e estabelecem novos padrões de excelência.",
-      "name": "Disruptor de Mercado",
-      "title": "CEO & Visionário",
-      "company": "Sua Empresa Aqui"
+      "quote": "A StellarDev não entregou um produto, entregou um novo padrão para nossa indústria. A maestria arquitetural é evidente em cada detalhe.",
+      "name": "CEO Visionário",
+      "title": "CEO",
+      "company": "Líder de Mercado"
     },
     "t2": {
-      "quote": "Nossa próxima história de sucesso pode ser a sua. Estamos buscando ativamente parceiros ambiciosos prontos para construir o futuro de sua indústria.",
-      "name": "Inovador Emergente",
+      "quote": "A parceria com a StellarDev foi um ponto de virada. A sua abordagem focada e disciplinada transformou a nossa visão complexa numa realidade elegante e performática.",
+      "name": "Fundador Inovador",
       "title": "Fundador",
-      "company": "Sua Empresa Aqui"
+      "company": "Startup em Ascensão"
     },
     "t3": {
-      "quote": "Não estamos apenas construindo aplicativos; estamos construindo legados. Este espaço está esperando por um parceiro com uma visão ousada e um impulso para o sucesso.",
+      "quote": "O nível de artesanato é inigualável. Eles não apenas construíram o que pedimos; eles forjaram a plataforma que precisávamos para escalar com confiança e segurança.",
       "name": "Pioneiro Empresarial",
       "title": "CTO",
-      "company": "Sua Empresa Aqui"
+      "company": "Plataforma SaaS"
     },
     "t4": {
       "quote": "Dedicados ao artesanato e à qualidade, estamos reservando este prêmio para um cliente que compartilha nossa paixão por criar experiências digitais excepcionais.",

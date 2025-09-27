@@ -220,6 +220,12 @@ export class DataService {
       title: this.t(`status.incidents.${i}.title`)(),
       updates: incident.updates.map((_, j) => this.t(`status.incidents.${i}.updates.${j}`)())
   })));
+  
+  contactInfo = computed(() => CONTACT_INFO.map(info => ({
+    ...info,
+    title: this.t(`components.contact.${info.title}`)(),
+    description: info.description ? this.t(`components.contact.${info.description}`)() : undefined
+  })));
 
   
   // --- Non-translated signals ---
@@ -229,7 +235,6 @@ export class DataService {
   labExperiments = signal<LabExperiment[]>(LAB_EXPERIMENTS); // Assuming static
   blogPosts = signal<BlogPost[]>(BLOG_POSTS); // Assuming static
   awards = signal<Award[]>(AWARDS);
-  contactInfo = signal<ContactInfo[]>(CONTACT_INFO);
   socialLinks = signal<SocialLink[]>(SOCIAL_LINKS);
   calculatorServices = signal<CalculatorService[]>(CALCULATOR_SERVICES);
   calculatorFeatures = signal<CalculatorFeature[]>(CALCULATOR_FEATURES);

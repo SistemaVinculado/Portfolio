@@ -114,6 +114,7 @@ export interface ContactInfo {
   title: string;
   value: string;
   href: string;
+  description?: string;
 }
 
 export interface Client {

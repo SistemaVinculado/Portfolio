@@ -14,7 +14,6 @@ import { LegalModalComponent } from './components/legal-modal.component';
 import { InteractiveBackgroundComponent } from './components/interactive-background.component';
 import { CustomCursorComponent } from './components/custom-cursor.component';
 import { CookieBannerComponent } from './components/cookie-banner.component';
-import { LanguageSelectorComponent } from './components/language-selector.component';
 import { TranslatePipe } from './pipes/translate.pipe';
 
 @Component({
@@ -31,7 +30,6 @@ import { TranslatePipe } from './pipes/translate.pipe';
     InteractiveBackgroundComponent,
     CustomCursorComponent,
     CookieBannerComponent,
-    LanguageSelectorComponent,
     TranslatePipe
   ],
   templateUrl: './app.component.html',
@@ -56,7 +54,6 @@ export class AppComponent implements OnInit, OnDestroy {
   showAiBuddy = signal(false);
   showCookieBanner = signal(false);
   showUpdateBanner = signal(false);
-  showLanguageSelector = signal(false);
 
   private onScrollListener!: () => void;
 
@@ -76,7 +73,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // Combined effect for managing body scroll lock
     effect(() => {
         if (isPlatformBrowser(this.platformId)) {
-            const shouldLock = this.isLoading() || this.isMobileMenuOpen() || this.showPrivacyModal() || this.showTermsModal() || this.showAiBuddy() || this.showLanguageSelector();
+            const shouldLock = this.isLoading() || this.isMobileMenuOpen() || this.showPrivacyModal() || this.showTermsModal() || this.showAiBuddy();
             if (shouldLock) {
                 this.renderer.addClass(this.document.body, 'overflow-hidden');
             } else {
@@ -104,13 +101,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      const savedLang = localStorage.getItem('language') as 'en' | 'pt-BR' | null;
-      if (savedLang) {
-        this.languageService.setLanguage(savedLang);
-      } else {
-        this.showLanguageSelector.set(true);
-      }
-
       if (localStorage.getItem('cookie_consent') !== 'accepted') {
         this.showCookieBanner.set(true);
       }
@@ -140,11 +130,6 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.onScrollListener) {
       this.onScrollListener();
     }
-  }
-
-  onLanguageSelected(lang: 'en' | 'pt-BR'): void {
-    this.languageService.setLanguage(lang);
-    this.showLanguageSelector.set(false);
   }
 
   acceptCookies(): void {

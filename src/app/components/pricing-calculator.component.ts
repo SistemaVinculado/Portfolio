@@ -43,24 +43,18 @@ export class PricingCalculatorComponent implements OnInit, OnDestroy {
     'Signature': { name: 'Semantic Signature', icon: 'M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-3.182-3.182m3.182 0l-3.182 3.182' },
   };
   
-  currencyInfo = computed(() => {
-    if (this.languageService.currentLanguage() === 'pt-BR') {
-      return { symbol: 'R$', locale: 'pt-BR' };
-    }
-    return { symbol: '$', locale: 'en-US' };
-  });
+  currencyInfo = computed(() => ({ symbol: 'R$', locale: 'pt-BR' }));
   
   fullServiceDetails = computed(() => {
     const calcServices = this.dataService.calculatorServices();
     const allServices = this.dataService.services();
-    const isPtBr = this.languageService.currentLanguage() === 'pt-BR';
     
     return allServices
       .map(service => {
         const calcData = calcServices.find(cs => cs.id === service.id);
         return { 
           ...service, 
-          basePrice: isPtBr ? (calcData?.basePriceBRL ?? 0) : (calcData?.basePrice ?? 0), 
+          basePrice: calcData?.basePriceBRL ?? 0, 
           enabled: !!calcData 
         };
       })
@@ -78,14 +72,11 @@ export class PricingCalculatorComponent implements OnInit, OnDestroy {
       return { percentage: 0, min: 0, max: 0, originalMin: 0, originalMax: 0 };
     }
 
-    const isPtBr = this.languageService.currentLanguage() === 'pt-BR';
-    const usdThresholdStart = 5000;
-    const usdThresholdEnd = 100000;
     const brlThresholdStart = 20000;
     const brlThresholdEnd = 350000;
     
-    const start = isPtBr ? brlThresholdStart : usdThresholdStart;
-    const end = isPtBr ? brlThresholdEnd : usdThresholdEnd;
+    const start = brlThresholdStart;
+    const end = brlThresholdEnd;
     const maxDiscount = 10;
     const minDiscount = 1;
 
@@ -106,7 +97,7 @@ export class PricingCalculatorComponent implements OnInit, OnDestroy {
     }
 
     const discountMultiplier = 1 - (percentage / 100);
-    const rounding = isPtBr ? 1000 : 100;
+    const rounding = 1000;
     
     const discountedMin = Math.round((price.min * discountMultiplier) / rounding) * rounding;
     const discountedMax = Math.round((price.max * discountMultiplier) / rounding) * rounding;
@@ -124,8 +115,8 @@ export class PricingCalculatorComponent implements OnInit, OnDestroy {
     const price = this.calculatePrice().min;
     if (price === 0) return { min: 0, max: 0 };
     const baseWeeks = 4;
-    const weeksPer10k = (this.languageService.currentLanguage() === 'pt-BR') ? 1 : 2; // Different timeline scaling for BRL
-    const divisor = (this.languageService.currentLanguage() === 'pt-BR') ? 50000 : 10000;
+    const weeksPer10k = 1;
+    const divisor = 50000;
     const calculatedWeeks = baseWeeks + (price / divisor) * weeksPer10k;
     const minWeeks = Math.max(baseWeeks, Math.round(calculatedWeeks * 0.8));
     const maxWeeks = Math.round(calculatedWeeks * 1.2);
@@ -138,8 +129,7 @@ export class PricingCalculatorComponent implements OnInit, OnDestroy {
 
     const servicePoints = this.fullServiceDetails().reduce((acc, service) => {
       if (formVal.services[service.id as keyof typeof formVal.services]) {
-        // Normalize base price to a point system (e.g., every $750 USD = 1 point)
-        const pointDivisor = (this.languageService.currentLanguage() === 'pt-BR') ? 3750 : 750;
+        const pointDivisor = 3750;
         return acc + (service.basePrice / pointDivisor);
       }
       return acc;
@@ -235,7 +225,7 @@ export class PricingCalculatorComponent implements OnInit, OnDestroy {
     
     if (basePrice === 0) return { min: 0, max: 0 };
 
-    const rounding = this.languageService.currentLanguage() === 'pt-BR' ? 1000 : 100;
+    const rounding = 1000;
 
     const minPrice = Math.round((basePrice * scopeMultiplier * complexityMultiplier) / rounding) * rounding;
     const maxPrice = Math.round((minPrice * 1.5) / rounding) * rounding;
@@ -255,23 +245,14 @@ export class PricingCalculatorComponent implements OnInit, OnDestroy {
     const price = this.estimatedPrice();
     const discount = this.discountInfo();
     const timeline = this.estimatedTimeline();
-    const cipherFocus = this.recommendedCipherFocus().map(f => f.name).join(', ');
     const currency = this.currencyInfo();
-    const isPtBr = this.languageService.currentLanguage() === 'pt-BR';
 
     let message: string;
 
-    if (isPtBr) {
-      message = "Usei o Projeto da Comissão e estou interessado(a) em uma consulta formal.\n\n---\n";
-      message += `Disciplinas Arquiteturais: ${selectedServices || 'Nenhuma'}\n`;
-      message += `Escala da Comissão: ${scope}\n`;
-      message += `Complexidade Arquitetural: ${complexity}\n`;
-    } else {
-      message = "I've used the Commission Blueprint and I'm interested in a formal consultation.\n\n---\n";
-      message += `Architectural Disciplines: ${selectedServices || 'None'}\n`;
-      message += `Commission Scale: ${scope}\n`;
-      message += `Architectural Complexity: ${complexity}\n`;
-    }
+    message = "Usei o Projeto da Comissão e estou interessado(a) em uma consulta formal.\n\n---\n";
+    message += `Disciplinas Arquiteturais: ${selectedServices || 'Nenhuma'}\n`;
+    message += `Escala da Comissão: ${scope}\n`;
+    message += `Complexidade Arquitetural: ${complexity}\n`;
     
     if (discount.percentage > 0) {
       const minDiscounted = discount.min.toLocaleString(currency.locale);
@@ -279,30 +260,16 @@ export class PricingCalculatorComponent implements OnInit, OnDestroy {
       const originalMin = discount.originalMin.toLocaleString(currency.locale);
       const originalMax = discount.originalMax.toLocaleString(currency.locale);
 
-      if (isPtBr) {
-        message += `Investimento Original: ${currency.symbol}${originalMin} - ${currency.symbol}${originalMax}\n`;
-        message += `Investimento com Desconto (${discount.percentage}%): ${currency.symbol}${minDiscounted} - ${currency.symbol}${maxDiscounted}\n`;
-      } else {
-        message += `Original Investment: ${currency.symbol}${originalMin} - ${currency.symbol}${originalMax}\n`;
-        message += `Investment with Discount (${discount.percentage}%): ${currency.symbol}${minDiscounted} - ${currency.symbol}${maxDiscounted}\n`;
-      }
+      message += `Investimento Original: ${currency.symbol}${originalMin} - ${currency.symbol}${originalMax}\n`;
+      message += `Investimento com Desconto (${discount.percentage}%): ${currency.symbol}${minDiscounted} - ${currency.symbol}${maxDiscounted}\n`;
     } else {
       const minPrice = price.min.toLocaleString(currency.locale);
       const maxPrice = price.max.toLocaleString(currency.locale);
-       if (isPtBr) {
-        message += `Faixa de Investimento Estimada: ${currency.symbol}${minPrice} - ${currency.symbol}${maxPrice}\n`;
-      } else {
-        message += `Estimated Investment Range: ${currency.symbol}${minPrice} - ${currency.symbol}${maxPrice}\n`;
-      }
+      message += `Faixa de Investimento Estimada: ${currency.symbol}${minPrice} - ${currency.symbol}${maxPrice}\n`;
     }
     
-    if (isPtBr) {
-      message += `Cronograma Estimado: ${timeline.min} - ${timeline.max} semanas\n---\n\n`;
-      message += "Gostaria de discutir este projeto em mais detalhes.";
-    } else {
-      message += `Estimated Timeline: ${timeline.min} - ${timeline.max} weeks\n---\n\n`;
-      message += "I would like to discuss this blueprint in more detail.";
-    }
+    message += `Cronograma Estimado: ${timeline.min} - ${timeline.max} semanas\n---\n\n`;
+    message += "Gostaria de discutir este projeto em mais detalhes.";
 
     return message;
   }

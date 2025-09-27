@@ -4,9 +4,6 @@
 @if (isLoading()) {
   <app-cosmic-preloader [isLoading]="isLoading()"></app-cosmic-preloader>
 } @else {
-  @if(showLanguageSelector()) {
-    <app-language-selector (languageSelected)="onLanguageSelected($event)"></app-language-selector>
-  }
   @if (showUpdateBanner()) {
     <div class="z-50 bg-[#EAE8E3] dark:bg-[#292639] grid grid-cols-[auto_1fr_auto] items-center gap-2 py-2.5 px-4 text-sm font-semibold text-[#292639] dark:text-gray-200">
       <div class="w-7"></div> <!-- Spacer to balance the close button -->

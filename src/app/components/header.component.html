@@ -8,27 +8,6 @@
       }
     </nav>
     <div class="hidden md:flex items-center space-x-2">
-        <div class="relative">
-          <button (click)="toggleLangMenu()" [attr.aria-label]="'header.changeLanguage' | translate" class="w-10 h-10 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300">
-            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582" /></svg>
-          </button>
-          @if(isLangMenuOpen()) {
-            <div class="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-[#292639] rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 p-2 animate-slide-down z-20">
-              @for (lang of languages; track lang.code) {
-                <button 
-                  (click)="selectLanguage(lang)"
-                  [disabled]="lang.disabled"
-                  class="w-full text-left px-3 py-2 rounded-md text-sm font-medium flex items-center justify-between hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                  [class]="currentLanguage() === lang.code ? 'text-[#292639] dark:text-white' : 'text-gray-600 dark:text-gray-300'">
-                  <span>{{ lang.name }}</span>
-                  @if (currentLanguage() === lang.code) {
-                    <svg class="w-4 h-4 text-[#8A6B93]" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-                  }
-                </button>
-              }
-            </div>
-          }
-        </div>
         <button (click)="toggleTheme.emit()" class="w-10 h-10 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300">
             @if(theme() === 'light') {
                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
@@ -42,27 +21,6 @@
     </div>
     <!-- Mobile Menu Button -->
     <div class="md:hidden flex items-center space-x-2">
-        <div class="relative">
-          <button (click)="toggleLangMenu()" [attr.aria-label]="'header.changeLanguage' | translate" class="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none">
-            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582" /></svg>
-          </button>
-          @if(isLangMenuOpen()) {
-            <div class="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-[#292639] rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 p-2 animate-slide-down z-20">
-              @for (lang of languages; track lang.code) {
-                <button 
-                  (click)="selectLanguage(lang)"
-                  [disabled]="lang.disabled"
-                  class="w-full text-left px-3 py-2 rounded-md text-sm font-medium flex items-center justify-between hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                  [class]="currentLanguage() === lang.code ? 'text-[#292639] dark:text-white' : 'text-gray-600 dark:text-gray-300'">
-                  <span>{{ lang.name }}</span>
-                  @if (currentLanguage() === lang.code) {
-                    <svg class="w-4 h-4 text-[#8A6B93]" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-                  }
-                </button>
-              }
-            </div>
-          }
-        </div>
         <button (click)="toggleTheme.emit()" class="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none">
                 @if(theme() === 'light') {
                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
