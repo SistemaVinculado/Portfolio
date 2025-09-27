@@ -24,7 +24,7 @@
     <div appAnimateOnScroll delay="200ms" class="lg:col-span-1 bg-gray-900/90 dark:bg-black/50 backdrop-blur-sm rounded-2xl p-6 h-[600px] lg:h-[650px] flex flex-col border border-gray-700/50">
       <h3 class="text-lg font-bold text-white mb-4 flex items-center">
         <div class="w-2.5 h-2.5 bg-green-400 rounded-full mr-3 animate-pulse"></div>
-        StellarShield™ Live Feed
+        {{ 'securityDashboard.liveFeed' | translate }}
       </h3>
       <div #logContainer class="flex-grow overflow-y-auto pr-2 log-container text-xs font-mono">
         @for(log of logEntries(); track log.id) {
@@ -69,11 +69,11 @@
       <div class="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 p-1.5 rounded-xl mb-6">
         <button (click)="setTab('performance')" class="relative flex-1 text-center cursor-pointer px-4 py-2.5 text-sm font-semibold rounded-lg transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8A6B93]" [class]="activeTab() === 'performance' ? 'text-white' : 'text-gray-600 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-black/10'">
           @if(activeTab() === 'performance') { <div class="absolute inset-0 bg-[#8A6B93] dark:bg-purple-500 rounded-lg -z-10"></div> }
-          Performance Audit
+          {{ 'securityDashboard.performanceAudit' | translate }}
         </button>
         <button (click)="setTab('vulnerability')" class="relative flex-1 text-center cursor-pointer px-4 py-2.5 text-sm font-semibold rounded-lg transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8A6B93]" [class]="activeTab() === 'vulnerability' ? 'text-white' : 'text-gray-600 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-black/10'">
           @if(activeTab() === 'vulnerability') { <div class="absolute inset-0 bg-[#8A6B93] dark:bg-purple-500 rounded-lg -z-10"></div> }
-          Vulnerability Scan
+          {{ 'securityDashboard.vulnerabilityScan' | translate }}
         </button>
       </div>
 

@@ -100,7 +100,7 @@ export class ContactComponent {
     
     const inquiryTypeText = formData.inquiryType === 'project' ? 'Comissão' : 'Geral';
       
-    const subject = `[StellarDev Commission Inquiry] ${inquiryTypeText} - ${formData.name}`;
+    const subject = `[Consulta de Comissão StellarDev] ${inquiryTypeText} - ${formData.name}`;
 
     let body = "Nova Consulta de Comissão\n";
     body += "========================\n\n";

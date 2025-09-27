@@ -146,11 +146,15 @@ export class DataService {
 
   technologies = computed(() => TECHNOLOGIES.map(tech => ({
       ...tech,
-      description: this.t(`technologies.${tech.name.replace(/[^a-zA-Z0-9]/g, '')}`)()
+      name: this.t(`technologies.names.${tech.name.toLowerCase().replace(/[^a-zA-Z0-9]/g, '')}`)(),
+      category: this.t(`technologies.categories.${tech.category.toLowerCase().replace(' & ', '_')}`)() as any,
+      description: this.t(`technologies.descriptions.${tech.name.replace(/[^a-zA-Z0-9]/g, '')}`)()
   })));
   
   portfolioItems = computed(() => PORTFOLIO_ITEMS.map((item, i) => ({
       ...item,
+      category: this.t(`portfolio.categories.${item.category.toLowerCase().replace(/ /g, '_')}`)(),
+      title: this.t(`portfolio.item${i+1}.title`)(),
       description: this.t(`portfolio.item${i+1}.description`)(),
       challenge: this.t(`portfolio.item${i+1}.challenge`)(),
       solution: this.t(`portfolio.item${i+1}.solution`)(),
@@ -175,7 +179,7 @@ export class DataService {
       ...faq,
       question: this.t(`faqs.q${i+1}.question`)(),
       answer: this.t(`faqs.q${i+1}.answer`)(),
-      category: this.t(`faqs.q${i+1}.category`)()
+      category: this.t(`faqs.categories.${faq.category.toLowerCase()}`)()
   })));
   
   privacyPolicy = computed(() => ({
@@ -226,21 +230,66 @@ export class DataService {
     title: this.t(`components.contact.${info.title}`)(),
     description: info.description ? this.t(`components.contact.${info.description}`)() : undefined
   })));
+  
+  teamMembers = computed(() => TEAM_MEMBERS.map((member, i) => ({
+    ...member,
+    title: this.t(`team.member${i+1}.title`)(),
+  })));
 
+  jobOpenings = computed(() => JOB_OPENINGS.map((job, i) => ({
+    ...job,
+    position: this.t(`jobs.job${i+1}.position`)(),
+    location: this.t(`jobs.job${i+1}.location`)(),
+    type: this.t(`jobs.job${i+1}.type`)(),
+  })));
+
+  labExperiments = computed(() => LAB_EXPERIMENTS.map((exp, i) => ({
+      ...exp,
+      title: this.t(`labExperiments.exp${i+1}.title`)(),
+      description: this.t(`labExperiments.exp${i+1}.description`)(),
+  })));
+
+  blogPosts = computed(() => BLOG_POSTS.map((post, i) => ({
+      ...post,
+      category: this.t(`blogPosts.post${i+1}.category`)(),
+      title: this.t(`blogPosts.post${i+1}.title`)(),
+      excerpt: this.t(`blogPosts.post${i+1}.excerpt`)(),
+      content: post.content.map((section, j) => ({
+        ...section,
+        text: this.t(`blogPosts.post${i+1}.content.${j}.text`)()
+      }))
+  })));
+
+  awards = computed(() => AWARDS.map((award, i) => ({
+    ...award,
+    title: this.t(`awards.award${i+1}.title`)(),
+    issuer: this.t(`awards.award${i+1}.issuer`)(),
+  })));
+
+  // FIX: Corrected self-reference from `this.dataService` to `this`.
+  securityMetrics = computed(() => this.securityMetricsSignal().map((metric, i) => ({
+    ...metric,
+    metric: this.t(`security.metrics.${i}.metric`)(),
+    description: this.t(`security.metrics.${i}.description`)(),
+  })));
+
+  // FIX: Corrected self-reference from `this.dataService` to `this`.
+  vulnerabilityScans = computed(() => this.vulnerabilityScansSignal().map((scan, i) => ({
+    ...scan,
+    severity: this.t(`security.severities.${scan.severity.toLowerCase()}`)(),
+    summary: this.t(`security.scans.${i}.summary`)(),
+    status: this.t(`security.statuses.${scan.status.toLowerCase()}`)(),
+  })));
   
   // --- Non-translated signals ---
-  
-  teamMembers = signal<TeamMember[]>(TEAM_MEMBERS);
-  jobOpenings = signal<JobOpening[]>(JOB_OPENINGS);
-  labExperiments = signal<LabExperiment[]>(LAB_EXPERIMENTS); // Assuming static
-  blogPosts = signal<BlogPost[]>(BLOG_POSTS); // Assuming static
-  awards = signal<Award[]>(AWARDS);
   socialLinks = signal<SocialLink[]>(SOCIAL_LINKS);
   calculatorServices = signal<CalculatorService[]>(CALCULATOR_SERVICES);
   calculatorFeatures = signal<CalculatorFeature[]>(CALCULATOR_FEATURES);
-  securityMetrics = signal<SecurityMetric[]>(SECURITY_METRICS);
+  
+  // --- Signals for simulated data ---
+  private securityMetricsSignal = signal<SecurityMetric[]>(SECURITY_METRICS);
   performanceReports = signal<PerformanceReport[]>(PERFORMANCE_REPORTS);
-  vulnerabilityScans = signal<VulnerabilityScan[]>(VULNERABILITY_SCANS);
+  private vulnerabilityScansSignal = signal<VulnerabilityScan[]>(VULNERABILITY_SCANS);
 
   /**
    * Simulates real-time updates for the security dashboard.
@@ -260,7 +309,7 @@ export class DataService {
     });
 
     // 2. Simulate vulnerability patching
-    this.vulnerabilityScans.update(scans => {
+    this.vulnerabilityScansSignal.update(scans => {
       if (Math.random() < 0.2) {
         const investigatingScan = scans.find(s => s.status === 'Investigating');
         if (investigatingScan) {
@@ -272,7 +321,7 @@ export class DataService {
     });
 
     // 3. Simulate threats blocked metric increasing
-    this.securityMetrics.update(metrics => {
+    this.securityMetricsSignal.update(metrics => {
       const threatsMetric = metrics.find(m => m.metric === 'Threats Blocked');
       if (threatsMetric) {
         const currentValue = parseInt(threatsMetric.value.replace(/,/g, ''), 10);

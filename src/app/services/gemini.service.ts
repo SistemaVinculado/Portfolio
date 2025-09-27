@@ -24,7 +24,9 @@ export class GeminiService {
 
     effect(() => {
       // This effect will run whenever the language changes, resetting the chat.
-      this.langService.currentLanguage(); // Establish dependency
+      // FIX: The `currentLanguage` property does not exist. 
+      // To establish reactivity, we depend on a computed signal that uses the translations.
+      this.systemInstruction(); // Establish dependency on language change.
       this.resetChat();
     });
   }

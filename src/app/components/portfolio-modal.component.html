@@ -24,16 +24,16 @@
                 <div class="mt-8 prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
                 <p>{{ i.description }}</p>
 
-                <h4>The Challenge</h4>
+                <h4>{{ 'portfolio.challenge' | translate }}</h4>
                 <p>{{ i.challenge }}</p>
 
-                <h4>Our Solution</h4>
+                <h4>{{ 'portfolio.solution' | translate }}</h4>
                 <p>{{ i.solution }}</p>
                 </div>
                 
                 <!-- Gallery -->
                 <div class="mt-10">
-                <h4 class="text-2xl font-bold tracking-tight text-[#292639] dark:text-white">Project Gallery</h4>
+                <h4 class="text-2xl font-bold tracking-tight text-[#292639] dark:text-white">{{ 'portfolio.gallery' | translate }}</h4>
                 <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
                     @for(img of i.gallery; track img) {
                     <img [ngSrc]="img" alt="Gallery image for {{ i.title }}" width="1200" height="800" class="w-full h-auto object-cover rounded-lg shadow-md border border-gray-200 dark:border-gray-700">

@@ -4,6 +4,7 @@ import { GeminiService } from '../services/gemini.service';
 import { ChatMessage } from '../models';
 import { GenerativeArtComponent } from './generative-art.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-ai-buddy',
@@ -21,6 +22,8 @@ export class AiBuddyComponent {
   private geminiService = inject(GeminiService);
   private sanitizer: DomSanitizer = inject(DomSanitizer);
   private platformId = inject(PLATFORM_ID);
+  private languageService = inject(LanguageService);
+  private t = this.languageService.get.bind(this.languageService);
 
   private nextMessageId = 0;
   messages = signal<ChatMessage[]>([]);
@@ -64,7 +67,7 @@ export class AiBuddyComponent {
       }
     } catch (e) {
       console.error(e);
-      this.error.set('Sorry, I am having trouble connecting. Please try again later.');
+      this.error.set(this.t('aiBuddy.connectionError')());
       this.messages.set([]);
     } finally {
       this.isLoading.set(false);
@@ -107,7 +110,7 @@ export class AiBuddyComponent {
             if (lastMsg.role === 'model' && lastMsg.content === '') {
                 msgs.pop();
             }
-            return [...msgs, { id: this.nextMessageId++, role: 'model', content: 'Sorry, I encountered an issue connecting to the AI. Please check the console for details.', isError: true }];
+            return [...msgs, { id: this.nextMessageId++, role: 'model', content: this.t('aiBuddy.streamError')(), isError: true }];
         });
     } finally {
         this.isLoading.set(false);
