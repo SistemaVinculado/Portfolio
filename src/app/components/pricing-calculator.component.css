@@ -2,6 +2,40 @@
     display: block;
 }
 
+.service-grid-container {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 12px;
+  margin-right: -12px;
+}
+
+/* Custom Scrollbar for Webkit browsers (Chrome, Safari) */
+.service-grid-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.service-grid-container::-webkit-scrollbar-track {
+  background: var(--accent-light);
+  border-radius: 4px;
+}
+
+.service-grid-container::-webkit-scrollbar-thumb {
+  background-color: var(--accent);
+  border-radius: 4px;
+  border: 2px solid var(--accent-light);
+}
+
+.dark .service-grid-container::-webkit-scrollbar-thumb {
+    border-color: var(--accent-light);
+}
+
+/* Custom Scrollbar for Firefox */
+.service-grid-container {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--accent-light);
+}
+
+
 .dark .blueprint-panel {
     background-image: radial-gradient(circle at 50% 0%, rgba(160, 135, 167, 0.15) 0%, rgba(160, 135, 167, 0) 70%);
 }

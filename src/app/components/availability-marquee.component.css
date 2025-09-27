@@ -8,8 +8,11 @@
 }
 
 .marquee-content {
-  display: flex;
-  animation: marquee 80s linear infinite;
+  /* Use inline-flex to ensure the container's width is based on its content, not its parent. */
+  /* This is critical for the percentage-based transform in the animation to work correctly. */
+  display: inline-flex;
+  /* Increased duration for a more stately and confident scroll speed. */
+  animation: marquee 120s linear infinite;
 }
 
 .marquee-inner {

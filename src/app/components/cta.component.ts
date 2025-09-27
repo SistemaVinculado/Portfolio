@@ -1,10 +1,11 @@
 import { Component, ChangeDetectionStrategy, output } from '@angular/core';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 @Component({
   selector: 'app-cta',
   standalone: true,
-  imports: [AnimateOnScrollDirective],
+  imports: [AnimateOnScrollDirective, TranslatePipe],
   templateUrl: './cta.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

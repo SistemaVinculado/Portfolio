@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, signal, inject, computed, OnInit, OnDestroy, ViewChild, ElementRef, effect } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, inject, OnInit, OnDestroy, ViewChild, ElementRef, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 import { DataService } from '../data.service';
@@ -17,6 +17,8 @@ export class SecurityDashboardComponent implements OnInit, OnDestroy {
   
   private dataService = inject(DataService);
   private logInterval: number | undefined;
+  private updateInterval: number | undefined;
+  private nextLogId = 0;
 
   activeTab = signal<'performance' | 'vulnerability'>('performance');
   logEntries = signal<LogEntry[]>([]);
@@ -26,24 +28,6 @@ export class SecurityDashboardComponent implements OnInit, OnDestroy {
   performanceReports = this.dataService.performanceReports;
   vulnerabilityScans = this.dataService.vulnerabilityScans;
   securityMetrics = this.dataService.securityMetrics;
-
-  // Computed properties for summary cards
-  overallPerformanceScore = computed(() => {
-    const reports = this.performanceReports();
-    if (reports.length === 0) return 0;
-    const total = reports.reduce((acc, r) => acc + r.lighthouseScore, 0);
-    return Math.round(total / reports.length);
-  });
-
-  criticalVulnerabilities = computed(() => {
-    return this.vulnerabilityScans().filter(s => s.severity === 'Critical' && s.status !== 'Patched').length;
-  });
-
-  threatsBlocked = computed(() => {
-      const threatsMetric = this.securityMetrics().find(m => m.metric === 'Threats Blocked');
-      return threatsMetric ? threatsMetric.value : 'N/A';
-  });
-
 
   readonly circumference = 2 * Math.PI * 16; // r = 16
 
@@ -58,11 +42,16 @@ export class SecurityDashboardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.generateInitialLogs();
     this.logInterval = window.setInterval(() => this.addLogEntry(), 2500);
+    // Add an interval to simulate real-time data updates for reports and metrics
+    this.updateInterval = window.setInterval(() => this.dataService.simulateSecurityDataUpdate(), 5000);
   }
 
   ngOnDestroy(): void {
     if (this.logInterval) {
       clearInterval(this.logInterval);
+    }
+    if (this.updateInterval) {
+      clearInterval(this.updateInterval);
     }
   }
 
@@ -72,6 +61,15 @@ export class SecurityDashboardComponent implements OnInit, OnDestroy {
 
   setTab(tab: 'performance' | 'vulnerability'): void {
     this.activeTab.set(tab);
+  }
+  
+  getMetricStatusClasses(status: 'success' | 'warning' | 'danger'): { icon: string; text: string } {
+    switch (status) {
+      case 'success': return { icon: 'text-green-500 dark:text-green-400', text: 'text-green-600 dark:text-green-300' };
+      case 'warning': return { icon: 'text-yellow-500 dark:text-yellow-400', text: 'text-yellow-600 dark:text-yellow-300' };
+      case 'danger': return { icon: 'text-red-500 dark:text-red-400', text: 'text-red-600 dark:text-red-300' };
+      default: return { icon: 'text-gray-500', text: 'text-gray-600' };
+    }
   }
 
   getSeverityClass(severity: 'Critical' | 'High' | 'Medium' | 'Low'): string {
@@ -99,29 +97,35 @@ export class SecurityDashboardComponent implements OnInit, OnDestroy {
   
   private generateInitialLogs(): void {
     const initialLogs: LogEntry[] = [
-      { timestamp: this.getTimestamp(-15), level: 'INFO', message: 'Initializing StellarShield™ kernel...' },
-      { timestamp: this.getTimestamp(-12), level: 'INFO', message: 'WAF firewall active on all edge nodes.' },
-      { timestamp: this.getTimestamp(-8), level: 'SUCCESS', message: 'System integrity check passed.' },
-      { timestamp: this.getTimestamp(-5), level: 'INFO', message: 'Real-time monitoring service started.' },
+      { id: this.nextLogId++, timestamp: this.getTimestamp(-15), level: 'INFO', message: 'Initializing StellarShield™ kernel...' },
+      { id: this.nextLogId++, timestamp: this.getTimestamp(-12), level: 'INFO', message: 'WAF firewall active on all edge nodes.' },
+      { id: this.nextLogId++, timestamp: this.getTimestamp(-8), level: 'SUCCESS', message: 'System integrity check passed.' },
+      { id: this.nextLogId++, timestamp: this.getTimestamp(-5), level: 'INFO', message: 'Real-time monitoring service started.' },
     ];
     this.logEntries.set(initialLogs);
   }
 
   private addLogEntry(): void {
     const random = Math.random();
-    let newLog: LogEntry;
+    let entry: Omit<LogEntry, 'id' | 'timestamp'>;
 
     if (random < 0.7) {
       const messages = ['Incoming request from valid IP', 'Cache hit for resource /assets/logo.svg', 'User authentication successful', 'API call to /data/stream authorized'];
-      newLog = { timestamp: this.getTimestamp(), level: 'INFO', message: messages[Math.floor(Math.random() * messages.length)] };
+      entry = { level: 'INFO', message: messages[Math.floor(Math.random() * messages.length)] };
     } else if (random < 0.9) {
       const messages = ['Unusual traffic pattern detected from ASN-14061', 'Failed login attempt for user `admin`'];
-      newLog = { timestamp: this.getTimestamp(), level: 'WARN', message: messages[Math.floor(Math.random() * messages.length)] };
+      entry = { level: 'WARN', message: messages[Math.floor(Math.random() * messages.length)] };
     } else if (random < 0.98){
-      newLog = { timestamp: this.getTimestamp(), level: 'SUCCESS', message: 'Threat signature `XSS.Probe.v2` blocked.' };
+      entry = { level: 'SUCCESS', message: 'Threat signature `XSS.Probe.v2` blocked.' };
     } else {
-      newLog = { timestamp: this.getTimestamp(), level: 'CRITICAL', message: 'Potential SQL injection attempt blocked.' };
+      entry = { level: 'CRITICAL', message: 'Potential SQL injection attempt blocked.' };
     }
+
+    const newLog: LogEntry = {
+      id: this.nextLogId++,
+      timestamp: this.getTimestamp(),
+      ...entry,
+    };
 
     this.logEntries.update(logs => {
         const newLogs = [...logs, newLog];

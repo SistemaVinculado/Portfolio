@@ -1,0 +1,76 @@
+<app-page-header 
+  [title]="pageTitle()"
+  [subtitle]="pageSubtitle()"
+/>
+
+<div class="w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+  <!-- Our Story Section -->
+  <section id="our-story" class="py-16 sm:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div appAnimateOnScroll class="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
+        <h2 class="text-4xl font-extrabold tracking-tighter text-[#292639] dark:text-white">{{ 'pages.about.storyTitle' | translate }}</h2>
+        <p>{{ 'pages.about.storyP1' | translate }}</p>
+        <p>{{ 'pages.about.storyP2' | translate }}</p>
+      </div>
+      <div appAnimateOnScroll delay="100ms" class="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
+        <img ngSrc="https://picsum.photos/seed/ourstory/1200/900" alt="An abstract representation of digital architecture" width="1200" height="900" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+      </div>
+    </div>
+  </section>
+
+  <app-section-divider></app-section-divider>
+
+  <app-philosophy [principles]="philosophyPrinciples()"></app-philosophy>
+
+  <app-section-divider></app-section-divider>
+
+  <app-work
+    [processSteps]="processSteps()"
+    [showPortfolio]="false"
+    [portfolioItems]="dummyPortfolioItems()"
+    [categories]="dummyCategories"
+    [activeCategory]="dummyActiveCategory"
+  ></app-work>
+
+  <app-section-divider></app-section-divider>
+
+  <!-- The Architect Section -->
+  <section id="the-architect" class="py-16 sm:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div appAnimateOnScroll class="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-xl order-last lg:order-first">
+        <img ngSrc="https://picsum.photos/seed/architect/800/1000" alt="A silhouette of the architect at StellarDev" width="800" height="1000" class="w-full h-full object-cover grayscale">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-8 left-8 text-white">
+          <h3 class="text-3xl font-bold">{{ 'pages.about.architectSectionTitle' | translate }}</h3>
+          <p class="text-lg opacity-80">{{ 'pages.about.architectSectionSubtitle' | translate }}</p>
+        </div>
+      </div>
+      <div appAnimateOnScroll delay="100ms" class="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
+        <h2 class="text-4xl font-extrabold tracking-tighter text-[#292639] dark:text-white">{{ 'pages.about.architectTitle' | translate }}</h2>
+        <p>{{ 'pages.about.architectP1' | translate }}</p>
+        <p>{{ 'pages.about.architectP2' | translate }}</p>
+        <ul>
+            <li>{{ 'pages.about.architectLi1' | translate }}</li>
+            <li>{{ 'pages.about.architectLi2' | translate }}</li>
+            <li>{{ 'pages.about.architectLi3' | translate }}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <app-section-divider></app-section-divider>
+
+  <app-social-proof
+    [awards]="awards()"
+    [showTestimonials]="false"
+    [showFaqs]="false"
+    [testimonials]="dummyTestimonials()"
+    [faqs]="dummyFaqs()"
+    [openFaqQuestion]="dummyOpenFaqQuestion"
+  ></app-social-proof>
+
+  <app-section-divider></app-section-divider>
+
+  <app-cta (scrollTo)="onScrollTo($event)"></app-cta>
+</div>

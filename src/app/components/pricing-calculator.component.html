@@ -6,34 +6,36 @@
             <fieldset class="space-y-8">
                 <!-- Services -->
                 <div>
-                    <legend class="text-xl font-bold text-[#292639] dark:text-white mb-4">1. Select Core Services</legend>
-                    <div formGroupName="services" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        @for(service of fullServiceDetails(); track service.id) {
-                            <label class="p-4 border-2 rounded-2xl cursor-pointer transition-all duration-200 flex flex-col items-center justify-center text-center gap-3" [class]="calculatorForm.get('services.' + service.id)?.value ? 'border-[#8A6B93] dark:border-purple-500 bg-purple-50 dark:bg-purple-900/20' : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'">
-                                <input type="checkbox" [formControlName]="service.id" class="sr-only">
-                                
-                                <div class="relative w-12 h-12 flex items-center justify-center icon-container">
-                                    <!-- Bearing Rings -->
-                                    <div class="bearing-ring bearing-outer"></div>
-                                    <div class="bearing-ring bearing-inner"></div>
-                                
-                                    <!-- Icon Wrapper for 3D effect -->
-                                    <div class="icon-wrapper w-full h-full rounded-lg flex items-center justify-center transition-all duration-300 bg-white/50 dark:bg-gray-900/20">
-                                        <svg class="w-7 h-7 text-[#8A6B93] dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="service.iconPath" />
-                                        </svg>
+                    <legend class="text-xl font-bold text-[#292639] dark:text-white mb-4">{{ 'components.pricingCalculator.step1' | translate }}</legend>
+                    <div class="service-grid-container">
+                        <div formGroupName="services" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            @for(service of fullServiceDetails(); track service.id) {
+                                <label class="p-4 border-2 rounded-2xl cursor-pointer transition-all duration-200 flex flex-col items-center justify-center text-center gap-3" [class]="calculatorForm.get('services.' + service.id)?.value ? 'border-[#8A6B93] dark:border-purple-500 bg-purple-50 dark:bg-purple-900/20' : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'">
+                                    <input type="checkbox" [formControlName]="service.id" class="sr-only">
+                                    
+                                    <div class="relative w-12 h-12 flex items-center justify-center icon-container">
+                                        <!-- Bearing Rings -->
+                                        <div class="bearing-ring bearing-outer"></div>
+                                        <div class="bearing-ring bearing-inner"></div>
+                                    
+                                        <!-- Icon Wrapper for 3D effect -->
+                                        <div class="icon-wrapper w-full h-full rounded-lg flex items-center justify-center transition-all duration-300 bg-white/50 dark:bg-gray-900/20">
+                                            <svg class="w-7 h-7 text-[#8A6B93] dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="service.iconPath" />
+                                            </svg>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <span class="font-semibold text-sm text-[#292639] dark:text-white">{{ service.title }}</span>
-                            </label>
-                        }
+                                    <span class="font-semibold text-sm text-[#292639] dark:text-white">{{ service.title }}</span>
+                                </label>
+                            }
+                        </div>
                     </div>
                 </div>
 
                 <!-- Scope Slider -->
                 <div>
-                    <legend class="text-xl font-bold text-[#292639] dark:text-white">2. Define Project Scope</legend>
+                    <legend class="text-xl font-bold text-[#292639] dark:text-white">{{ 'components.pricingCalculator.step2' | translate }}</legend>
                     <div class="flex items-center justify-between mt-4 mb-2">
                         <label for="scope" class="text-gray-600 dark:text-gray-300">{{ selectedScope()?.name }}</label>
                         <span class="text-sm font-semibold px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-[#292639] dark:text-gray-200 max-w-[60%] sm:max-w-xs text-right">{{ selectedScope()?.description }}</span>
@@ -43,7 +45,7 @@
 
                 <!-- Complexity Slider -->
                 <div>
-                    <legend class="text-xl font-bold text-[#292639] dark:text-white">3. Set Project Complexity</legend>
+                    <legend class="text-xl font-bold text-[#292639] dark:text-white">{{ 'components.pricingCalculator.step3' | translate }}</legend>
                     <div class="flex items-center justify-between mt-4 mb-2">
                         <label for="complexity" class="text-gray-600 dark:text-gray-300">{{ selectedComplexity()?.name }}</label>
                         <span class="text-sm font-semibold px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-[#292639] dark:text-gray-200 max-w-[60%] sm:max-w-xs text-right">{{ selectedComplexity()?.description }}</span>
@@ -55,27 +57,41 @@
 
         <!-- Right Column: Live Blueprint -->
         <div class="blueprint-panel lg:col-span-2 bg-gray-50 dark:bg-gray-900/50 p-6 sm:p-8 rounded-2xl border border-gray-200 dark:border-gray-700/50 lg:sticky lg:top-24 self-start">
-            <h3 class="text-2xl font-extrabold text-[#292639] dark:text-white tracking-tight">Live Blueprint</h3>
+            <h3 class="text-2xl font-extrabold text-[#292639] dark:text-white tracking-tight">{{ 'components.pricingCalculator.blueprintTitle' | translate }}</h3>
             
             <div class="mt-6 grid grid-cols-1 gap-6">
                 <!-- Price Estimate -->
                 <div>
-                    <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Estimated Investment</p>
+                    <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                        {{ discountInfo().percentage > 0 ? ('components.pricingCalculator.finalInvestment' | translate) : ('components.pricingCalculator.investmentLabel' | translate) }}
+                    </p>
                     @if(estimatedPrice().min > 0) {
-                        <p class="text-3xl font-extrabold text-[#8A6B93] dark:text-purple-400 tracking-tighter mt-1">
-                            ${{ estimatedPrice().min.toLocaleString() }} - ${{ estimatedPrice().max.toLocaleString() }}
-                        </p>
+                        <div class="relative mt-1">
+                            @if(discountInfo().percentage > 0) {
+                                <p class="text-base font-bold text-gray-400 dark:text-gray-500 line-through">
+                                    {{ currencyInfo().symbol }}{{ discountInfo().originalMin.toLocaleString(currencyInfo().locale) }} - {{ currencyInfo().symbol }}{{ discountInfo().originalMax.toLocaleString(currencyInfo().locale) }}
+                                </p>
+                            }
+                            <p class="text-3xl font-extrabold text-[#8A6B93] dark:text-purple-400 tracking-tighter">
+                                {{ currencyInfo().symbol }}{{ discountInfo().min.toLocaleString(currencyInfo().locale) }} - {{ currencyInfo().symbol }}{{ discountInfo().max.toLocaleString(currencyInfo().locale) }}
+                            </p>
+                            @if(discountInfo().percentage > 0) {
+                                <div class="absolute -top-4 -right-4 bg-red-500 text-white text-xs font-bold px-2.5 py-1.5 rounded-full transform rotate-12 shadow-lg animate-fade-in">
+                                    {{ 'components.pricingCalculator.discountLabel' | translate: { percentage: discountInfo().percentage } }}
+                                </div>
+                            }
+                        </div>
                     } @else {
-                        <p class="text-lg font-bold text-gray-600 dark:text-gray-400 mt-1">Select a service to begin.</p>
+                        <p class="text-lg font-bold text-gray-600 dark:text-gray-400 mt-1">{{ 'components.pricingCalculator.investmentPlaceholder' | translate }}</p>
                     }
                 </div>
 
                 <div class="grid grid-cols-2 items-center gap-6">
                     <!-- Timeline -->
                     <div class="col-span-1">
-                        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Timeline</p>
+                        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">{{ 'components.pricingCalculator.timelineLabel' | translate }}</p>
                         @if (estimatedTimeline().min > 0) {
-                            <p class="text-xl font-bold text-[#292639] dark:text-white mb-2">{{ estimatedTimeline().min }} - {{ estimatedTimeline().max }} Weeks</p>
+                            <p class="text-xl font-bold text-[#292639] dark:text-white mb-2">{{ estimatedTimeline().min }} - {{ estimatedTimeline().max }} {{ 'components.pricingCalculator.timelineUnit' | translate }}</p>
                             <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 flex overflow-hidden">
                                 @for(segment of timelineSegments(); track $index) {
                                     <div [class]="segment.colorClass" [style.width.%]="segment.width" class="h-full transition-all duration-300"></div>
@@ -87,7 +103,7 @@
                     </div>
                     <!-- Complexity Score -->
                     <div class="col-span-1 flex flex-col items-center">
-                        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Complexity</p>
+                        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">{{ 'components.pricingCalculator.complexityLabel' | translate }}</p>
                         <div class="relative w-24 h-24">
                             <svg class="w-full h-full" viewBox="0 0 100 100" [style.filter]="'drop-shadow(0 4px 6px rgba(138, 107, 147, 0.2))'">
                                 <defs>
@@ -114,26 +130,28 @@
                     </div>
                 </div>
 
-                <!-- Recommended Team -->
-                <div>
-                    <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Recommended Team: <span class="text-[#292639] dark:text-white font-bold">{{ recommendedTeam().name }}</span></p>
-                    <div class="mt-3 flex flex-wrap gap-x-4 gap-y-2">
-                        @for (role of recommendedTeam().roles; track role.name) {
-                            <div class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="role.icon" />
-                                </svg>
-                                <span>{{ role.name }}</span>
-                            </div>
-                        }
+                <!-- Cipher Focus -->
+                @if (recommendedCipherFocus().length > 0) {
+                    <div>
+                        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{{ 'components.pricingCalculator.cipherFocusLabel' | translate }}</p>
+                        <div class="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+                            @for (facet of recommendedCipherFocus(); track facet.name) {
+                                <div class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+                                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="facet.icon" />
+                                    </svg>
+                                    <span>{{ facet.name }}</span>
+                                </div>
+                            }
+                        </div>
                     </div>
-                </div>
+                }
             </div>
 
             <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700/50">
-                <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">This is a ballpark estimate. The actual cost may vary based on detailed project requirements.</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">{{ 'components.pricingCalculator.disclaimer' | translate }}</p>
                 <button (click)="onScrollTo($event, '#contact')" [disabled]="estimatedPrice().min === 0" class="w-full bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639] px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 dark:hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 disabled:bg-gray-400 disabled:dark:bg-gray-600 disabled:scale-100 disabled:cursor-not-allowed">
-                    Request a Detailed Quote
+                    {{ 'components.pricingCalculator.requestConsultation' | translate }}
                 </button>
             </div>
         </div>

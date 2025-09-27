@@ -1,0 +1,26 @@
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in">
+  <div class="fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-sm"></div>
+  <div class="relative w-full max-w-md bg-white/80 dark:bg-[#1C1A27]/80 backdrop-blur-xl rounded-2xl shadow-2xl p-8 text-center animate-slide-up-fade border border-gray-200 dark:border-gray-700">
+    <h2 class="text-3xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Welcome to StellarDev</h2>
+    <p class="mt-2 text-gray-600 dark:text-gray-400">Please select your preferred language.</p>
+
+    <div class="mt-8 space-y-4">
+      @for(lang of languages; track lang.code) {
+        <button 
+          (click)="selectLanguage(lang.code)"
+          [disabled]="lang.disabled"
+          class="w-full p-4 border-2 rounded-xl flex items-center text-left transition-all duration-300 transform hover:scale-105 hover:border-[#8A6B93] dark:hover:border-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#8A6B93] focus:ring-offset-white dark:focus:ring-offset-[#1C1A27] disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed"
+          [class]="lang.disabled ? 'border-gray-200 dark:border-gray-700' : 'border-gray-300 dark:border-gray-600'">
+          <span class="text-3xl mr-4">{{ lang.flag }}</span>
+          <div>
+            <span class="font-bold text-lg text-[#292639] dark:text-white">{{ lang.name }}</span>
+            <span class="block text-sm text-gray-500 dark:text-gray-400">{{ lang.nativeName }}</span>
+          </div>
+          @if (lang.disabled) {
+            <span class="ml-auto text-xs font-semibold bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded-full">Coming Soon</span>
+          }
+        </button>
+      }
+    </div>
+  </div>
+</div>

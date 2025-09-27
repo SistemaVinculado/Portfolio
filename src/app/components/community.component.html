@@ -1,33 +1,9 @@
-<!-- Careers Section -->
-<section id="careers" class="py-16 sm:py-24 bg-[#EAE8E3] dark:bg-[#292639] rounded-3xl">
-    <div class="text-center mb-12 px-4">
-      <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Join Our Team</h2>
-      <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">We're looking for passionate, creative, and dedicated individuals to join our mission.</p>
-    </div>
-    <div class="max-w-4xl mx-auto space-y-6 px-4 sm:px-6 lg:px-8">
-      @for (job of jobOpenings(); track job.position; let i = $index) {
-        <div appAnimateOnScroll [delay]="(i * 100) + 'ms'" class="bg-white dark:bg-gray-800/30 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700/50 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div>
-            <h3 class="text-xl font-bold text-[#292639] dark:text-white">{{ job.position }}</h3>
-            <div class="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400 mt-1">
-              <span>{{ job.location }}</span>
-              <span class="w-1 h-1 bg-gray-400 rounded-full"></span>
-              <span>{{ job.type }}</span>
-            </div>
-          </div>
-          <button (click)="onScrollTo($event, '#contact', 'I\'m interested in the ' + job.position + ' position.')" class="bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639] px-5 py-2.5 rounded-full font-semibold hover:bg-opacity-90 dark:hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 whitespace-nowrap">
-            Apply Now
-          </button>
-        </div>
-      }
-    </div>
-</section>
-
 <!-- StellarDev Labs Section -->
+@if(showLabs()) {
 <section id="labs" class="py-16 sm:py-24">
     <div class="text-center mb-16">
         <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">StellarDev Labs</h2>
-        <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Exploring the future of digital interaction. Our space for innovation, experimentation, and open-source contributions.</p>
+        <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">The architect's crucible for digital experimentation. A space for exploring the future of interaction and contributing to the open-source ecosystem.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         @for (experiment of labExperiments(); track experiment.title; let i = $index) {
@@ -80,12 +56,14 @@
         }
     </div>
 </section>
+}
 
 <!-- Blog/Insights Section -->
+@if(showInsights()) {
 <section id="insights" class="py-16 sm:py-24">
     <div class="text-center mb-12 px-4">
-        <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Latest Insights</h2>
-        <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Stay ahead of the curve with our latest articles on design, technology, and strategy.</p>
+        <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Architectural Dispatches</h2>
+        <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Dispatches from the architect on the art of digital creation, technology, and strategic foresight.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 sm:px-6 lg:px-8">
         @for (post of blogPosts(); track post.title; let i = $index) {
@@ -106,3 +84,4 @@
         }
     </div>
 </section>
+}

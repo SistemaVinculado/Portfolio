@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, signal, inject, SecurityContext, co
 import { DomSanitizer } from '@angular/platform-browser';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 import { Philosophy } from '../models';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 interface Card {
   title: string;
@@ -13,7 +14,7 @@ interface Card {
 @Component({
   selector: 'app-philosophy',
   standalone: true,
-  imports: [AnimateOnScrollDirective],
+  imports: [AnimateOnScrollDirective, TranslatePipe],
   templateUrl: './philosophy.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

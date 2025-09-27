@@ -21,7 +21,6 @@ export class ScrollspyNavComponent implements AfterViewInit, OnDestroy {
   navLinks = input.required<NavLink[]>();
 
   private platformId = inject(PLATFORM_ID);
-  // Fix: Explicitly type the injected `DOCUMENT` as `Document`.
   private document: Document = inject(DOCUMENT);
   private renderer = inject(Renderer2);
 

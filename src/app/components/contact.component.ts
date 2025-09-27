@@ -2,17 +2,21 @@ import { Component, ChangeDetectionStrategy, input, signal, effect, inject, comp
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 import { DataService } from '../data.service';
+import { TranslatePipe } from '../pipes/translate.pipe';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ReactiveFormsModule, AnimateOnScrollDirective],
+  imports: [ReactiveFormsModule, AnimateOnScrollDirective, TranslatePipe],
   templateUrl: './contact.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent {
   private dataService = inject(DataService);
-
+  private languageService = inject(LanguageService);
+  private t = this.languageService.get.bind(this.languageService);
+  
   initialMessage = input<string | null>(null);
   
   contactInfo = this.dataService.contactInfo;
@@ -32,20 +36,32 @@ export class ContactComponent {
     message: new FormControl('', [Validators.required, Validators.minLength(10)])
   });
 
+  budgetOptions = computed(() => {
+    if (this.languageService.currentLanguage() === 'pt-BR') {
+      return [
+        { value: '<100k', label: '< R$100.000' },
+        { value: '100k-300k', label: 'R$100.000 - R$300.000' },
+        { value: '>300k', label: 'R$300.000+' },
+      ];
+    }
+    return [
+      { value: '<25k', label: '< $25,000' },
+      { value: '25k-75k', label: '$25,000 - $75,000' },
+      { value: '>75k', label: '$75,000+' },
+    ];
+  });
+
   expectations = [
     {
-      title: 'Rapid Response',
-      description: 'Expect a reply within one business day to schedule our initial chat.',
+      key: 'initial_contact',
       iconPath: 'M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z'
     },
     {
-      title: 'Discovery Call',
-      description: 'A deep dive into your vision, goals, and technical requirements.',
+      key: 'suitability_consultation',
       iconPath: 'M12 18v-5.25m0 0a6.01 6.01 0 001.5-.184m-1.5.184a6.01 6.01 0 01-1.5-.184m3.75 7.482c.075-.015.15-.03.225-.045m-3.975 0a6.017 6.017 0 01-2.225-.045M12 18c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z'
     },
     {
-      title: 'Custom Proposal',
-      description: 'A detailed, no-obligation proposal with a project roadmap and timeline.',
+      key: 'architectural_blueprint',
       iconPath: 'M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z'
     }
   ];
@@ -84,14 +100,51 @@ export class ContactComponent {
       this.contactForm.markAllAsTouched();
       return;
     }
+
     this.formStatus.set('submitting');
     this.submittedName.set(this.contactForm.get('name')?.value || '');
-    console.log('Form Submitted!', this.contactForm.value);
+
+    const formData = this.contactForm.value;
+    const recipient = 'membership.actuallydev@gmail.com';
+    const isPtBr = this.languageService.currentLanguage() === 'pt-BR';
+
+    const inquiryTypeText = formData.inquiryType === 'project' 
+      ? (isPtBr ? 'Comissão' : 'Commission') 
+      : (isPtBr ? 'Geral' : 'General');
+      
+    const subject = `[StellarDev Commission Inquiry] ${inquiryTypeText} - ${formData.name}`;
+
+    let body = isPtBr ? "Nova Consulta de Comissão\n" : "New Commission Inquiry\n";
+    body += "========================\n\n";
+    body += isPtBr ? `Nome: ${formData.name}\n` : `Name: ${formData.name}\n`;
+    body += `Email: ${formData.email}\n`;
+    if (formData.company) {
+      body += isPtBr ? `Empresa: ${formData.company}\n` : `Company: ${formData.company}\n`;
+    }
+    body += isPtBr ? `Tipo de Consulta: ${formData.inquiryType === 'project' ? 'Nova Comissão' : 'Pergunta Geral'}\n`
+                  : `Inquiry Type: ${formData.inquiryType === 'project' ? 'New Commission' : 'General Question'}\n`;
     
-    // Simulate network request
+    if (formData.inquiryType === 'project') {
+        const selectedService = this.services().find(s => s.id === formData.serviceOfInterest);
+        const serviceTitle = selectedService ? selectedService.title : (isPtBr ? 'N/A' : 'N/A');
+        body += isPtBr ? `Serviço de Interesse: ${serviceTitle}\n` : `Service of Interest: ${serviceTitle}\n`;
+        const selectedBudget = this.budgetOptions().find(opt => opt.value === formData.budget);
+        const budgetLabel = selectedBudget ? selectedBudget.label : formData.budget;
+        body += isPtBr ? `Orçamento Estimado: ${budgetLabel}\n` : `Estimated Budget: ${budgetLabel}\n`;
+    }
+
+    body += `\n--- ${isPtBr ? 'Mensagem' : 'Message'} ---\n\n${formData.message}\n`;
+
+    const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // Open the user's default mail client.
+    window.location.href = mailtoLink;
+    
+    // Assume the user sent the email and show a success message.
+    // Use a short delay to allow the mail client to open.
     setTimeout(() => {
       this.formStatus.set('success');
-    }, 2000);
+    }, 500);
   }
 
   resetForm(): void {

@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, computed, inject } from '@angular/core';
 import {
     Award,
     BlogPost,
@@ -28,77 +28,253 @@ import {
     MegaMenuLink,
     SecurityMetric,
     PerformanceReport,
-    VulnerabilityScan
+    VulnerabilityScan,
+    MegaMenuGroup
 } from './models';
-import {
-    AWARDS,
-    BLOG_POSTS,
-    CALCULATOR_COMPLEXITIES,
-    CALCULATOR_FEATURES,
-    CALCULATOR_SCOPES,
-    CALCULATOR_SERVICES,
-    CLIENTS,
-    CONTACT_INFO,
-    ENGAGEMENT_MODELS,
-    FAQS,
-    INCIDENTS,
-    JOB_OPENINGS,
-    LAB_EXPERIMENTS,
-    NAV_LINKS,
-    PHILOSOPHY_PRINCIPLES,
-    PORTFOLIO_ITEMS,
-    PROCESS_STEPS,
-    PRIVACY_POLICY,
-    SERVICES,
-    SOCIAL_LINKS,
-    STATS,
-    STELLARDEV_ETHOS,
-    SYSTEM_STATUSES,
-    TEAM_MEMBERS,
-    TECHNOLOGIES,
-    TERMS_OF_SERVICE,
-    TESTIMONIALS,
-    MEGA_MENU_DATA,
-    SECURITY_METRICS,
-    PERFORMANCE_REPORTS,
-    VULNERABILITY_SCANS
-  } from './data';
+import { AWARDS, CLIENTS, JOB_OPENINGS, PHILOSOPHY_PRINCIPLES, SOCIAL_LINKS, STATS, STELLARDEV_ETHOS, TEAM_MEMBERS } from './data/company.data';
+import { BLOG_POSTS, LAB_EXPERIMENTS } from './data/community.data';
+import { CALCULATOR_COMPLEXITIES, CALCULATOR_FEATURES, CALCULATOR_SCOPES, CALCULATOR_SERVICES } from './data/calculator.data';
+import { CONTACT_INFO, FAQS, TESTIMONIALS } from './data/customer-support.data';
+import { PRIVACY_POLICY, TERMS_OF_SERVICE } from './data/legal.data';
+import { MEGA_MENU_DATA, NAV_LINKS } from './data/navigation.data';
+import { PORTFOLIO_ITEMS, PROCESS_STEPS } from './data/portfolio.data';
+import { PERFORMANCE_REPORTS, SECURITY_METRICS, VULNERABILITY_SCANS } from './data/security.data';
+import { ENGAGEMENT_MODELS, SERVICES, TECHNOLOGIES } from './data/services.data';
+import { INCIDENTS, SYSTEM_STATUSES } from './data/status.data';
+import { LanguageService } from './services/language.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  navLinks = signal<NavLink[]>(NAV_LINKS);
-  megaMenuData = signal<MegaMenuLink[]>(MEGA_MENU_DATA);
-  clients = signal<Client[]>(CLIENTS);
-  stats = signal<StatItem[]>(STATS);
-  philosophyPrinciples = signal<Philosophy[]>(PHILOSOPHY_PRINCIPLES);
-  stellarDevEthos = signal<StellarDevEthos[]>(STELLARDEV_ETHOS);
-  services = signal<Service[]>(SERVICES);
-  engagementModels = signal<EngagementModel[]>(ENGAGEMENT_MODELS);
-  technologies = signal<Technology[]>(TECHNOLOGIES);
-  portfolioItems = signal<PortfolioItem[]>(PORTFOLIO_ITEMS);
-  processSteps = signal<ProcessStep[]>(PROCESS_STEPS);
+  private langService = inject(LanguageService);
+  private t = this.langService.get.bind(this.langService);
+
+  // --- Translated Signals ---
+  
+  navLinks = computed(() => NAV_LINKS.map(link => ({
+    ...link,
+    label: this.t(`nav.${link.label.toLowerCase()}`)()
+  })));
+
+  megaMenuData = computed(() => {
+    const isMegaMenuGroup = (item: any): item is MegaMenuGroup => item.items !== undefined;
+    
+    return MEGA_MENU_DATA.map(link => {
+      // Translate top-level link
+      const translatedLink = {
+        ...link,
+        label: this.t(`nav.${link.label.toLowerCase()}`)(),
+      };
+
+      // Translate children if they exist
+      if (translatedLink.children) {
+        translatedLink.children = translatedLink.children.map(child => {
+          if (isMegaMenuGroup(child)) {
+            return {
+              ...child,
+              title: this.t(`megaMenu.groupTitles.${child.title.replace(/\s+/g, '_').toLowerCase()}`)(),
+              items: child.items.map(item => ({
+                ...item,
+                label: this.t(`megaMenu.items.${item.label.replace(/[\s/&]+/g, '_').toLowerCase()}`)()
+              }))
+            };
+          } else {
+            return {
+              ...child,
+              label: this.t(`megaMenu.items.${child.label.replace(/\s+/g, '_').toLowerCase()}`)()
+            };
+          }
+        });
+      }
+      return translatedLink;
+    });
+  });
+
+  clients = computed(() => CLIENTS.map(client => ({
+    ...client,
+    name: this.t(`data.clients.${client.name}`)()
+  })));
+
+  stats = computed(() => STATS.map(stat => ({
+    ...stat,
+    label: this.t(`data.stats.${stat.label.toLowerCase().replace(/ /g, '_')}`)()
+  })));
+  
+  philosophyPrinciples = computed(() => PHILOSOPHY_PRINCIPLES.map((p, i) => ({
+      ...p,
+      title: this.t(`philosophy.p${i+1}.title`)(),
+      description: this.t(`philosophy.p${i+1}.description`)(),
+      keyPractices: p.keyPractices.map((_, j) => this.t(`philosophy.p${i+1}.practices.${j}`)())
+  })));
+  
+  stellarDevEthos = computed(() => {
+    // Handle duplicate letters
+    let lCount = 0;
+    let eCount = 0;
+    return STELLARDEV_ETHOS.map((e) => {
+      let key = e.letter;
+      if (key === 'L') {
+        lCount++;
+        if (lCount > 1) key = `L${lCount}`;
+      }
+      if (key === 'E') {
+        eCount++;
+        if (eCount > 1) key = `E${eCount}`;
+      }
+      return {
+        ...e,
+        title: this.t(`ethos.${key}.title`)(),
+        description: this.t(`ethos.${key}.description`)(),
+      }
+    });
+  });
+
+  services = computed(() => SERVICES.map(service => ({
+    ...service,
+    title: this.t(`services.${service.id}.title`)(),
+    description: this.t(`services.${service.id}.description`)(),
+    offerings: service.offerings.map((_, i) => this.t(`services.${service.id}.offerings.${i}`)())
+  })));
+
+  engagementModels = computed(() => ENGAGEMENT_MODELS.map((model, i) => ({
+      ...model,
+      title: this.t(`engagementModels.m${i+1}.title`)(),
+      description: this.t(`engagementModels.m${i+1}.description`)(),
+      features: model.features.map((_, j) => this.t(`engagementModels.m${i+1}.features.${j}`)())
+  })));
+
+  technologies = computed(() => TECHNOLOGIES.map(tech => ({
+      ...tech,
+      description: this.t(`technologies.${tech.name.replace(/[^a-zA-Z0-9]/g, '')}`)()
+  })));
+  
+  portfolioItems = computed(() => PORTFOLIO_ITEMS.map((item, i) => ({
+      ...item,
+      description: this.t(`portfolio.item${i+1}.description`)(),
+      challenge: this.t(`portfolio.item${i+1}.challenge`)(),
+      solution: this.t(`portfolio.item${i+1}.solution`)(),
+  })));
+
+  processSteps = computed(() => PROCESS_STEPS.map(step => ({
+      ...step,
+      title: this.t(`processSteps.s${step.step}.title`)(),
+      description: this.t(`processSteps.s${step.step}.description`)(),
+      subPoints: step.subPoints.map((_, i) => this.t(`processSteps.s${step.step}.subPoints.${i}`)())
+  })));
+
+  testimonials = computed(() => TESTIMONIALS.map((t, i) => ({
+      ...t,
+      quote: this.t(`testimonials.t${i+1}.quote`)(),
+      name: this.t(`testimonials.t${i+1}.name`)(),
+      title: this.t(`testimonials.t${i+1}.title`)(),
+      company: this.t(`testimonials.t${i+1}.company`)()
+  })));
+  
+  faqs = computed(() => FAQS.map((faq, i) => ({
+      ...faq,
+      question: this.t(`faqs.q${i+1}.question`)(),
+      answer: this.t(`faqs.q${i+1}.answer`)(),
+      category: this.t(`faqs.q${i+1}.category`)()
+  })));
+  
+  privacyPolicy = computed(() => ({
+      ...PRIVACY_POLICY,
+      title: this.t('legal.privacy.title')(),
+      lastUpdated: PRIVACY_POLICY.lastUpdated,
+      content: PRIVACY_POLICY.content.map((section, i) => ({
+          ...section,
+          text: this.t(`legal.privacy.content.${i}.text`)()
+      }))
+  }));
+
+  termsOfService = computed(() => ({
+      ...TERMS_OF_SERVICE,
+      title: this.t('legal.terms.title')(),
+      lastUpdated: TERMS_OF_SERVICE.lastUpdated,
+      content: TERMS_OF_SERVICE.content.map((section, i) => ({
+          ...section,
+          text: this.t(`legal.terms.content.${i}.text`)()
+      }))
+  }));
+
+  calculatorScopes = computed(() => CALCULATOR_SCOPES.map(scope => ({
+      ...scope,
+      name: this.t(`calculator.scopes.${scope.id}.name`)(),
+      description: this.t(`calculator.scopes.${scope.id}.description`)()
+  })));
+
+  calculatorComplexities = computed(() => CALCULATOR_COMPLEXITIES.map(complexity => ({
+      ...complexity,
+      name: this.t(`calculator.complexities.${complexity.id}.name`)(),
+      description: this.t(`calculator.complexities.${complexity.id}.description`)()
+  })));
+
+  systemStatuses = computed(() => SYSTEM_STATUSES.map((status, i) => ({
+      ...status,
+      description: this.t(`status.systems.${i}.description`)()
+  })));
+
+  incidents = computed(() => INCIDENTS.map((incident, i) => ({
+      ...incident,
+      title: this.t(`status.incidents.${i}.title`)(),
+      updates: incident.updates.map((_, j) => this.t(`status.incidents.${i}.updates.${j}`)())
+  })));
+
+  
+  // --- Non-translated signals ---
+  
   teamMembers = signal<TeamMember[]>(TEAM_MEMBERS);
   jobOpenings = signal<JobOpening[]>(JOB_OPENINGS);
-  labExperiments = signal<LabExperiment[]>(LAB_EXPERIMENTS);
-  blogPosts = signal<BlogPost[]>(BLOG_POSTS);
-  testimonials = signal<Testimonial[]>(TESTIMONIALS);
+  labExperiments = signal<LabExperiment[]>(LAB_EXPERIMENTS); // Assuming static
+  blogPosts = signal<BlogPost[]>(BLOG_POSTS); // Assuming static
   awards = signal<Award[]>(AWARDS);
-  faqs = signal<FaqItem[]>(FAQS);
   contactInfo = signal<ContactInfo[]>(CONTACT_INFO);
   socialLinks = signal<SocialLink[]>(SOCIAL_LINKS);
-  privacyPolicy = signal<LegalContent>(PRIVACY_POLICY);
-  termsOfService = signal<LegalContent>(TERMS_OF_SERVICE);
   calculatorServices = signal<CalculatorService[]>(CALCULATOR_SERVICES);
   calculatorFeatures = signal<CalculatorFeature[]>(CALCULATOR_FEATURES);
-  calculatorScopes = signal<CalculatorScope[]>(CALCULATOR_SCOPES);
-  calculatorComplexities = signal<CalculatorScope[]>(CALCULATOR_COMPLEXITIES);
-  systemStatuses = signal<SystemStatus[]>(SYSTEM_STATUSES);
-  incidents = signal<Incident[]>(INCIDENTS);
-
-  // New signals for Security Dashboard
   securityMetrics = signal<SecurityMetric[]>(SECURITY_METRICS);
   performanceReports = signal<PerformanceReport[]>(PERFORMANCE_REPORTS);
   vulnerabilityScans = signal<VulnerabilityScan[]>(VULNERABILITY_SCANS);
+
+  /**
+   * Simulates real-time updates for the security dashboard.
+   */
+  public simulateSecurityDataUpdate(): void {
+    // 1. Simulate performance report fluctuations
+    this.performanceReports.update(reports => {
+      return reports.map(report => {
+        const scoreChange = Math.round((Math.random() - 0.5) * 2); // -1, 0, or 1
+        const timeChange = Math.round((Math.random() - 0.5) * 20); // +/- 10ms
+        return {
+          ...report,
+          lighthouseScore: Math.max(85, Math.min(100, report.lighthouseScore + scoreChange)),
+          loadTime: Math.max(200, report.loadTime + timeChange),
+        };
+      });
+    });
+
+    // 2. Simulate vulnerability patching
+    this.vulnerabilityScans.update(scans => {
+      if (Math.random() < 0.2) {
+        const investigatingScan = scans.find(s => s.status === 'Investigating');
+        if (investigatingScan) {
+          investigatingScan.status = 'Patched';
+          investigatingScan.patchedOn = new Date().toISOString().split('T')[0];
+        }
+      }
+      return [...scans];
+    });
+
+    // 3. Simulate threats blocked metric increasing
+    this.securityMetrics.update(metrics => {
+      const threatsMetric = metrics.find(m => m.metric === 'Threats Blocked');
+      if (threatsMetric) {
+        const currentValue = parseInt(threatsMetric.value.replace(/,/g, ''), 10);
+        const newValue = currentValue + Math.floor(Math.random() * 5);
+        threatsMetric.value = newValue.toLocaleString();
+      }
+      return [...metrics];
+    });
+  }
 }

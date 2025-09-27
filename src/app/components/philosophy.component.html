@@ -1,7 +1,7 @@
 <section id="philosophy" class="py-16 sm:py-24 overflow-hidden">
     <div class="text-center mb-16 px-4">
-      <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">The StellarDev Difference</h2>
-      <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">We don’t just build applications; we forge partnerships and craft digital legacies based on four core principles.</p>
+      <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">{{ 'components.philosophy.title' | translate }}</h2>
+      <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">{{ 'components.philosophy.subtitle' | translate }}</p>
     </div>
   
     <!-- Mobile Slider -->
@@ -66,7 +66,7 @@
                    <h2 class="text-3xl font-bold text-[#292639] dark:text-white">{{ card.title }}</h2>
                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed mt-4 max-w-md">{{ card.description }}</p>
                    <div class="mt-6 pt-6 border-t border-gray-300/50 dark:border-gray-600/50 w-full max-w-sm">
-                        <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Key Practices</h3>
+                        <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">{{ 'components.philosophy.keyPractices' | translate }}</h3>
                         <ul class="mt-4 space-y-3 text-left">
                             @for(practice of card.keyPractices; track practice) {
                             <li class="flex items-center text-gray-700 dark:text-gray-300">

@@ -3,9 +3,9 @@
     <div class="marquee-content">
         <!-- Content is duplicated here for seamless looping -->
         <div class="marquee-inner">
-            @for (_ of [].constructor(10); track $index) {
+            @for (message of marqueeMessages(); track $index) {
                 <div class="marquee-item">
-                    <span>WE'RE AVAILABLE FOR NEW PROJECTS</span>
+                    <span>{{ message }}</span>
                     <svg class="w-6 h-6 mx-8 text-[#8A6B93] dark:text-purple-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 01-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 013.09-3.09L12 5.25l2.846.813a4.5 4.5 0 013.09 3.09L21.75 12l-2.846.813a4.5 4.5 0 01-3.09 3.09z" />
                     </svg>
@@ -13,9 +13,9 @@
             }
         </div>
         <div class="marquee-inner" aria-hidden="true">
-             @for (_ of [].constructor(10); track $index) {
+             @for (message of marqueeMessages(); track $index) {
                 <div class="marquee-item">
-                    <span>WE'RE AVAILABLE FOR NEW PROJECTS</span>
+                    <span>{{ message }}</span>
                     <svg class="w-6 h-6 mx-8 text-[#8A6B93] dark:text-purple-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 01-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 013.09-3.09L12 5.25l2.846.813a4.5 4.5 0 013.09 3.09L21.75 12l-2.846.813a4.5 4.5 0 01-3.09 3.09z" />
                     </svg>

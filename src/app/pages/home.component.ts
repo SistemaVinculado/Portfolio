@@ -1,46 +1,45 @@
-import { Component, ChangeDetectionStrategy, signal, inject, Renderer2, effect, PLATFORM_ID, computed, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, inject, Renderer2, effect, PLATFORM_ID, computed } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { BlogPost, PortfolioItem } from '../models';
 import { DataService } from '../data.service';
+import { LanguageService } from '../services/language.service';
 
 // Component Imports
 import { IntroComponent } from '../components/intro.component';
-import { PhilosophyComponent } from '../components/philosophy.component';
-import { StellarDevEthosComponent } from '../components/stellardev-ethos.component';
-import { FeaturesComponent } from '../components/features.component';
-import { WorkComponent } from '../components/work.component';
-import { SecurityDashboardComponent } from '../components/security-dashboard.component';
-import { CommunityComponent } from '../components/community.component';
 import { SocialProofComponent } from '../components/social-proof.component';
 import { ActionZoneComponent } from '../components/action-zone.component';
 import { PortfolioModalComponent } from '../components/portfolio-modal.component';
 import { BlogModalComponent } from '../components/blog-modal.component';
 import { VisitorGlobeComponent } from '../components/visitor-globe.component';
 import { AvailabilityMarqueeComponent } from '../components/availability-marquee.component';
-import { ScrollspyNavComponent } from '../components/scrollspy-nav.component';
 import { SectionDividerComponent } from '../components/section-divider.component';
+import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
+import { NgOptimizedImage } from '@angular/common';
+import { TranslatePipe } from '../pipes/translate.pipe';
+import { ScrollspyNavComponent } from '../components/scrollspy-nav.component';
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
+    RouterLink,
+    NgOptimizedImage,
+    AnimateOnScrollDirective,
     IntroComponent,
-    PhilosophyComponent,
-    StellarDevEthosComponent,
-    FeaturesComponent,
-    WorkComponent,
-    SecurityDashboardComponent,
-    CommunityComponent,
     SocialProofComponent,
     ActionZoneComponent,
     PortfolioModalComponent,
     BlogModalComponent,
     VisitorGlobeComponent,
     AvailabilityMarqueeComponent,
-    ScrollspyNavComponent,
     SectionDividerComponent,
+    TranslatePipe,
+    ScrollspyNavComponent,
   ],
   templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
@@ -48,6 +47,7 @@ export class HomeComponent {
   private platformId = inject(PLATFORM_ID);
   private document: Document = inject(DOCUMENT);
   private dataService: DataService = inject(DataService);
+  private languageService = inject(LanguageService);
   
   openFaqQuestion = signal<string | null>(null);
   selectedPortfolioItem = signal<PortfolioItem | null>(null);
@@ -85,39 +85,22 @@ export class HomeComponent {
   }
 
   // Data signals from DataService
-  navLinks = this.dataService.navLinks;
   clients = this.dataService.clients;
   stats = this.dataService.stats;
-  philosophyPrinciples = this.dataService.philosophyPrinciples;
-  stellarDevEthos = this.dataService.stellarDevEthos;
   services = this.dataService.services;
-  engagementModels = this.dataService.engagementModels;
-  technologies = this.dataService.technologies;
   portfolioItems = this.dataService.portfolioItems;
-  processSteps = this.dataService.processSteps;
-  teamMembers = this.dataService.teamMembers;
-  jobOpenings = this.dataService.jobOpenings;
-  labExperiments = this.dataService.labExperiments;
-  blogPosts = this.dataService.blogPosts;
   testimonials = this.dataService.testimonials;
   awards = this.dataService.awards;
   faqs = this.dataService.faqs;
 
-  activePortfolioCategory = signal<string>('All');
+  scrollSpyNavLinks = computed(() => [
+    { label: this.languageService.get('home.servicesOverview.title')(), href: '#services-overview' },
+    { label: this.languageService.get('home.featuredWork.title')(), href: '#featured-work' },
+    { label: this.languageService.get('home.socialProof.testimonialsTitle')(), href: '#social-proof' },
+    { label: this.languageService.get('home.actionZone.pricingTitle')(), href: '#pricing' },
+    { label: this.languageService.get('components.contact.title')(), href: '#contact' }
+  ]);
   
-  portfolioCategories = computed(() => {
-    const categories = this.portfolioItems().map(item => item.category);
-    return ['All', ...new Set(categories)];
-  });
-
-  filteredPortfolioItems = computed(() => {
-    const category = this.activePortfolioCategory();
-    if (category === 'All') {
-      return this.portfolioItems();
-    }
-    return this.portfolioItems().filter(item => item.category === category);
-  });
-
   toggleFaq(question: string): void {
     this.openFaqQuestion.update(currentQuestion => currentQuestion === question ? null : question);
   }
@@ -136,10 +119,6 @@ export class HomeComponent {
     this.contactFormMessage.set(payload.message ?? null);
   }
   
-  onPortfolioFilterChange(category: string): void {
-    this.activePortfolioCategory.set(category);
-  }
-
   openPortfolioModal(item: PortfolioItem): void { this.selectedPortfolioItem.set(item); }
   closePortfolioModal(): void { this.selectedPortfolioItem.set(null); }
   openBlogModal(post: BlogPost): void { this.selectedBlogPost.set(post); }

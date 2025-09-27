@@ -1,11 +1,12 @@
 import { Component, ChangeDetectionStrategy, input, signal, OnInit } from '@angular/core';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 import { StellarDevEthos } from '../models';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 @Component({
   selector: 'app-stellardev-ethos',
   standalone: true,
-  imports: [AnimateOnScrollDirective],
+  imports: [AnimateOnScrollDirective, TranslatePipe],
   templateUrl: './stellardev-ethos.component.html',
   styleUrls: ['./stellardev-ethos.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -3,17 +3,17 @@ import { DOCUMENT } from '@angular/common';
 import { Service, EngagementModel, Technology } from '../models';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 import { TechnologyConstellationComponent } from './technology-constellation.component';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 @Component({
   selector: 'app-features',
   standalone: true,
-  imports: [AnimateOnScrollDirective, TechnologyConstellationComponent],
+  imports: [AnimateOnScrollDirective, TechnologyConstellationComponent, TranslatePipe],
   templateUrl: './features.component.html',
   styleUrls: ['./features.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeaturesComponent {
-  // Fix: Explicitly type the injected `DOCUMENT` as `Document`.
   private document: Document = inject(DOCUMENT);
   services = input.required<Service[]>();
   engagementModels = input.required<EngagementModel[]>();

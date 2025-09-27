@@ -3,11 +3,12 @@ import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.direct
 import { PricingCalculatorComponent } from './pricing-calculator.component';
 import { ContactComponent } from './contact.component';
 import { CtaComponent } from './cta.component';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 @Component({
   selector: 'app-action-zone',
   standalone: true,
-  imports: [AnimateOnScrollDirective, PricingCalculatorComponent, ContactComponent, CtaComponent],
+  imports: [AnimateOnScrollDirective, PricingCalculatorComponent, ContactComponent, CtaComponent, TranslatePipe],
   templateUrl: './action-zone.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

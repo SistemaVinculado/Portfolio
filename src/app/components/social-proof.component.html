@@ -1,12 +1,13 @@
 <!-- Testimonials Section -->
+@if(showTestimonials()) {
 <section class="py-16 sm:py-24 bg-[#EAE8E3] dark:bg-[#292639] rounded-3xl overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div appAnimateOnScroll class="text-center">
             <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">
-                Future Accolades
+                {{ 'home.socialProof.testimonialsTitle' | translate }}
             </h2>
             <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                Our trophy case is under construction. We're busy crafting the award-winning work that will soon fill this space.
+                {{ 'home.socialProof.testimonialsSubtitle' | translate }}
             </p>
         </div>
     </div>
@@ -86,12 +87,14 @@
         </div>
     </div>
 </section>
+}
 
 <!-- Awards & Recognition Section -->
+@if(showAwards()) {
 <section id="awards" class="py-16 sm:py-24">
     <div class="text-center mb-16">
-        <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Recognized for Excellence</h2>
-        <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Our commitment to quality has been recognized by the industry's most prestigious awards.</p>
+        <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Industry Recognition</h2>
+        <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">The architect's commitment to mastery is recognized by the industry's most discerning bodies.</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
         @for (award of awards(); track award.title; let i = $index) {
@@ -103,12 +106,14 @@
         }
     </div>
 </section>
+}
 
 <!-- FAQ Section -->
-<section class="py-16 sm:py-24">
+@if(showFaqs()) {
+<section id="faq" class="py-16 sm:py-24">
     <div class="text-center mb-16">
-        <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Frequently Asked Questions</h2>
-        <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Have questions? We have answers. Find what you're looking for quickly and easily.</p>
+        <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Common Inquiries</h2>
+        <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Answers to common inquiries regarding the commission process and the philosophy.</p>
     </div>
 
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
@@ -163,11 +168,13 @@
                         <button 
                           (click)="toggleFaq.emit(faq.question)" 
                           [attr.aria-expanded]="openFaqQuestion() === faq.question"
-                          class="w-full flex justify-between items-center text-left p-6 text-[#292639] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8A6B93]">
+                          class="w-full flex justify-between items-center text-left p-6 text-[#292639] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8A6B93]"
+                          [class]="openFaqQuestion() === faq.question ? 'bg-gray-50 dark:bg-gray-800/50' : ''">
                           <span class="pr-4" [innerHTML]="faq.question | highlight:searchTerm()"></span>
-                          <svg [class.rotate-45]="openFaqQuestion() === faq.question" class="w-6 h-6 text-gray-500 dark:text-gray-400 transform transition-transform duration-300 ease-in-out flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.5v15m7.5-7.5h-15" />
-                          </svg>
+                           <svg class="w-6 h-6 text-gray-500 dark:text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <path class="transition-transform duration-300 ease-in-out origin-center" [class.rotate-45]="openFaqQuestion() === faq.question" d="M12 5V19"></path>
+                                <path class="transition-transform duration-300 ease-in-out origin-center" [class.-rotate-45]="openFaqQuestion() === faq.question" d="M5 12H19"></path>
+                            </svg>
                         </button>
                       </h4>
                       @if (openFaqQuestion() === faq.question) {
@@ -192,11 +199,13 @@
                     <button 
                       (click)="toggleFaq.emit(faq.question)" 
                       [attr.aria-expanded]="openFaqQuestion() === faq.question"
-                      class="w-full flex justify-between items-center text-left p-6 text-[#292639] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8A6B93]">
+                      class="w-full flex justify-between items-center text-left p-6 text-[#292639] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8A6B93]"
+                      [class]="openFaqQuestion() === faq.question ? 'bg-gray-50 dark:bg-gray-800/50' : ''">
                       <span class="pr-4" [innerHTML]="faq.question | highlight:searchTerm()"></span>
-                      <svg [class.rotate-45]="openFaqQuestion() === faq.question" class="w-6 h-6 text-gray-500 dark:text-gray-400 transform transition-transform duration-300 ease-in-out flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.5v15m7.5-7.5h-15" />
-                      </svg>
+                      <svg class="w-6 h-6 text-gray-500 dark:text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path class="transition-transform duration-300 ease-in-out origin-center" [class.rotate-45]="openFaqQuestion() === faq.question" d="M12 5V19"></path>
+                            <path class="transition-transform duration-300 ease-in-out origin-center" [class.-rotate-45]="openFaqQuestion() === faq.question" d="M5 12H19"></path>
+                        </svg>
                     </button>
                   </h4>
                   @if (openFaqQuestion() === faq.question) {
@@ -220,3 +229,4 @@
         </div>
     </div>
 </section>
+}

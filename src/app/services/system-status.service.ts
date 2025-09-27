@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { SystemStatus, Incident } from '../models';
-import { SYSTEM_STATUSES, INCIDENTS } from '../data';
+import { SYSTEM_STATUSES, INCIDENTS } from '../data/status.data';
 
 @Injectable({
   providedIn: 'root'

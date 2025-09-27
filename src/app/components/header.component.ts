@@ -3,17 +3,26 @@ import { RouterLink } from '@angular/router';
 import { NavLink, MegaMenuLink, MegaMenuGroup } from '../models';
 import { MenuStarfieldComponent } from './menu-starfield.component';
 import { DataService } from '../data.service';
+import { LanguageService } from '../services/language.service';
+import { TranslatePipe } from '../pipes/translate.pipe';
+
+interface LanguageOption {
+  code: 'en' | 'pt-BR';
+  name: string;
+  disabled?: boolean;
+}
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, MenuStarfieldComponent],
+  imports: [RouterLink, MenuStarfieldComponent, TranslatePipe],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   private dataService = inject(DataService);
+  private languageService = inject(LanguageService);
 
   navLinks = input.required<NavLink[]>();
   theme = input.required<'light' | 'dark'>();
@@ -25,10 +34,17 @@ export class HeaderComponent {
 
   isMenuRendered = signal(false);
   isMenuAnimatingIn = signal(false);
+  isLangMenuOpen = signal(false);
 
   // New state for multi-level menu
   megaMenuData = this.dataService.megaMenuData;
   activeSubMenu = signal<MegaMenuLink | null>(null);
+  
+  languages: LanguageOption[] = [
+    { code: 'en', name: 'English' },
+    { code: 'pt-BR', name: 'Português (Brasil)' },
+  ];
+  currentLanguage = this.languageService.currentLanguage;
 
   constructor() {
     effect(onCleanup => {
@@ -46,6 +62,17 @@ export class HeaderComponent {
             onCleanup(() => clearTimeout(t));
         }
     });
+  }
+
+  toggleLangMenu(): void {
+    this.isLangMenuOpen.update(v => !v);
+  }
+
+  selectLanguage(lang: LanguageOption): void {
+    if (!lang.disabled) {
+      this.languageService.setLanguage(lang.code);
+      this.isLangMenuOpen.set(false);
+    }
   }
 
   openSubMenu(menuLink: MegaMenuLink): void {

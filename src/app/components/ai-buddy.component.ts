@@ -19,10 +19,10 @@ export class AiBuddyComponent {
   @ViewChild('chatContainer') private chatContainer!: ElementRef<HTMLDivElement>;
 
   private geminiService = inject(GeminiService);
-  // Fix: Explicitly type the injected `DomSanitizer`.
   private sanitizer: DomSanitizer = inject(DomSanitizer);
   private platformId = inject(PLATFORM_ID);
 
+  private nextMessageId = 0;
   messages = signal<ChatMessage[]>([]);
   isLoading = signal(true);
   error = signal<string | null>(null);
@@ -52,7 +52,7 @@ export class AiBuddyComponent {
     this.error.set(null);
     try {
       const stream = await this.geminiService.startConversation();
-      this.messages.set([{ role: 'model', content: '' }]);
+      this.messages.set([{ id: this.nextMessageId++, role: 'model', content: '' }]);
 
       for await (const chunk of stream) {
         const text = chunk.text;
@@ -81,14 +81,14 @@ export class AiBuddyComponent {
       return;
     }
 
-    this.messages.update(msgs => [...msgs, { role: 'user', content: prompt }]);
+    this.messages.update(msgs => [...msgs, { id: this.nextMessageId++, role: 'user', content: prompt }]);
     input.value = '';
     this.isLoading.set(true);
     this.error.set(null);
 
     try {
         const stream = await this.geminiService.sendMessage(prompt);
-        this.messages.update(msgs => [...msgs, { role: 'model', content: '' }]);
+        this.messages.update(msgs => [...msgs, { id: this.nextMessageId++, role: 'model', content: '' }]);
 
         for await (const chunk of stream) {
             const text = chunk.text;
@@ -107,7 +107,7 @@ export class AiBuddyComponent {
             if (lastMsg.role === 'model' && lastMsg.content === '') {
                 msgs.pop();
             }
-            return [...msgs, { role: 'model', content: 'Sorry, I encountered an issue connecting to the AI. Please check the console for details.', isError: true }];
+            return [...msgs, { id: this.nextMessageId++, role: 'model', content: 'Sorry, I encountered an issue connecting to the AI. Please check the console for details.', isError: true }];
         });
     } finally {
         this.isLoading.set(false);

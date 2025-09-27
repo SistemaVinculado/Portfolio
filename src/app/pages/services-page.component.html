@@ -1,0 +1,16 @@
+<app-page-header 
+  [title]="pageTitle()"
+  [subtitle]="pageSubtitle()"
+/>
+
+<div class="w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+  <app-features
+    [services]="services()"
+    [engagementModels]="engagementModels()"
+    [technologies]="technologies()"
+  ></app-features>
+
+  <div class="mt-16">
+    <app-cta (scrollTo)="onScrollTo($event)"></app-cta>
+  </div>
+</div>

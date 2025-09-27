@@ -2,11 +2,12 @@ import { Component, ChangeDetectionStrategy, input, output, signal } from '@angu
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { NavLink } from '../models';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, TranslatePipe],
   templateUrl: './footer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -18,7 +19,6 @@ export class FooterComponent {
   // Let's have the home component manage this directly for simplicity.
   // The app component still listens for these events globally if we need them.
   // To keep it simple, I am removing them as the home page is now self-contained.
-  // A service would be better, but this is a minimal change.
   // Re-adding them and making them global again from home-component.
   openTermsModal = output<void>();
   openPrivacyModal = output<void>();

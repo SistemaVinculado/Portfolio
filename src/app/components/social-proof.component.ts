@@ -3,11 +3,12 @@ import { NgOptimizedImage } from '@angular/common';
 import { Testimonial, Award, FaqItem } from '../models';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 import { HighlightPipe } from '../pipes/highlight.pipe';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 @Component({
   selector: 'app-social-proof',
   standalone: true,
-  imports: [AnimateOnScrollDirective, NgOptimizedImage, HighlightPipe],
+  imports: [AnimateOnScrollDirective, NgOptimizedImage, HighlightPipe, TranslatePipe],
   templateUrl: './social-proof.component.html',
   styleUrls: ['./social-proof.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -18,6 +19,11 @@ export class SocialProofComponent {
   awards = input.required<Award[]>();
   faqs = input.required<FaqItem[]>();
   openFaqQuestion = input.required<string | null>();
+
+  showTestimonials = input(true);
+  showAwards = input(true);
+  showFaqs = input(true);
+
   toggleFaq = output<string>();
 
   // --- Animation Duration Logic for Marquee ---

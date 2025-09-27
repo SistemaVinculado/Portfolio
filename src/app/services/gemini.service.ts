@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject, effect } from '@angular/core';
 import { GoogleGenAI, Chat, GenerateContentResponse } from '@google/genai';
+import { LanguageService } from './language.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,9 @@ import { GoogleGenAI, Chat, GenerateContentResponse } from '@google/genai';
 export class GeminiService {
   private ai: GoogleGenAI;
   private chat: Chat | null = null;
+  private langService = inject(LanguageService);
+
+  private systemInstruction = this.langService.get('geminiSystemInstruction');
 
   constructor() {
     // This assumes process.env.API_KEY is available in the execution environment,
@@ -17,6 +21,16 @@ export class GeminiService {
       throw new Error('API_KEY is not configured.');
     }
     this.ai = new GoogleGenAI({ apiKey });
+
+    effect(() => {
+      // This effect will run whenever the language changes, resetting the chat.
+      this.langService.currentLanguage(); // Establish dependency
+      this.resetChat();
+    });
+  }
+
+  private resetChat(): void {
+    this.chat = null;
   }
 
   private getChatSession(): Chat {
@@ -24,14 +38,7 @@ export class GeminiService {
       this.chat = this.ai.chats.create({
         model: 'gemini-2.5-flash',
         config: {
-            systemInstruction: `You are an expert project architect at an elite digital agency called StellarDev. Your role is to help potential clients brainstorm project ideas.
-            - Be professional, encouraging, and creative.
-            - When a user gives you an idea, flesh it out.
-            - Break down the idea into 3-5 key features.
-            - Suggest a potential technology stack (e.g., Angular for frontend, Node.js for backend, AWS for cloud).
-            - Keep your responses concise and well-structured, using markdown for lists (using hyphens) and bolding (using asterisks).
-            - Do not use markdown headers (e.g., #, ##).
-            - Start the conversation by introducing yourself and asking how you can help.`,
+            systemInstruction: this.systemInstruction(),
         },
       });
     }
@@ -40,7 +47,7 @@ export class GeminiService {
 
   async startConversation(): Promise<AsyncGenerator<GenerateContentResponse>> {
     const chat = this.getChatSession();
-    const result = await chat.sendMessageStream({ message: "Introduce yourself." });
+    const result = await chat.sendMessageStream({ message: "Introduce yourself based on your system instructions." });
     return result;
   }
 

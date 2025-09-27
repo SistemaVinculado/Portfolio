@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, signal, inject, Renderer2, effect, 
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { DataService } from './data.service';
+import { LanguageService } from './services/language.service';
 
 // New Component Imports
 import { HeaderComponent } from './components/header.component';
@@ -13,6 +14,8 @@ import { LegalModalComponent } from './components/legal-modal.component';
 import { InteractiveBackgroundComponent } from './components/interactive-background.component';
 import { CustomCursorComponent } from './components/custom-cursor.component';
 import { CookieBannerComponent } from './components/cookie-banner.component';
+import { LanguageSelectorComponent } from './components/language-selector.component';
+import { TranslatePipe } from './pipes/translate.pipe';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +30,9 @@ import { CookieBannerComponent } from './components/cookie-banner.component';
     LegalModalComponent,
     InteractiveBackgroundComponent,
     CustomCursorComponent,
-    CookieBannerComponent
+    CookieBannerComponent,
+    LanguageSelectorComponent,
+    TranslatePipe
   ],
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,6 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   private document: Document = inject(DOCUMENT);
   private dataService: DataService = inject(DataService);
+  private languageService = inject(LanguageService);
   
   title = 'StellarDev';
   currentYear = new Date().getFullYear();
@@ -49,6 +55,8 @@ export class AppComponent implements OnInit, OnDestroy {
   showTermsModal = signal(false);
   showAiBuddy = signal(false);
   showCookieBanner = signal(false);
+  showUpdateBanner = signal(false);
+  showLanguageSelector = signal(false);
 
   private onScrollListener!: () => void;
 
@@ -68,7 +76,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // Combined effect for managing body scroll lock
     effect(() => {
         if (isPlatformBrowser(this.platformId)) {
-            const shouldLock = this.isLoading() || this.isMobileMenuOpen() || this.showPrivacyModal() || this.showTermsModal() || this.showAiBuddy();
+            const shouldLock = this.isLoading() || this.isMobileMenuOpen() || this.showPrivacyModal() || this.showTermsModal() || this.showAiBuddy() || this.showLanguageSelector();
             if (shouldLock) {
                 this.renderer.addClass(this.document.body, 'overflow-hidden');
             } else {
@@ -96,9 +104,18 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
+      const savedLang = localStorage.getItem('language') as 'en' | 'pt-BR' | null;
+      if (savedLang) {
+        this.languageService.setLanguage(savedLang);
+      } else {
+        this.showLanguageSelector.set(true);
+      }
+
       if (localStorage.getItem('cookie_consent') !== 'accepted') {
         this.showCookieBanner.set(true);
       }
+      
+      this.showUpdateBanner.set(true);
       
       setTimeout(() => this.isLoading.set(false), 2500);
 
@@ -125,11 +142,20 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
+  onLanguageSelected(lang: 'en' | 'pt-BR'): void {
+    this.languageService.setLanguage(lang);
+    this.showLanguageSelector.set(false);
+  }
+
   acceptCookies(): void {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('cookie_consent', 'accepted');
     }
     this.showCookieBanner.set(false);
+  }
+
+  dismissUpdateBanner(): void {
+    this.showUpdateBanner.set(false);
   }
 
   toggleTheme(): void {

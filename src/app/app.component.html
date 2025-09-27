@@ -4,6 +4,18 @@
 @if (isLoading()) {
   <app-cosmic-preloader [isLoading]="isLoading()"></app-cosmic-preloader>
 } @else {
+  @if(showLanguageSelector()) {
+    <app-language-selector (languageSelected)="onLanguageSelected($event)"></app-language-selector>
+  }
+  @if (showUpdateBanner()) {
+    <div class="z-50 bg-[#EAE8E3] dark:bg-[#292639] grid grid-cols-[auto_1fr_auto] items-center gap-2 py-2.5 px-4 text-sm font-semibold text-[#292639] dark:text-gray-200">
+      <div class="w-7"></div> <!-- Spacer to balance the close button -->
+      <span class="text-center" [innerHTML]="'app.updateBanner' | translate"></span>
+      <button (click)="dismissUpdateBanner()" aria-label="Dismiss update banner" class="p-1 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-colors">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+    </div>
+  }
   <div class="min-h-screen flex flex-col relative">
     <app-header 
       [navLinks]="navLinks()" 

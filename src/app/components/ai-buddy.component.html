@@ -22,7 +22,7 @@
     </header>
 
     <div #chatContainer class="relative z-10 flex-grow p-4 overflow-y-auto chat-messages">
-      @for(message of displayMessages(); track $index) {
+      @for(message of displayMessages(); track message.id) {
         <div class="flex mb-4 animate-slide-up-fade-in" [class.justify-end]="message.role === 'user'">
           <div class="max-w-xs md:max-w-md p-3 rounded-2xl" [class]="message.role === 'user' ? 'bg-[#8A6B93] text-white rounded-br-lg' : message.isError ? 'bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300 rounded-bl-lg' : 'bg-gray-200/80 dark:bg-gray-700/80 text-[#292639] dark:text-gray-200 rounded-bl-lg'">
             <div class="prose prose-sm dark:prose-invert max-w-none" [innerHTML]="message.htmlContent"></div>

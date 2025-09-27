@@ -27,7 +27,7 @@
         StellarShield™ Live Feed
       </h3>
       <div #logContainer class="flex-grow overflow-y-auto pr-2 log-container text-xs font-mono">
-        @for(log of logEntries(); track $index) {
+        @for(log of logEntries(); track log.id) {
           <div class="flex items-start mb-2">
             <span class="text-gray-500 mr-3">{{ log.timestamp }}</span>
             <span [class]="{
@@ -44,20 +44,26 @@
 
     <!-- Right Column: Tabs and Tables -->
     <div appAnimateOnScroll delay="300ms" class="lg:col-span-2">
-      <!-- Summary Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-        <div class="bg-white dark:bg-gray-800/30 p-4 rounded-xl border border-gray-100 dark:border-gray-700/50 text-center">
-          <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">Overall Performance</p>
-          <p class="text-3xl font-bold mt-1" [class]="getScoreColor(overallPerformanceScore())">{{ overallPerformanceScore() }}</p>
-        </div>
-        <div class="bg-white dark:bg-gray-800/30 p-4 rounded-xl border border-gray-100 dark:border-gray-700/50 text-center">
-          <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">Critical Vulnerabilities</p>
-          <p class="text-3xl font-bold mt-1" [class]="criticalVulnerabilities() > 0 ? 'text-red-500 dark:text-red-400' : 'text-green-500 dark:text-green-400'">{{ criticalVulnerabilities() }}</p>
-        </div>
-        <div class="bg-white dark:bg-gray-800/30 p-4 rounded-xl border border-gray-100 dark:border-gray-700/50 text-center">
-          <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">Threats Blocked (24h)</p>
-          <p class="text-3xl font-bold text-[#292639] dark:text-white mt-1">{{ threatsBlocked() }}</p>
-        </div>
+      <!-- Security Metrics -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+        @for (metric of securityMetrics(); track metric.metric) {
+          <div class="bg-white dark:bg-gray-800/30 p-4 rounded-xl border border-gray-100 dark:border-gray-700/50 flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg flex-shrink-0 flex items-center justify-center" [class]="getMetricStatusClasses(metric.status).icon + ' bg-gray-200 dark:bg-gray-700/50'">
+              <svg [ngSwitch]="metric.metric" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                @switch (metric.metric) {
+                  @case ('Uptime') { <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /> }
+                  @case ('Vulnerabilities') { <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /> }
+                  @case ('Threats Blocked') { <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m3.375-1.125A3 3 0 1112 3a3 3 0 013.375 7.875zM12 9v.01M12 15v.01M12 21v-4m-3.375 1.125A3 3 0 1012 21a3 3 0 00-3.375-7.875z" /> }
+                }
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">{{ metric.metric }}</p>
+              <p class="text-2xl font-bold mt-1" [class]="getMetricStatusClasses(metric.status).text">{{ metric.value }}</p>
+              <p class="text-xs text-gray-400 dark:text-gray-500">{{ metric.description }}</p>
+            </div>
+          </div>
+        }
       </div>
 
       <div class="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 p-1.5 rounded-xl mb-6">

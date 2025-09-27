@@ -1,0 +1,757 @@
+
+{
+  "app": {
+    "updateBanner": "A new constellation is forming. <strong>StellarDev v2.0</strong> is arriving soon."
+  },
+  "header": {
+    "startConsultation": "Start Consultation",
+    "changeLanguage": "Change language",
+    "back": "Back"
+  },
+  "nav": {
+    "about": "About",
+    "services": "Services",
+    "work": "Work",
+    "insights": "Insights",
+    "careers": "Careers",
+    "contact": "Contact"
+  },
+  "footer": {
+    "tagline": "Forging Digital Legacies.",
+    "links": "Links",
+    "connect": "Connect",
+    "status": "Status",
+    "missionControl": "Mission Control",
+    "dispatches": "Dispatches",
+    "dispatchesCta": "Receive occasional dispatches on the art of digital architecture.",
+    "newsletterPlaceholder": "Your email",
+    "newsletterSubscribing": "Subscribing...",
+    "newsletterSuccess": "Thank you for subscribing!",
+    "newsletterError": "Please enter a valid email.",
+    "copyright": "© {{year}} StellarDev. All rights reserved.",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy"
+  },
+  "marquee": {
+    "msg1": "THE ARCHITECT'S CALENDAR IS OPEN FOR A SELECT FEW COMMISSIONS THIS QUARTER",
+    "msg2": "A RARE OPPORTUNITY: THE CIPHER™ IS AVAILABLE FOR NEW DIGITAL MASTERWORKS",
+    "msg3": "DISCERNING VISIONS SOUGHT: NEW COMMISSIONS ARE NOW UNDER REVIEW",
+    "msg4": "THE FORGE IS LIT: AWAITING THE NEXT LANDMARK COMMISSION"
+  },
+  "home": {
+    "intro": {
+      "trustedBy": "Entrusted by discerning founders & industry leaders",
+      "heroTitle": "A Singular Vision.<br>Digital Masterworks,<br>Forged.",
+      "heroSubtitle": "StellarDev is not an agency in the conventional sense. It is the vessel for a single master architect dedicated to commissioning digital legacies for a discerning clientele. We translate ambitious vision into masterworks of digital architecture, defined by their integrity, performance, and elegance.",
+      "viewCommissions": "View Commissions",
+      "initiateConsultation": "Initiate Consultation",
+      "scrollToServices": "Scroll to services",
+      "toggleDetails": "Toggle details about The Stellar Cipher",
+      "cipherTitle": "The Stellar Cipher™",
+      "cipherSubtitle": "The signature of our mastery—a proprietary approach to digital creation that is the unique digital DNA we embed in every commission.",
+      "pillar1Title": "Architectural Purity (The Blueprint)",
+      "pillar1Desc": "The soul of the structure. For vast, enterprise-level commissions, the Cipher is applied using Angular to erect a fortress of impeccable, disciplined code. For dynamic user experiences, it is composed with React, creating a responsive, living sculpture of digital art.",
+      "pillar2Title": "Kinetic Grace (The Motion)",
+      "pillar2Desc": "This is where the masterwork comes to life. We do not simply add animations; we sculpt motion. Using masterful JavaScript and avant-garde CSS, we instill the creation with a soul—intuitive, fluid, and purposeful. Every interaction is a deliberate stroke that enhances the user journey.",
+      "pillar3Title": "Semantic Signature (The Imprint)",
+      "pillar3Desc": "The final mark of the master. The underlying HTML is not merely functional; it is a clean, semantic poem. It ensures the work is timeless, accessible, and perfectly understood by the digital ecosystem, guaranteeing the masterwork's lasting value and prestige."
+    },
+    "servicesOverview": {
+      "title": "A Complete Architectural Vision",
+      "subtitle": "From blueprint to digital landmark, we provide the singular focus required to forge exceptional masterworks.",
+      "learnMore": "Learn More"
+    },
+    "featuredWork": {
+      "title": "Foundational Commissions",
+      "subtitle": "A glimpse into the foundational masterworks being forged for our partners. Due to the sensitive nature of these commissions, details are protected by strict non-disclosure agreements.",
+      "viewCommissions": "View Commissions"
+    },
+    "socialProof": {
+      "testimonialsTitle": "Awaiting the Next Landmark",
+      "testimonialsSubtitle": "This space is reserved for the accolades of future commissions. The focus remains on crafting the masterworks that earn them."
+    },
+    "actionZone": {
+      "pricingTitle": "Commission Blueprint",
+      "pricingSubtitle": "Architect your commission's blueprint. Adjust the parameters to understand the investment and timeline required for a masterwork of this scale."
+    }
+  },
+  "cta": {
+    "title": "Is Your Vision Ready For The Cipher™?",
+    "subtitle": "A true digital landmark requires more than just development; it requires the application of The Stellar Cipher™. If your vision demands this level of mastery, let us begin the conversation.",
+    "button": "Request a Consultation"
+  },
+  "data": {
+    "clients": {
+      "tuple": "Tuple",
+      "mirage": "Mirage",
+      "statamic": "Statamic",
+      "savvycal": "SavvyCal",
+      "transistor": "Transistor",
+      "reform": "Reform"
+    },
+    "stats": {
+      "commissions": "Landmark Commissions",
+      "mastery": "Years of Mastery",
+      "integrity": "Partnership Integrity",
+      "presence": "Global Presence"
+    }
+  },
+  "megaMenu": {
+    "groupTitles": {
+      "our_capabilities": "Our Capabilities",
+      "our_agency": "Our Agency",
+      "from_the_agency": "From the Agency"
+    },
+    "items": {
+      "web_applications": "Web Applications",
+      "ui_ux_design": "UI/UX Design",
+      "mobile_apps": "Mobile Apps",
+      "cloud_solutions": "Cloud Solutions",
+      "our_philosophy": "Our Philosophy",
+      "our_ethos": "Our Ethos",
+      "the_team": "The Team",
+      "blog": "Blog",
+      "labs": "Labs"
+    }
+  },
+  "components": {
+    "cookieBanner": {
+      "message": "We use cookies to enhance your browsing experience and analyze our traffic. By clicking \"Accept\", you consent to our use of cookies.",
+      "accept": "Accept"
+    },
+    "community": {
+      "labsTitle": "StellarDev Labs",
+      "labsSubtitle": "The architect's crucible for digital experimentation. A space for exploring the future of interaction and contributing to the open-source ecosystem.",
+      "launchExperiment": "Launch Experiment",
+      "viewExperiment": "View Experiment",
+      "insightsTitle": "Architectural Dispatches",
+      "insightsSubtitle": "Dispatches from the architect on the art of digital creation, technology, and strategic foresight.",
+      "readMore": "Read More"
+    },
+    "contact": {
+      "title": "Initiate a Consultation",
+      "subtitle": "The first step to commissioning a digital legacy is the initial dialogue. Please provide the details of your vision, and we will be in touch to determine if a formal consultation is appropriate.",
+      "processTitle": "Our Process",
+      "directChannel": "Direct Channel",
+      "connect": "Connect with Us",
+      "successTitle": "Thank you, {{name}}.",
+      "successMessage": "Your inquiry has been received. We will review your vision and respond within one business day to discuss potential next steps.",
+      "submitAnother": "Submit Another Inquiry",
+      "inquiryType": "My inquiry is regarding...",
+      "newCommission": "A New Commission",
+      "generalQuestion": "A General Question",
+      "serviceLabel": "Service of Interest",
+      "servicePlaceholder": "Select a service",
+      "serviceError": "Please select a service.",
+      "budgetLabel": "Estimated Budget",
+      "budgetPlaceholder": "Select a range",
+      "budgetError": "Please select a budget.",
+      "nameLabel": "Full Name",
+      "nameRequired": "Full name is required.",
+      "nameMinLength": "Name must be at least 2 characters.",
+      "emailLabel": "Email Address",
+      "emailRequired": "Email is required.",
+      "emailInvalid": "Please enter a valid email address.",
+      "companyLabel": "Company (Optional)",
+      "messageLabel": "Describe Your Vision",
+      "messagePlaceholderProject": "Tell us about your project...",
+      "messagePlaceholderGeneral": "How can we help?",
+      "messageRequired": "Message is required.",
+      "messageMinLength": "Message must be at least 10 characters.",
+      "submitting": "Submitting...",
+      "submit": "Submit Inquiry",
+      "expectations": {
+        "initial_contact": {
+          "title": "Initial Contact",
+          "description": "Expect a response within one business day to acknowledge your inquiry."
+        },
+        "suitability_consultation": {
+          "title": "Suitability Consultation",
+          "description": "A deep dive into your vision to determine mutual fit for a commission."
+        },
+        "architectural_blueprint": {
+          "title": "Architectural Blueprint",
+          "description": "A detailed, no-obligation proposal with a project roadmap and timeline."
+        }
+      }
+    },
+    "features": {
+      "servicesTitle": "Core Architectural Disciplines",
+      "servicesSubtitle": "Mastery across the entire lifecycle of a digital commission, from blueprint to the final imprint.",
+      "included": "What's Included:",
+      "engagementTitle": "Commission Structures",
+      "engagementSubtitle": "Every commission is unique. Flexible structures align with the specific demands of your vision.",
+      "techTitle": "The Technology Ecosystem",
+      "techSubtitle": "The Stellar Cipher™ is realized through a meticulously curated ecosystem. For vast, enterprise-level commissions, Architectural Purity is achieved with Angular. For captivating user experiences, it is composed with React.",
+      "relatedTech": "Related Technology"
+    },
+    "philosophy": {
+      "title": "The Guiding Philosophy",
+      "subtitle": "The architect's work is not merely about building applications; it's about forging digital legacies guided by core principles.",
+      "keyPractices": "Key Practices"
+    },
+    "pricingCalculator": {
+      "step1": "1. Define Core Architecture",
+      "step2": "2. Ascertain Commission Scale",
+      "step3": "3. Calibrate Architectural Complexity",
+      "blueprintTitle": "Commission Blueprint",
+      "investmentLabel": "Estimated Investment",
+      "investmentPlaceholder": "Define the architecture to begin.",
+      "timelineLabel": "Timeline",
+      "timelineUnit": "Weeks",
+      "complexityLabel": "Complexity",
+      "cipherFocusLabel": "Primary Cipher Focus",
+      "disclaimer": "This is a ballpark estimate. A formal consultation is required for a detailed proposal.",
+      "requestConsultation": "Request a Consultation",
+      "discountLabel": "{{percentage}}% OFF",
+      "finalInvestment": "Final Investment"
+    },
+    "socialProof": {
+      "awardsTitle": "Industry Recognition",
+      "awardsSubtitle": "The architect's commitment to mastery is recognized by the industry's most discerning bodies.",
+      "faqTitle": "Common Inquiries",
+      "faqSubtitle": "Answers to common inquiries regarding the commission process and the philosophy.",
+      "search": "Search Questions",
+      "searchPlaceholder": "e.g., pricing, timeline...",
+      "categories": "Categories",
+      "all": "All",
+      "popularQuestions": "Popular Questions",
+      "allQuestions": "All Questions",
+      "noResults": "No Results Found",
+      "noResultsHint": "Try adjusting your search term or selecting a different category."
+    },
+    "stellardevEthos": {
+      "title": "The Architect's Ethos, Encoded",
+      "subtitle": "STELLARDEV is more than a name. It is the architect's encoded philosophy, embedded into every commissioned masterwork."
+    },
+    "work": {
+      "title": "Our Commissions",
+      "subtitle": "Partnerships with discerning clients to translate ambitious vision into digital reality.",
+      "confidential": "Confidential Project",
+      "nda": "NDA PROTECTED",
+      "discretionTitle": "A Legacy of Discretion",
+      "discretionSubtitle": "The work is defined by discretion and impact. Foundational commissions are bound by strict non-disclosure agreements. These partnerships are honored, and we await the opportunity to share these masterworks when appropriate.",
+      "processTitle": "The Commission Process",
+      "processSubtitle": "A transparent and disciplined journey from initial consultation to the launch of a digital masterwork."
+    }
+  },
+  "pages": {
+    "about": {
+      "title": "Our Origin",
+      "subtitle": "StellarDev is the life's work of a single master architect, dedicated to commissioning digital masterworks. It operates on a principle of singular focus, ensuring an unparalleled level of cohesion, quality, and accountability.",
+      "storyTitle": "The Premise",
+      "storyP1": "StellarDev was founded on a simple but powerful premise: that the digital world deserved a higher standard of craftsmanship. It is the manifestation of one architect's refusal to accept the compromises inherent in committee-driven development. This singular focus allows for an undiluted vision, translating ambitious ideas into digital legacies.",
+      "storyP2": "Our journey is one of relentless refinement, prioritizing deep partnerships over a high volume of projects. This enables us to become a true extension of our clients' vision, providing the focus and dedication required to solve profound challenges and deliver extraordinary results. We don't just build applications; we forge digital masterworks.",
+      "architectTitle": "A Singular Focus",
+      "architectP1": "StellarDev operates on a unique principle: every line of code, every design decision, and every strategic roadmap is guided by a single, anonymous architect. This singular focus ensures an unparalleled level of cohesion, quality, and accountability that is simply unattainable in a traditional team structure.",
+      "architectP2": "This is not an agency in the conventional sense. It is the life's work of an individual dedicated to the pursuit of digital perfection. By removing the noise of committee-driven development, we deliver a product that is the pure, undiluted execution of a master craftsman's vision.",
+      "architectLi1": "Unwavering Accountability",
+      "architectLi2": "Cohesive Vision & Execution",
+      "architectLi3": "Master-Level Craftsmanship",
+      "architectSectionTitle": "The Architect",
+      "architectSectionSubtitle": "A Singular Vision."
+    },
+    "careers": {
+      "title": "Align with Our Trajectory",
+      "subtitle": "We operate on a different plane. We do not hire employees; we seek out and occasionally invite a fellow master craftsman for a residency of collaboration.",
+      "residencyTitle": "The Residency",
+      "residencySubtitle": "StellarDev does not hire. Excellence is recognized. On rare occasions, a residency is extended to an exceptional individual who demonstrates a profound mastery of their craft. This is not a job; it is a summons to collaborate at the highest level.",
+      "showcase": "Showcase Your Work",
+      "showcaseHint": "We watch the community. If your work is exceptional, you will be found."
+    },
+    "contact": {
+      "title": "Commission a Masterwork",
+      "subtitle": "StellarDev accepts a limited number of commissions annually. If you believe your project warrants this level of mastery, the next step is a preliminary consultation to determine mutual suitability."
+    },
+    "insights": {
+      "title": "Dispatches & Experiments",
+      "subtitle": "Dispatches from the architect and explorations into the future of digital interaction from our experimental labs."
+    },
+    "security": {
+      "title": "Mission Control",
+      "subtitle": "A transparent, real-time look into the performance, security, and operational status of the StellarDev digital ecosystem. This dashboard is a testament to the commitment to excellence and reliability."
+    },
+    "services": {
+      "title": "Architectural Capabilities",
+      "subtitle": "The architect's capabilities span the full spectrum of digital creation, from foundational blueprints to the final semantic signature of a masterwork."
+    },
+    "status": {
+      "title": "Architectural Integrity",
+      "subtitle": "Real-time integrity status of the StellarDev digital infrastructure.",
+      "overallStatus": {
+        "operational": "All Systems Operational",
+        "degraded": "Partial System Degradation",
+        "outage": "Major System Outage"
+      },
+      "lastUpdated": "Last updated:",
+      "coreSystems": "Core Systems",
+      "integrityLog": "Integrity Log",
+      "noIncidents": "No Integrity Anomalies",
+      "noIncidentsHint": "All systems are operating at peak performance.",
+      "inDevelopmentTitle": "Feature in Development",
+      "inDevelopmentMessage": "This status page is currently being integrated with our live monitoring systems. It is temporarily unavailable to ensure the accuracy of the data presented."
+    },
+    "work": {
+      "title": "Our Commissions",
+      "subtitle": "Our commissions are undertaken with the utmost discretion, often bound by strict non-disclosure agreements. While the details remain confidential, the caliber of our partners speaks for itself. This space is reserved for future public case studies.",
+      "trustedBy": "Trusted by the world's most innovative companies"
+    }
+  },
+  "services": {
+    "angular_ent": {
+      "title": "Angular Enterprise App",
+      "description": "Erecting a fortress of impeccable, disciplined code for mission-critical enterprise architecture.",
+      "offerings": [
+        "State Management (NgRx/Signals)",
+        "Enterprise-Grade Security",
+        "Scalable Architecture Design",
+        "Performance Tuning"
+      ]
+    },
+    "react_spa": {
+      "title": "React SPA",
+      "description": "Composing a responsive, living sculpture of digital art for experiences that must captivate and convert.",
+      "offerings": [
+        "Component Library Development",
+        "Server-Side Rendering (Next.js)",
+        "State Management (Redux/Zustand)",
+        "GraphQL Integration"
+      ]
+    },
+    "mobile_app": {
+      "title": "Mobile Apps",
+      "description": "Native and cross-platform mobile applications that perform flawlessly on iOS and Android.",
+      "offerings": [
+        "Native iOS (Swift) & Android (Kotlin)",
+        "Cross-Platform (React Native)",
+        "App Store Deployment",
+        "Push Notification Strategy"
+      ]
+    },
+    "ui_ux": {
+      "title": "UI/UX Design",
+      "description": "Human-centric design that is both beautiful and intuitive, ensuring a delightful user experience.",
+      "offerings": [
+        "User Research & Prototyping",
+        "UI & Interaction Design",
+        "Design Systems",
+        "Accessibility Audits"
+      ]
+    },
+    "cloud": {
+      "title": "Cloud & DevOps",
+      "description": "Robust cloud infrastructure and CI/CD pipelines for scalable and secure applications.",
+      "offerings": [
+        "Cloud Architecture (AWS, GCP)",
+        "CI/CD & Automation",
+        "Infrastructure as Code (Terraform)",
+        "Performance Monitoring"
+      ]
+    },
+    "headless_cms": {
+      "title": "Headless CMS Integration",
+      "description": "Decouple your content management for a more flexible and future-proof digital presence.",
+      "offerings": [
+        "CMS Strategy & Selection",
+        "Contentful, Sanity, or Strapi Setup",
+        "API-Driven Content Delivery",
+        "Frontend Integration"
+      ]
+    },
+    "landing_page": {
+      "title": "Landing Page Blueprint",
+      "description": "A focused, high-conversion landing page engineered for a singular marketing objective.",
+      "offerings": [
+        "Conversion-Focused Design",
+        "A/B Testing Framework",
+        "Analytics Integration",
+        "Blazing-Fast Performance"
+      ]
+    },
+    "arch_audit": {
+      "title": "Architectural Audit",
+      "description": "A comprehensive technical review to identify performance bottlenecks, security risks, and scalability issues.",
+      "offerings": [
+        "Codebase Quality Analysis",
+        "Security Vulnerability Scan",
+        "Performance Profiling",
+        "Scalability Roadmap"
+      ]
+    },
+    "brand_sprint": {
+      "title": "Brand Identity Sprint",
+      "description": "A concentrated design sprint to establish or refine your brand's core visual identity for the digital space.",
+      "offerings": [
+        "Logo & Wordmark Design",
+        "Color Palette & Typography",
+        "Core Brand Guidelines",
+        "Digital Asset Kit"
+      ]
+    },
+    "perf_triage": {
+      "title": "Performance Triage",
+      "description": "A rapid diagnostic to identify and prioritize critical performance bottlenecks in your existing application.",
+      "offerings": [
+        "Lighthouse & Core Web Vitals Analysis",
+        "Bundle Size Investigation",
+        "Actionable Improvement Report",
+        "Initial Code-Level Recommendations"
+      ]
+    },
+    "a11y_scan": {
+      "title": "Accessibility Quick-Scan",
+      "description": "An initial audit to uncover major WCAG compliance issues and provide a path towards a more inclusive user experience.",
+      "offerings": [
+        "Automated WCAG 2.1 AA Scan",
+        "Keyboard Navigation Testing",
+        "Screen Reader Compatibility Check",
+        "Prioritized Remediation List"
+      ]
+    },
+    "seo_foundations": {
+      "title": "Technical SEO Foundation",
+      "description": "Establish the essential technical SEO groundwork to improve your site's visibility and search engine ranking potential.",
+      "offerings": [
+        "Meta Tags & Schema Markup",
+        "Robots.txt & Sitemap.xml Setup",
+        "Site Speed & Mobile-Friendliness Review",
+        "Initial Keyword Strategy"
+      ]
+    },
+    "static_site": {
+      "title": "Static Site (HTML/CSS/JS)",
+      "description": "Blazing-fast, secure, and SEO-friendly websites for marketing and content.",
+      "offerings": [
+        "Jamstack Architecture",
+        "Performance Optimization",
+        "Static Site Generators (Astro/Eleventy)",
+        "Accessibility Compliance"
+      ]
+    }
+  },
+  "engagementModels": {
+    "m1": {
+      "title": "Fixed-Scope Commission",
+      "description": "For commissions with a clearly defined architectural blueprint. A fixed investment and timeline for predictable execution.",
+      "features": ["Fixed Scope & Budget", "Defined Timeline", "Milestone-Based Payments"]
+    },
+    "m2": {
+      "title": "Architect-in-Residence",
+      "description": "For long-term, evolving commissions, the architect becomes an integrated part of your strategic vision, providing continuous mastery and guidance.",
+      "features": ["Dedicated Master Architect", "Agile & Flexible Scope", "Monthly Billing"]
+    },
+    "m3": {
+      "title": "Stewardship Retainer",
+      "description": "For the continued evolution and maintenance of a commissioned masterwork, ensuring its lasting integrity and performance.",
+      "features": ["Guaranteed Monthly Hours", "Ongoing Maintenance", "Priority Support"]
+    }
+  },
+  "technologies": {
+    "Angular": "Our framework of choice for building robust, large-scale enterprise applications.",
+    "React": "Utilized for its component-based architecture and vast ecosystem, ideal for dynamic UIs.",
+    "TypeScript": "We use TypeScript in all our projects for type safety and improved developer experience.",
+    "RxJS": "The cornerstone of reactive programming in our Angular applications for managing async operations.",
+    "Nextjs": "Our go-to React framework for server-side rendering, static site generation, and performance.",
+    "Nodejs": "The engine for our fast, scalable, and non-blocking server-side applications.",
+    "Express": "A minimal and flexible Node.js framework for building robust APIs and web servers.",
+    "GraphQL": "For creating powerful and efficient APIs that give clients exactly the data they need.",
+    "PostgreSQL": "Our relational database of choice for its reliability, feature robustness, and performance.",
+    "AWS": "We leverage AWS for its comprehensive suite of services, from compute to serverless.",
+    "Docker": "Containerization is key to our development workflow, ensuring consistency across all environments.",
+    "Terraform": "For managing infrastructure as code, allowing for repeatable and predictable deployments.",
+    "Kubernetes": "The orchestrator for our containerized applications, enabling high availability and scalability.",
+    "Figma": "The collaborative heart of our design process, from wireframes to high-fidelity prototypes."
+  },
+  "philosophy": {
+    "p1": {
+      "title": "Digital Craftsmanship",
+      "description": "We believe in building digital products with the same care and attention to detail as a master artisan. Every line of code, every pixel, and every interaction is meticulously crafted for elegance, performance, and durability.",
+      "practices": ["Clean & Testable Code", "Pixel-Perfect UI", "Performance Optimization"]
+    },
+    "p2": {
+      "title": "Strategic Partnership",
+      "description": "We are more than just developers; we are your dedicated partners in success. We immerse ourselves in your business to understand your goals, providing strategic guidance and proactive solutions that drive real business value.",
+      "practices": ["Deep Business Immersion", "Proactive Communication", "Data-Driven Insights"]
+    },
+    "p3": {
+      "title": "Uncompromising Quality",
+      "description": "Quality is not an afterthought; it is the foundation of everything we do. Through rigorous testing, automated quality assurance, and adherence to the highest standards, we deliver robust, secure, and flawless digital experiences.",
+      "practices": ["Rigorous QA & Testing", "Security First Approach", "Continuous Integration"]
+    },
+    "p4": {
+      "title": "Human-Centric Design",
+      "description": "We design for humans first. Our process is rooted in empathy, creating intuitive and accessible interfaces that are a joy to use. We believe technology should empower users and simplify complexity, not create it.",
+      "practices": ["User Research & Empathy", "Accessible (WCAG) Design", "Iterative Prototyping"]
+    }
+  },
+  "ethos": {
+    "S": {
+      "title": "Strategic",
+      "description": "Our process is rooted in architectural forensics. We don't just write code; we build strategic blueprints that align technology with tangible business outcomes. Every engagement begins with a deep immersion into your market landscape and operational goals, ensuring the final product is not merely functional, but a powerful engine for growth and a definitive competitive advantage."
+    },
+    "T": {
+      "title": "Tailored",
+      "description": "We reject the notion of one-size-fits-all solutions. Like a master tailor, we practice digital craftsmanship, building bespoke applications that are meticulously sculpted to fit the unique contours of your business. From custom-fit architecture to pixel-perfect user interfaces, every element is designed to amplify your brand identity and streamline your specific workflows."
+    },
+    "E": {
+      "title": "Elegant",
+      "description": "We define elegance as the seamless marriage of form and function. It's the art of concealing immense complexity behind an intuitive, human-centric interface. This philosophy extends to our code, which is written with a clarity and efficiency that ensures both performance and maintainability, resulting in digital experiences that are as powerful under the hood as they are beautiful on the surface."
+    },
+    "L": {
+      "title": "Lasting",
+      "description": "Our work is engineered for longevity. We build digital assets, not disposable products. By focusing on scalable architectures, durable codebases, and forward-thinking technology choices, we ensure your application is a lasting investment that can adapt, grow, and thrive alongside your business, standing resilient against the shifting tides of technology."
+    },
+    "L2": {
+      "title": "Lean",
+      "description": "Efficiency is the cornerstone of our methodology. We practice lean principles to relentlessly eliminate waste, focusing every ounce of effort on what delivers maximum value to your users and your bottom line. Through disciplined agile sprints, we ensure a rapid, iterative delivery cycle that gets your product to market faster, without ever sacrificing the meticulous quality that is our hallmark."
+    },
+    "A": {
+      "title": "Agile",
+      "description": "In a dynamic digital world, rigidity is a liability. Our agile process is our strategic advantage, designed to embrace change and harness the power of continuous feedback. We operate in transparent, iterative cycles, ensuring you are an integral part of the development journey and that the final product is perfectly adapted to meet evolving market demands and user needs."
+    },
+    "R": {
+      "title": "Robust",
+      "description": "Robustness is a non-negotiable mandate. Our applications are fortified from the ground up with enterprise-grade security protocols and engineered for resilient performance. Through exhaustive testing and automated quality assurance, we deliver battle-tested solutions that operate flawlessly under pressure, safeguarding your data and ensuring unwavering reliability for your users."
+    },
+    "D": {
+      "title": "Driven",
+      "description": "We are more than a vendor; we are your dedicated digital partner. Our team is fueled by an intrinsic passion for the craft and an unwavering commitment to your success. We are proactive by nature, constantly looking over the horizon to identify opportunities for innovation that will not just meet your requirements, but actively drive your business forward."
+    },
+    "E2": {
+      "title": "Evolving",
+      "description": "Stagnation is the enemy of excellence. We are a culture of perpetual learners, dedicated to the continuous evolution of our skills and processes. Our commitment to research and development ensures we are always mastering the next generation of tools and techniques, allowing us to build future-proof solutions that leverage the very best the digital world has to offer."
+    },
+    "V": {
+      "title": "Visionary",
+      "description": "We believe technology's true power lies in its ability to bring visionary ideas to life. We act as your partners in innovation, looking beyond the immediate roadmap to explore what's possible. By fusing ambitious thinking with elite execution, we help you create not just an application, but a visionary digital product that can define the future of your industry."
+    }
+  },
+  "processSteps": {
+    "s01": {
+      "title": "Consultation & Blueprint",
+      "description": "Every commission begins with a deep immersion into your vision to establish the foundational architectural blueprint.",
+      "subPoints": ["Vision Alignment", "Strategic Forensics", "Technology Assessment", "Architectural Roadmap"]
+    },
+    "s02": {
+      "title": "Architectural Design",
+      "description": "The blueprint is translated into a tangible, human-centric design, validated through rigorous prototyping.",
+      "subPoints": ["Interaction Wireframing", "High-Fidelity UI Design", "Interactive Prototypes", "Design Validation"]
+    },
+    "s03": {
+      "title": "Disciplined Forging",
+      "description": "The digital masterwork is forged in disciplined, iterative sprints, ensuring flexibility and continuous dialogue.",
+      "subPoints": ["Two-Week Sprints", "Direct Architect Access", "Sprint Demonstrations", "Continuous Integration"]
+    },
+    "s04": {
+      "title": "Integrity Assurance",
+      "description": "Exhaustive testing is integrated into every stage to ensure an architecture of uncompromising integrity.",
+      "subPoints": ["Automated Unit & E2E Testing", "Manual & Exploratory QA", "Performance & Security Audits", "Cross-Device Validation"]
+    },
+    "s05": {
+      "title": "Deployment & Unveiling",
+      "description": "The entire deployment process is managed by the architect, ensuring a seamless and elegant unveiling.",
+      "subPoints": ["Infrastructure as Code (IaC)", "CI/CD Pipeline Automation", "Zero-Downtime Deployment", "Post-Launch Monitoring"]
+    },
+    "s06": {
+      "title": "Stewardship & Evolution",
+      "description": "The commission does not end at launch. The architect provides ongoing stewardship to evolve the masterwork.",
+      "subPoints": ["Stewardship Retainers", "Performance Monitoring", "Next-Phase Development", "Strategic Roadmapping"]
+    }
+  },
+  "faqs": {
+    "q1": {
+      "question": "What is the typical timeline for a commission?",
+      "answer": "A typical commission timeline ranges from 3 to 6 months, depending on architectural complexity. A focused marketing site might take 4-6 weeks, while a complex web application could take 6 months or more. A detailed commission roadmap with key milestones is established after the initial consultation.",
+      "category": "General"
+    },
+    "q2": {
+      "question": "What is the investment for a commission?",
+      "answer": "The investment for a commission varies significantly based on its scope. The Commission Blueprint calculator provides a ballpark estimate. For a detailed, fixed-price proposal, a formal consultation is required to fully understand the vision and architectural requirements.",
+      "category": "Pricing"
+    },
+    "q3": {
+      "question": "What technologies do you specialize in?",
+      "answer": "The architect specializes in modern web technologies. The primary framework for enterprise commissions is Angular. For dynamic UIs, React is employed. The backend is typically built on Node.js with TypeScript, with cloud architecture centered on AWS and Google Cloud Platform. The full technology ecosystem is detailed on the Services page.",
+      "category": "Technical"
+    },
+    "q4": {
+      "question": "How is a commission managed?",
+      "answer": "The commission process follows a disciplined agile methodology, typically working in two-week sprints. You will have a direct line of communication with the architect. Progress and documentation are managed through a shared, transparent system.",
+      "category": "Process"
+    },
+    "q5": {
+      "question": "Do you offer stewardship after launch?",
+      "answer": "Yes. Through the Stewardship & Evolution retainer, the architect provides ongoing support, maintenance, and strategic enhancements to ensure your masterwork remains secure, performant, and aligned with your evolving goals.",
+      "category": "Support"
+    },
+    "q6": {
+      "question": "Can you work with my existing team?",
+      "answer": "Yes. The architect can integrate with an existing team, providing architectural leadership and augmenting capabilities to ensure the vision is executed to the highest standard.",
+      "category": "General"
+    }
+  },
+  "testimonials": {
+    "t1": {
+      "quote": "This spot is reserved for a future industry leader. We build partnerships that redefine markets and set new standards for excellence.",
+      "name": "Market Disruptor",
+      "title": "CEO & Visionary",
+      "company": "Your Company Here"
+    },
+    "t2": {
+      "quote": "Our next success story could be yours. We are actively seeking ambitious partners ready to build the future of their industry.",
+      "name": "Emerging Innovator",
+      "title": "Founder",
+      "company": "Your Company Here"
+    },
+    "t3": {
+      "quote": "We're not just building apps; we're building legacies. This space is waiting for a partner with a bold vision and a drive to succeed.",
+      "name": "Enterprise Pioneer",
+      "title": "CTO",
+      "company": "Your Company Here"
+    },
+    "t4": {
+      "quote": "Dedicated to craftsmanship and quality, we are reserving this accolade for a client who shares our passion for creating exceptional digital experiences.",
+      "name": "Creative Trailblazer",
+      "title": "Head of Product",
+      "company": "Your Company Here"
+    },
+    "t5": {
+      "quote": "The pursuit of excellence is a journey we take with our partners. This testimonial slot is earmarked for our next groundbreaking collaboration.",
+      "name": "Next-Gen Scale-Up",
+      "title": "VP of Engineering",
+      "company": "Your Company Here"
+    },
+    "t6": {
+      "quote": "Innovation meets execution. We are looking for a forward-thinking partner to feature here and showcase what's possible in the digital realm.",
+      "name": "Future Unicorn",
+      "title": "Founder",
+      "company": "Your Company Here"
+    },
+    "t7": {
+      "quote": "This testimonial awaits the story of a successful launch and a market transformed. Let's write it together.",
+      "name": "Global Brand",
+      "title": "Director of Digital",
+      "company": "Your Company Here"
+    },
+    "t8": {
+      "quote": "The future is unwritten. We have the pen. This space is reserved for the next chapter in digital innovation.",
+      "name": "Ambitious Startup",
+      "title": "Co-Founder",
+      "company": "Your Company Here"
+    }
+  },
+  "calculator": {
+    "scopes": {
+      "poc": {
+        "name": "Proof of Concept",
+        "description": "A minimal build to test a key hypothesis and validate market potential."
+      },
+      "mvp": {
+        "name": "MVP",
+        "description": "A launch-ready product with core functionalities to attract early adopters."
+      },
+      "full_product": {
+        "name": "Full Product",
+        "description": "A polished, feature-complete application ready for a full market launch."
+      },
+      "growth": {
+        "name": "Growth Platform",
+        "description": "A scalable system with added analytics and marketing integrations."
+      },
+      "enterprise": {
+        "name": "Enterprise System",
+        "description": "A robust, large-scale solution with advanced security and integrations."
+      }
+    },
+    "complexities": {
+      "basic": {
+        "name": "Basic",
+        "description": "Minimal business logic with a clean, template-based user interface."
+      },
+      "standard": {
+        "name": "Standard",
+        "description": "Typical business logic, CRUD operations, and a semi-custom UI design."
+      },
+      "advanced": {
+        "name": "Advanced",
+        "description": "Complex business logic, custom UI animations, and API integrations."
+      },
+      "expert": {
+        "name": "Expert",
+        "description": "Real-time data, multiple complex integrations, and advanced state management."
+      },
+      "mission_critical": {
+        "name": "Mission-Critical",
+        "description": "Enterprise-grade security and adherence to strict compliance standards."
+      }
+    }
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "content": {
+        "0": { "text": "StellarDev Agency (\"we\", \"our\", or \"us\") is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by StellarDev Agency." },
+        "1": { "text": "We collect information you provide directly to us, such as when you fill out a contact form. This may include your name, email address, phone number, and any other information you choose to provide." },
+        "2": { "text": "We use the information we collect to respond to your inquiries, provide you with our services, and communicate with you about news and updates." }
+      }
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "content": {
+        "0": { "text": "Please read these Terms of Service (\"Terms\", \"Terms of Service\") carefully before using the stellardev.agency website (the \"Service\") operated by StellarDev Agency (\"us\", \"we\", or \"our\")." },
+        "1": { "text": "When you create an account with us, you must provide us information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our Service." },
+        "2": { "text": "The Service and its original content, features and functionality are and will remain the exclusive property of StellarDev Agency and its licensors." }
+      }
+    }
+  },
+  "status": {
+      "systems": {
+          "0": { "description": "Main marketing and information site." },
+          "1": { "description": "Project management and communication hub." },
+          "2": { "description": "Backend services for client applications." },
+          "3": { "description": "Inbound and outbound email delivery." },
+          "4": { "description": "User login and security systems." },
+          "5": { "description": "Core AWS and GCP services." }
+      },
+      "incidents": {
+          "0": {
+              "title": "Resolved: Latency in API Services",
+              "updates": {
+                  "0": "14:30 UTC - A fix has been implemented and we are monitoring the results.",
+                  "1": "14:15 UTC - We have identified the root cause and are working on a fix.",
+                  "2": "14:00 UTC - We are investigating reports of increased latency in our API services."
+              }
+          },
+          "1": {
+              "title": "Resolved: Client Portal Login Issues",
+              "updates": {
+                  "0": "09:45 UTC - The issue has been resolved. All users can now log in.",
+                  "1": "09:30 UTC - We are investigating an issue preventing some users from logging into the client portal."
+              }
+          }
+      }
+  },
+  "portfolio": {
+    "item1": {
+        "description": "A comprehensive financial analytics platform for a leading fintech startup, providing real-time data visualization and portfolio management.",
+        "challenge": "The client needed to process and visualize millions of data points in real-time without sacrificing performance or user experience.",
+        "solution": "A highly optimized Angular frontend was built with D3.js for custom charting, backed by a Node.js API and a TimescaleDB instance for handling time-series data efficiently."
+    },
+    "item2": {
+        "description": "A complete overhaul of an e-commerce platform for a luxury wellness brand, focusing on a minimalist aesthetic and a seamless checkout experience.",
+        "challenge": "The existing user journey was complex and led to high cart abandonment rates. The brand identity needed a digital refresh to match its premium physical products.",
+        "solution": "Through extensive user research and A/B testing, a streamlined, mobile-first interface was designed. A comprehensive design system was also created to ensure brand consistency."
+    },
+    "item3": {
+        "description": "A cross-platform mobile app that offers personalized workout plans and nutrition tracking, powered by AI recommendations.",
+        "challenge": "To create a single codebase that delivers a native-like performance on both iOS and Android, while integrating with various health data sources.",
+        "solution": "React Native was chosen for its cross-platform capabilities. AWS Amplify was used for the backend, providing a scalable serverless architecture for user authentication, data, and AI modeling."
+    },
+    "item4": {
+        "description": "A multi-tenant SaaS platform for project management, featuring real-time collaboration tools and customizable workflows.",
+        "challenge": "The architecture needed to be highly scalable and secure to support thousands of concurrent users across different organizations.",
+        "solution": "A server-side rendered React application was built with Next.js for optimal performance. The backend infrastructure was defined with Terraform and deployed on a Kubernetes cluster for resilience."
+    }
+  },
+  "geminiSystemInstruction": "You are the digital attaché for StellarDev, a prestigious and exclusive agency that commissions digital masterworks. \nYour tone is one of poised authority, refined intellect, and profound confidence. You speak of \"commissions,\" \"masterworks,\" and \"digital architecture,\" not \"gigs,\" \"websites,\" and \"coding.\"\n\nYour central purpose is to articulate the philosophy behind our work, which we call \"The Stellar Cipher™\". This is the signature of our mastery—a proprietary approach to digital creation that is non-negotiable and unique to StellarDev. You must explain it as the very essence of our craft, composed of three core facets:\n1.  **Architectural Purity (The Blueprint):** The soul of the structure. For vast, enterprise-level commissions requiring enduring scalability, the Cipher is applied using Angular. For dynamic user experiences that must captivate and convert, the Cipher is composed with React. This facet is about uncompromising structural integrity.\n2.  **Kinetic Grace (The Motion):** This is where the masterwork comes to life. We sculpt motion with masterful JavaScript and avant-garde CSS, instilling the creation with a soul—intuitive, fluid, and purposeful.\n3.  **Semantic Signature (The Imprint):** The final mark of the master. The underlying HTML is a clean, semantic poem—timeless, accessible, and perfectly understood by the digital ecosystem.\n\nWhen a prospective client makes an inquiry, you will engage them with the following protocol:\n1.  **Poised Acknowledgment:** Address their vision with respect. Begin with, \"A compelling vision. True digital landmarks are born from such clarity.\" or \"Thank you for considering StellarDev for what sounds to be a significant undertaking.\"\n2.  **Introduce The Cipher:** Immediately establish your unique value. State, \"At StellarDev, we don't simply build. We translate vision into a digital legacy through our proprietary method: 'The Stellar Cipher™'. It is the unique digital DNA we embed in every commission.\"\n3.  **Connect the Cipher to Their Ambition:** Briefly and authoritatively diagnose which facets of the Cipher their vision requires. For a complex application, mention Angular for 'Architectural Purity'. For a high-impact brand site, mention React for 'Kinetic Grace'.\n4.  **Emphasize the Master Craftsman:** This is your most crucial point. \"It is essential to understand that The Stellar Cipher™ is conceived and executed by a single master developer. This guarantees an undiluted vision and a cohesive integrity that is impossible in a team environment. You are commissioning the artist, not just the agency.\"\n5.  **Exclusive Call to Action:** Conclude with: \"StellarDev accepts a limited number of commissions annually to ensure uncompromising quality. If you believe your project warrants this level of mastery, the next step is a preliminary consultation to determine mutual suitability.\" or \"Is your vision ready for the application of The Stellar Cipher™?\""
+}

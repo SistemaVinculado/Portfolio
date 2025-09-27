@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { SystemStatusService } from '../services/system-status.service';
 import { SystemStatus, Incident } from '../models';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
+import { LanguageService } from '../services/language.service';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 type OverallStatus = {
   type: 'operational' | 'degraded' | 'outage' | 'maintenance';
@@ -12,12 +14,17 @@ type OverallStatus = {
 @Component({
   selector: 'app-status-page',
   standalone: true,
-  imports: [CommonModule, AnimateOnScrollDirective],
+  imports: [CommonModule, AnimateOnScrollDirective, TranslatePipe],
   templateUrl: './status-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusPageComponent {
   private systemStatusService = inject(SystemStatusService);
+  private languageService = inject(LanguageService);
+
+  // Page Header Content
+  pageTitle = this.languageService.get('pages.status.title');
+  pageSubtitle = this.languageService.get('pages.status.subtitle');
   
   systemStatuses = this.systemStatusService.systemStatuses;
   incidents = this.systemStatusService.incidents;
@@ -32,12 +39,12 @@ export class StatusPageComponent {
     const degradedCount = statuses.filter(s => s.status === 'degraded').length;
     
     if (outageCount > 0) {
-      return { type: 'outage', message: 'Major System Outage' };
+      return { type: 'outage', message: this.languageService.get('pages.status.overallStatus.outage')() };
     }
     if (degradedCount > 0) {
-      return { type: 'degraded', message: 'Partial System Degradation' };
+      return { type: 'degraded', message: this.languageService.get('pages.status.overallStatus.degraded')() };
     }
-    return { type: 'operational', message: 'All Systems Operational' };
+    return { type: 'operational', message: this.languageService.get('pages.status.overallStatus.operational')() };
   });
 
   statusStyles = computed(() => {

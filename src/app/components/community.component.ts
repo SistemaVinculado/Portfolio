@@ -12,9 +12,11 @@ import { CodeMatrixComponent } from './code-matrix.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommunityComponent {
-  jobOpenings = input.required<JobOpening[]>();
   labExperiments = input.required<LabExperiment[]>();
   blogPosts = input.required<BlogPost[]>();
+
+  showLabs = input(true);
+  showInsights = input(true);
 
   scrollTo = output<{ event: Event; href: string, message: string }>();
   openBlogModal = output<BlogPost>();

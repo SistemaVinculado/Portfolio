@@ -2,11 +2,12 @@ import { Component, ChangeDetectionStrategy, input, output, signal } from '@angu
 import { Client, StatItem } from '../models';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 import { CountUpDirective } from '../directives/count-up.directive';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 @Component({
   selector: 'app-intro',
   standalone: true,
-  imports: [AnimateOnScrollDirective, CountUpDirective],
+  imports: [AnimateOnScrollDirective, CountUpDirective, TranslatePipe],
   templateUrl: './intro.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

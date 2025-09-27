@@ -1,0 +1,25 @@
+<app-page-header 
+  [title]="pageTitle()"
+  [subtitle]="pageSubtitle()"
+/>
+
+<div class="w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+  <app-community
+    [labExperiments]="labExperiments()"
+    [blogPosts]="blogPosts()"
+    (openBlogModal)="openBlogModal($event)"
+    (openVisitorGlobe)="openVisitorGlobe()"
+  ></app-community>
+
+   <div class="mt-16">
+    <app-cta (scrollTo)="onScrollTo($event)"></app-cta>
+  </div>
+</div>
+
+@if (selectedBlogPost(); as post) {
+  <app-blog-modal [post]="post" (close)="closeBlogModal()"></app-blog-modal>
+}
+
+@if (showVisitorGlobe()) {
+  <app-visitor-globe (close)="closeVisitorGlobe()"></app-visitor-globe>
+}

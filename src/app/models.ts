@@ -137,6 +137,7 @@ export interface CalculatorService {
   id: string;
   name: string;
   basePrice: number;
+  basePriceBRL?: number;
   featureIds?: string[];
 }
 
@@ -191,6 +192,7 @@ export interface SocialLink {
 }
 
 export interface ChatMessage {
+  id: number;
   role: 'user' | 'model';
   content: string;
   isError?: boolean;
@@ -249,6 +251,7 @@ export interface VulnerabilityScan {
 }
 
 export interface LogEntry {
+  id: number;
   timestamp: string;
   level: 'INFO' | 'WARN' | 'CRITICAL' | 'SUCCESS';
   message: string;
