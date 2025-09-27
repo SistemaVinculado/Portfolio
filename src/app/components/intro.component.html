@@ -125,11 +125,11 @@
           Total digital<br>
           mastery. Elite.
         </h1>
-        <a appAnimateOnScroll delay="100ms" (click)="onScrollTo($event, '#services')" href="#services" class="w-14 h-14 rounded-full bg-[#EAE8E3] dark:bg-gray-700 flex items-center justify-center cursor-pointer hover:bg-opacity-80 dark:hover:bg-opacity-70 transition-all duration-300">
+        <button appAnimateOnScroll delay="100ms" (click)="onScrollTo($event, '#services')" aria-label="Scroll to services" class="w-14 h-14 rounded-full bg-[#EAE8E3] dark:bg-gray-700 flex items-center justify-center cursor-pointer hover:bg-opacity-80 dark:hover:bg-opacity-70 transition-all duration-300">
           <svg class="w-7 h-7 text-gray-700 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m0 0l-6-6m6 6l6-6" />
           </svg>
-        </a>
+        </button>
       </div>
 
       <!-- Right side -->
@@ -138,18 +138,18 @@
           An elite digital agency crafting bespoke web applications with Angular and React for prestigious clients. Our system transforms complex ideas into flawless, scalable digital experiences with real-time collaboration and transparent progress tracking. Experience peace of mind knowing your digital presence is architected by the best.
         </p>
         <div appAnimateOnScroll delay="100ms" class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <a href="#portfolio" (click)="onScrollTo($event, '#portfolio')" class="bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639] px-5 py-3 rounded-full font-semibold flex items-center space-x-2.5 hover:bg-opacity-90 dark:hover:bg-gray-200 transition-all duration-300 transform hover:scale-105">
+          <button (click)="onScrollTo($event, '#portfolio')" class="bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639] px-5 py-3 rounded-full font-semibold flex items-center space-x-2.5 hover:bg-opacity-90 dark:hover:bg-gray-200 transition-all duration-300 transform hover:scale-105">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.125c0 1.326-.816 2.4-1.875 2.4H5.625c-1.06 0-1.875-1.074-1.875-2.4V14.15M15.75 13.5v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a3.375 3.375 0 00-3.375 3.375V13.5m11.25 0h-11.25" />
             </svg>
             <span>View Our Work</span>
-          </a>
-          <a href="#contact" (click)="onScrollTo($event, '#contact')" class="bg-[#EAE8E3] dark:bg-gray-700 text-[#292639] dark:text-gray-200 px-5 py-3 rounded-full font-semibold flex items-center space-x-2.5 hover:bg-opacity-80 dark:hover:bg-opacity-70 transition-all duration-300 transform hover:scale-105">
+          </button>
+          <button (click)="onScrollTo($event, '#contact')" class="bg-[#EAE8E3] dark:bg-gray-700 text-[#292639] dark:text-gray-200 px-5 py-3 rounded-full font-semibold flex items-center space-x-2.5 hover:bg-opacity-80 dark:hover:bg-opacity-70 transition-all duration-300 transform hover:scale-105">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
               <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0h18" />
             </svg>
             <span>Schedule a Call</span>
-          </a>
+          </button>
         </div>
         <div appAnimateOnScroll delay="200ms" class="pt-4">
             <button (click)="toggleDetails()" class="w-14 h-14 rounded-full bg-[#EAE8E3] dark:bg-gray-700 flex items-center justify-center cursor-pointer hover:bg-opacity-80 dark:hover:bg-opacity-70 transition-all duration-300 group" aria-label="Toggle details about digital mastery">

@@ -15,9 +15,9 @@
               <span>{{ job.type }}</span>
             </div>
           </div>
-          <a (click)="onScrollTo($event, '#contact', 'I\'m interested in the ' + job.position + ' position.')" href="#contact" class="bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639] px-5 py-2.5 rounded-full font-semibold hover:bg-opacity-90 dark:hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 whitespace-nowrap">
+          <button (click)="onScrollTo($event, '#contact', 'I\'m interested in the ' + job.position + ' position.')" class="bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639] px-5 py-2.5 rounded-full font-semibold hover:bg-opacity-90 dark:hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 whitespace-nowrap">
             Apply Now
-          </a>
+          </button>
         </div>
       }
     </div>

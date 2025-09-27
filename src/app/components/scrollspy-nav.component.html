@@ -18,9 +18,9 @@
 
     <!-- Section Markers -->
     @for(section of sectionPositions(); track section.id) {
-        <a 
-            [href]="'#' + section.id"
+        <button
             (click)="scrollToSection($event, section.id)"
+            [attr.aria-label]="'Scroll to ' + section.label"
             class="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 transition-all duration-300 group pointer-events-auto cursor-pointer"
             [style.top.%]="section.percent * 100"
             [class]="activeSectionId() === section.id 
@@ -32,7 +32,7 @@
             <span class="absolute left-full ml-4 w-max px-3 py-1 text-sm font-semibold text-white dark:text-[#292639] bg-[#292639] dark:bg-gray-100 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
                 {{ section.label }}
             </span>
-        </a>
+        </button>
     }
   </div>
 </div>
