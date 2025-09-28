@@ -60,10 +60,6 @@ export interface TeamMember {
   imageUrl: string;
   name: string;
   title: string;
-  socials: {
-    twitter: string;
-    linkedin: string;
-  }
 }
 
 export interface BlogPost {

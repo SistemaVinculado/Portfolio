@@ -16,9 +16,9 @@
         <div class="col-span-1">
         <h4 class="font-semibold tracking-wider uppercase text-gray-300">{{ t('footer.connect') }}</h4>
         <ul class="mt-4 space-y-2">
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">{{ t('footer.social.twitter') }}</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">{{ t('footer.social.linkedin') }}</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">{{ t('footer.social.github') }}</a></li>
+            @for (link of socialLinks(); track link.name) {
+              <li><a [href]="link.href" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300">{{ link.name }}</a></li>
+            }
              <li><a routerLink="/status" class="text-gray-400 hover:text-white transition-colors duration-300">{{ t('footer.status') }}</a></li>
              <li><a routerLink="/security" class="text-gray-400 hover:text-white transition-colors duration-300">{{ t('footer.missionControl') }}</a></li>
         </ul>

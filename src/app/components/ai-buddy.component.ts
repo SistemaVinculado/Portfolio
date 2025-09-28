@@ -32,6 +32,7 @@ export class AiBuddyComponent {
   messages = signal<ChatMessage[]>([]);
   isLoading = signal(true);
   error = signal<string | null>(null);
+  isConfigured = this.geminiService.isConfigured;
 
   displayMessages = computed(() => {
     return this.messages().map(msg => ({
@@ -41,7 +42,12 @@ export class AiBuddyComponent {
   });
 
   constructor() {
-    this.startConversation();
+    if (this.isConfigured()) {
+      this.startConversation();
+    } else {
+      this.isLoading.set(false);
+      this.error.set(this.t('aiBuddy.apiKeyError'));
+    }
 
     effect(() => {
       // Trigger effect when messages change
@@ -83,7 +89,7 @@ export class AiBuddyComponent {
     const input = form.querySelector('input[name="prompt"]') as HTMLInputElement;
     const prompt = input.value.trim();
 
-    if (!prompt || this.isLoading()) {
+    if (!prompt || this.isLoading() || !this.isConfigured()) {
       return;
     }
 

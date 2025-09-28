@@ -1,26 +1,26 @@
 import { Client, StatItem, Philosophy, StellarDevEthos, TeamMember, JobOpening, Award, SocialLink } from '../models';
 
 export const CLIENTS: Client[] = [
-    { name: 'tuple' },
-    { name: 'mirage' },
-    { name: 'statamic' },
-    { name: 'savvycal' },
-    { name: 'transistor' },
-    { name: 'reform' },
+    { name: 'google_developers' },
+    { name: 'vercel' },
+    { name: 'netlify' },
+    { name: 'github' },
+    { name: 'figma' },
+    { name: 'stack_overflow' },
 ];
 
 export const STATS: StatItem[] = [
     {
       iconPath: 'M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
-      value: 24,
+      value: 2,
       label: 'commissions',
-      suffix: '+'
+      suffix: ''
     },
     {
       iconPath: 'M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z',
-      value: 8,
+      value: 3,
       label: 'mastery',
-      suffix: '+'
+      suffix: ''
     },
     {
       iconPath: 'M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345h5.375c.525 0 .734.686.364 1.04l-4.343 3.152a.563.563 0 00-.182.635l2.125 5.111a.563.563 0 01-.84.606l-4.343-3.152a.563.563 0 00-.666 0l-4.343-3.152a.563.563 0 01-.84-.606l2.125-5.111a.563.563 0 00-.182-.635l-4.343-3.152a.563.563 0 01.364-1.04h5.375a.563.563 0 00.475-.345l2.125-5.111z',
@@ -29,10 +29,10 @@ export const STATS: StatItem[] = [
       suffix: '%'
     },
     {
-      iconPath: 'M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582',
-      value: 15,
+      iconPath: 'M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03 4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582',
+      value: 1,
       label: 'presence',
-      suffix: '+'
+      suffix: ''
     }
 ];
 
@@ -131,37 +131,21 @@ export const TEAM_MEMBERS: TeamMember[] = [
         imageUrl: 'https://picsum.photos/seed/team1/300/300',
         name: 'Alexandria Chen',
         title: 'Founder & CEO',
-        socials: {
-            twitter: '#',
-            linkedin: '#'
-        }
     },
     {
         imageUrl: 'https://picsum.photos/seed/team2/300/300',
         name: 'Benjamin Carter',
         title: 'Lead Architect',
-        socials: {
-            twitter: '#',
-            linkedin: '#'
-        }
     },
     {
         imageUrl: 'https://picsum.photos/seed/team3/300/300',
         name: 'Chloe Rodriguez',
         title: 'Head of Design',
-        socials: {
-            twitter: '#',
-            linkedin: '#'
-        }
     },
     {
         imageUrl: 'https://picsum.photos/seed/team4/300/300',
         name: 'David Lee',
         title: 'Principal Engineer',
-        socials: {
-            twitter: '#',
-            linkedin: '#'
-        }
     }
 ];
 
@@ -185,29 +169,27 @@ export const JOB_OPENINGS: JobOpening[] = [
 
 export const AWARDS: Award[] = [
     {
-        title: 'Webby Awards Honoree',
-        issuer: 'The International Academy of Digital Arts and Sciences',
+        title: 'Awwwards Developer Award',
+        issuer: 'GSAP Animation',
         year: '2024'
     },
     {
-        title: 'Awwwards Site of the Day',
-        issuer: 'Awwwards',
+        title: 'Forbes Cloud 100',
+        issuer: 'Figma Design Platform',
         year: '2023'
     },
     {
-        title: 'Top Angular Developers',
-        issuer: 'Clutch.co',
+        title: '#1 Most Admired Language',
+        issuer: 'Stack Overflow Survey',
         year: '2023'
     },
     {
-        title: 'CSS Design Awards Winner',
-        issuer: 'CSSDA',
+        title: 'Site of the Year Technology',
+        issuer: 'Three.js 3D Library',
         year: '2022'
     }
 ];
 
 export const SOCIAL_LINKS: SocialLink[] = [
-    { name: 'Twitter', href: '#', iconPath: 'M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84' },
-    { name: 'LinkedIn', href: '#', iconPath: 'M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z' },
-    { name: 'GitHub', href: '#', viewBox: '0 0 16 16', iconPath: 'M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z' },
+    { name: 'GitHub', href: 'https://github.com', viewBox: '0 0 16 16', iconPath: 'M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z' },
 ];

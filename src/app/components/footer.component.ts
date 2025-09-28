@@ -3,6 +3,7 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
 import { RouterLink } from '@angular/router';
 import { NavLink } from '../models';
 import { TextContentService } from '../services/text-content.service';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-footer',
@@ -13,6 +14,7 @@ import { TextContentService } from '../services/text-content.service';
 })
 export class FooterComponent {
   private textContentService = inject(TextContentService);
+  private dataService = inject(DataService);
 
   t(key: string, params?: { [key: string]: any }): string {
     return this.textContentService.getWithParams(key, params);
@@ -20,6 +22,7 @@ export class FooterComponent {
 
   currentYear = input.required<number>();
   navLinks = input.required<NavLink[]>();
+  socialLinks = this.dataService.socialLinks;
   
   // Modals are now handled in HomeComponent, but triggers can be here.
   // Let's have the home component manage this directly for simplicity.

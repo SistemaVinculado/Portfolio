@@ -43,7 +43,12 @@
           <app-back-to-top (backToTop)="scrollToTop()"></app-back-to-top>
         </div>
       }
-      <button (click)="openAiBuddy()" aria-label="Open AI Project Architect" class="bg-gradient-to-br from-purple-500 to-indigo-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 transform cursor-pointer">
+      <button 
+        (click)="openAiBuddy()" 
+        disabled 
+        title="Em breve" 
+        aria-label="Arquiteto de Projeto IA (em breve)" 
+        class="bg-gradient-to-br from-purple-500 to-indigo-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 transform disabled:opacity-50 disabled:cursor-not-allowed">
         <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 01-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 013.09-3.09L12 5.25l2.846.813a4.5 4.5 0 013.09 3.09L21.75 12l-2.846.813a4.5 4.5 0 01-3.09 3.09z" />
         </svg>
