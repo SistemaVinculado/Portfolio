@@ -10,6 +10,7 @@ export const LAB_EXPERIMENTS: LabExperiment[] = [
         url: 'https://codepen.io'
     },
     {
+        id: 'visitor-globe',
         iconPath: 'M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582',
         title: 'Real-time Visitor Globe',
         description: 'A stunning 3D globe visualization of simulated real-time website traffic using Three.js and WebGL.',
@@ -17,6 +18,7 @@ export const LAB_EXPERIMENTS: LabExperiment[] = [
         url: '#' // This is handled internally
     },
     {
+        id: 'form-visualizer',
         iconPath: 'M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345h5.375c.525 0 .734.686.364 1.04l-4.343 3.152a.563.563 0 00-.182.635l2.125 5.111a.563.563 0 01-.84.606l-4.343-3.152a.563.563 0 00-.666 0l-4.343-3.152a.563.563 0 01-.84-.606l2.125-5.111a.563.563 0 00-.182-.635l-4.343-3.152a.563.563 0 01.364-1.04h5.375a.563.563 0 00.475-.345l2.125-5.111z',
         title: 'Reactive Form State Visualizer',
         description: 'An open-source Angular library for debugging complex reactive forms by visualizing the state tree and validity in real-time.',

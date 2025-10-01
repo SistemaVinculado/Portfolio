@@ -8,7 +8,7 @@ export const TEXT_CONTENT = {
     "ctaSecondary": "Iniciar Consulta"
   },
   "app": {
-    "updateBanner": "Uma nova constelação está se formando. <strong>StellarDev v2.0</strong> chegará em breve."
+    "updateBanner": "Nossa forja está aberta. <strong>Comissões disponíveis</strong> para obras-primas digitais de qualquer magnitude."
   },
   "header": {
     "startConsultation": "Iniciar Consulta",

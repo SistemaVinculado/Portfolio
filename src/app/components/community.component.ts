@@ -1,8 +1,9 @@
-import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { JobOpening, LabExperiment, BlogPost } from '../models';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
 import { CodeMatrixComponent } from './code-matrix.component';
+import { TextContentService } from '../services/text-content.service';
 
 @Component({
   selector: 'app-community',
@@ -12,6 +13,12 @@ import { CodeMatrixComponent } from './code-matrix.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommunityComponent {
+  private textContentService = inject(TextContentService);
+
+  t(key: string): string {
+    return this.textContentService.get(key)();
+  }
+
   labExperiments = input.required<LabExperiment[]>();
   blogPosts = input.required<BlogPost[]>();
 
@@ -28,7 +35,7 @@ export class CommunityComponent {
   }
 
   handleLabClick(experiment: LabExperiment): void {
-    if (experiment.title === 'Real-time Visitor Globe') {
+    if (experiment.id === 'visitor-globe') {
       this.openVisitorGlobe.emit();
     } else {
       if (experiment.url && experiment.url !== '#') {

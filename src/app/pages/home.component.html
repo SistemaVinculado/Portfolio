@@ -53,7 +53,14 @@
           @for (item of portfolioItems().slice(0, 2); track item.title; let i = $index) {
             <div appAnimateOnScroll [delay]="(i * 100) + 'ms'" class="classified-card group rounded-2xl overflow-hidden bg-white dark:bg-gray-800/30 shadow-sm border border-gray-200/50 dark:border-gray-700/50 text-left">
               <div class="relative overflow-hidden">
-                <img [ngSrc]="item.imageUrl" [alt]="item.title" width="800" height="600" class="image-blur w-full h-auto object-cover transition-transform duration-300 ease-in-out">
+                <div class="image-blur w-full aspect-[4/3] bg-[#292639] dark:bg-gray-800 flex items-center justify-center p-8 text-center transition-transform duration-300 ease-in-out">
+                    <div class="flex flex-col items-center">
+                        <svg class="w-12 h-12 text-gray-400 dark:text-gray-500 mb-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <p class="text-lg font-semibold text-gray-300 dark:text-gray-400">Obra visual em forja.</p>
+                    </div>
+                </div>
                 <div class="absolute inset-0 bg-black/40"></div>
                 <div class="stamp">{{ t('components.work.nda') }}</div>
               </div>

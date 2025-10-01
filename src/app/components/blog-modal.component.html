@@ -11,13 +11,24 @@
         <h3 [id]="'blog-modal-title-' + p.title" class="text-3xl md:text-4xl font-extrabold mt-2 text-[#292639] dark:text-white tracking-tighter">{{ p.title }}</h3>
         </div>
         <div class="flex items-center justify-center mt-6 space-x-4">
-        <img [ngSrc]="p.authorAvatarUrl" [alt]="p.authorName" width="48" height="48" class="w-12 h-12 rounded-full object-cover">
+        <div class="w-12 h-12 rounded-full bg-[#292639] dark:bg-gray-700 flex items-center justify-center">
+            <svg class="w-8 h-8 text-gray-400 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            </svg>
+        </div>
         <div>
             <p class="font-semibold text-[#292639] dark:text-white">{{ p.authorName }}</p>
             <p class="text-sm text-gray-500 dark:text-gray-400">{{ p.date }} &middot; {{ p.readTime }} min read</p>
         </div>
         </div>
-        <img [ngSrc]="p.imageUrl" [alt]="p.title" width="800" height="600" class="w-full h-auto object-cover rounded-2xl mt-8">
+        <div class="w-full aspect-[4/3] bg-[#292639] dark:bg-gray-800 flex items-center justify-center p-8 text-center rounded-2xl mt-8">
+            <div class="flex flex-col items-center">
+                <svg class="w-12 h-12 text-gray-400 dark:text-gray-500 mb-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                </svg>
+                <p class="text-lg font-semibold text-gray-300 dark:text-gray-400">Obra visual em forja.</p>
+            </div>
+        </div>
         <div class="mt-8 prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
         @for (section of p.content; track section.text) {
             @if (section.type === 'h2') {
