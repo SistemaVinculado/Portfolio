@@ -1,4 +1,7 @@
 <app-scrollspy-nav [navLinks]="scrollSpyNavLinks()"></app-scrollspy-nav>
+
+<app-hero (scrollTo)="scrollTo($event.event, $event.href)"></app-hero>
+
 <div class="min-h-screen flex flex-col relative">
     <div class="w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
       <app-intro

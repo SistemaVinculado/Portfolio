@@ -1,5 +1,12 @@
 
+
 export const TEXT_CONTENT = {
+  "newHero": {
+    "title": "StellarDev",
+    "subtitle": "Um ateliê exclusivo onde um mestre arquiteto traduz visões ambiciosas em obras-primas arquitetônicas da web.",
+    "ctaPrimary": "Explore a Agência",
+    "ctaSecondary": "Iniciar Consulta"
+  },
   "app": {
     "updateBanner": "Uma nova constelação está se formando. <strong>StellarDev v2.0</strong> chegará em breve."
   },
@@ -73,9 +80,16 @@ export const TEXT_CONTENT = {
       "testimonialsTitle": "Aguardando o Próximo Marco",
       "testimonialsSubtitle": "Este espaço está reservado para os elogios de futuras comissões. O foco permanece em criar as obras-primas que os merecem."
     },
-    "actionZone": {
-      "pricingTitle": "Projeto da Comissão",
-      "pricingSubtitle": "Arquitete o projeto da sua comissão. Ajuste os parâmetros para entender o investimento e o cronograma necessários para uma obra-prima dessa escala."
+    "commissionProcess": {
+      "title": "Iniciando sua Comissão",
+      "subtitle": "Nosso processo é projetado para clareza e colaboração, garantindo que sua visão seja traduzida em uma obra-prima digital com precisão e propósito.",
+      "step1Title": "Consulta Inicial",
+      "step1Desc": "Inicie o diálogo. Compartilhe sua visão, desafios e objetivos. Esta conversa inicial determina se há alinhamento para uma parceria arquitetônica.",
+      "step2Title": "Proposta do Projeto",
+      "step2Desc": "Após a consulta, um projeto arquitetural detalhado é preparado, delineando o escopo, cronograma e investimento para sua comissão.",
+      "step3Title": "Forja da Obra-Prima",
+      "step3Desc": "Com o projeto aprovado, a forja começa. Através de sprints iterativos e colaboração transparente, sua visão é metodicamente trazida à vida.",
+      "cta": "Iniciar Consulta"
     }
   },
   "cta": {

@@ -1,6 +1,5 @@
 import { Component, ChangeDetectionStrategy, input, output, inject } from '@angular/core';
 import { AnimateOnScrollDirective } from '../directives/animate-on-scroll.directive';
-import { PricingCalculatorComponent } from './pricing-calculator.component';
 import { ContactComponent } from './contact.component';
 import { CtaComponent } from './cta.component';
 import { TextContentService } from '../services/text-content.service';
@@ -8,7 +7,7 @@ import { TextContentService } from '../services/text-content.service';
 @Component({
   selector: 'app-action-zone',
   standalone: true,
-  imports: [AnimateOnScrollDirective, PricingCalculatorComponent, ContactComponent, CtaComponent],
+  imports: [AnimateOnScrollDirective, ContactComponent, CtaComponent],
   templateUrl: './action-zone.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

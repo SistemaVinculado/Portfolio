@@ -1,0 +1,7 @@
+:host {
+    display: block;
+    /* Create a stacking context for z-index */
+    position: relative;
+    z-index: 1;
+    background-color: #1C1A27; /* Fallback background */
+}

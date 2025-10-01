@@ -6,6 +6,7 @@ import { DataService } from '../data.service';
 import { TextContentService } from '../services/text-content.service';
 
 // Component Imports
+import { HeroComponent } from '../components/hero.component';
 import { IntroComponent } from '../components/intro.component';
 import { SocialProofComponent } from '../components/social-proof.component';
 import { ActionZoneComponent } from '../components/action-zone.component';
@@ -26,6 +27,7 @@ import { ScrollspyNavComponent } from '../components/scrollspy-nav.component';
     RouterLink,
     NgOptimizedImage,
     AnimateOnScrollDirective,
+    HeroComponent,
     IntroComponent,
     SocialProofComponent,
     ActionZoneComponent,
@@ -99,7 +101,7 @@ export class HomeComponent {
     { label: this.textContentService.get('home.servicesOverview.title')(), href: '#services-overview' },
     { label: this.textContentService.get('home.featuredWork.title')(), href: '#featured-work' },
     { label: this.textContentService.get('home.socialProof.testimonialsTitle')(), href: '#social-proof' },
-    { label: this.textContentService.get('home.actionZone.pricingTitle')(), href: '#pricing' },
+    { label: this.textContentService.get('home.commissionProcess.title')(), href: '#commission-process' },
     { label: this.textContentService.get('components.contact.title')(), href: '#contact' }
   ]);
   

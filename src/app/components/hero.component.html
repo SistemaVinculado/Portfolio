@@ -1,0 +1,30 @@
+<section class="relative w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+    <canvas #heroCanvas class="absolute inset-0 w-full h-full"></canvas>
+
+    <div class="relative z-10 text-center px-4 transition-all duration-1000 ease-out"
+         [class.opacity-100]="isInitialized()"
+         [class.translate-y-0]="isInitialized()"
+         [class.opacity-0]="!isInitialized()"
+         [class.translate-y-5]="!isInitialized()">
+        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tighter text-white drop-shadow-xl" [innerHTML]="t('newHero.title')"></h1>
+        <p class="mt-4 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto drop-shadow-lg">{{ t('newHero.subtitle') }}</p>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button (click)="scrollTo.emit({ event: $event, href: '#about' })" class="inline-block bg-white text-[#292639] px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                {{ t('newHero.ctaPrimary') }}
+            </button>
+            <button (click)="scrollTo.emit({ event: $event, href: '#contact' })" class="inline-flex items-center text-white font-semibold group">
+                {{ t('newHero.ctaSecondary') }}
+                <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scroll Down Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 transition-opacity duration-1000"
+         [class.opacity-100]="isInitialized()"
+         [class.opacity-0]="!isInitialized()">
+        <button (click)="scrollTo.emit({ event: $event, href: '#about' })" class="w-8 h-12 border-2 border-gray-400 rounded-full flex items-center justify-center group" aria-label="Scroll down">
+            <div class="w-1 h-2 bg-gray-400 rounded-full animate-bounce group-hover:bg-white transition-colors"></div>
+        </button>
+    </div>
+</section>

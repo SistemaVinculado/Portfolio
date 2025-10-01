@@ -1,11 +1,48 @@
-<!-- Pricing Calculator Section -->
-<section id="pricing" class="py-16 sm:py-24">
-  <div class="text-center mb-12">
-    <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">{{ t('home.actionZone.pricingTitle') }}</h2>
-    <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">{{ t('home.actionZone.pricingSubtitle') }}</p>
+<!-- Commissioning Process Section -->
+<section id="commission-process" class="py-16 sm:py-24">
+  <div class="text-center mb-16">
+    <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">{{ t('home.commissionProcess.title') }}</h2>
+    <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">{{ t('home.commissionProcess.subtitle') }}</p>
   </div>
-  <app-pricing-calculator (scrollTo)="scrollTo.emit($event)">
-  </app-pricing-calculator>
+
+  <div class="max-w-5xl mx-auto">
+    <div class="relative">
+      <!-- Connecting line for desktop -->
+      <div class="hidden md:block absolute top-10 left-0 w-full h-0.5 bg-gray-300 dark:bg-gray-700"></div>
+
+      <div class="relative grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-x-8 text-center">
+        <!-- Step 1 -->
+        <div appAnimateOnScroll class="flex flex-col items-center">
+          <div class="flex items-center justify-center w-20 h-20 rounded-full bg-[#F5F3EF] dark:bg-[#1C1A27] border-2 border-gray-300 dark:border-gray-700 mb-6 z-10">
+            <span class="text-2xl font-bold text-[#8A6B93] dark:text-purple-400">01</span>
+          </div>
+          <h3 class="text-xl font-bold text-[#292639] dark:text-white">{{ t('home.commissionProcess.step1Title') }}</h3>
+          <p class="mt-2 text-gray-600 dark:text-gray-400">{{ t('home.commissionProcess.step1Desc') }}</p>
+        </div>
+        <!-- Step 2 -->
+        <div appAnimateOnScroll delay="150ms" class="flex flex-col items-center">
+          <div class="flex items-center justify-center w-20 h-20 rounded-full bg-[#F5F3EF] dark:bg-[#1C1A27] border-2 border-gray-300 dark:border-gray-700 mb-6 z-10">
+            <span class="text-2xl font-bold text-[#8A6B93] dark:text-purple-400">02</span>
+          </div>
+          <h3 class="text-xl font-bold text-[#292639] dark:text-white">{{ t('home.commissionProcess.step2Title') }}</h3>
+          <p class="mt-2 text-gray-600 dark:text-gray-400">{{ t('home.commissionProcess.step2Desc') }}</p>
+        </div>
+        <!-- Step 3 -->
+        <div appAnimateOnScroll delay="300ms" class="flex flex-col items-center">
+          <div class="flex items-center justify-center w-20 h-20 rounded-full bg-[#F5F3EF] dark:bg-[#1C1A27] border-2 border-gray-300 dark:border-gray-700 mb-6 z-10">
+            <span class="text-2xl font-bold text-[#8A6B93] dark:text-purple-400">03</span>
+          </div>
+          <h3 class="text-xl font-bold text-[#292639] dark:text-white">{{ t('home.commissionProcess.step3Title') }}</h3>
+          <p class="mt-2 text-gray-600 dark:text-gray-400">{{ t('home.commissionProcess.step3Desc') }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="mt-16 text-center">
+      <button (click)="scrollTo.emit({ event: $event, href: '#contact' })" class="inline-block bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639] px-8 py-4 rounded-full font-semibold text-lg hover:bg-opacity-90 dark:hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-lg">
+        {{ t('home.commissionProcess.cta') }}
+      </button>
+    </div>
+  </div>
 </section>
 
 <!-- Contact Section -->

@@ -57,7 +57,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private onScrollListener!: () => void;
 
+  isOverlayOpen = computed(() => 
+    this.isMobileMenuOpen() || 
+    this.showPrivacyModal() || 
+    this.showTermsModal() || 
+    this.showAiBuddy()
+  );
+
   constructor() {
+    // Effect for theme management
     effect(() => {
       if (isPlatformBrowser(this.platformId)) {
         const currentTheme = this.theme();
@@ -70,10 +78,10 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
 
-    // Combined effect for managing body scroll lock
+    // Effect for managing body scroll lock
     effect(() => {
         if (isPlatformBrowser(this.platformId)) {
-            const shouldLock = this.isLoading() || this.isMobileMenuOpen() || this.showPrivacyModal() || this.showTermsModal() || this.showAiBuddy();
+            const shouldLock = this.isLoading() || this.isOverlayOpen();
             if (shouldLock) {
                 this.renderer.addClass(this.document.body, 'overflow-hidden');
             } else {
@@ -82,10 +90,9 @@ export class AppComponent implements OnInit, OnDestroy {
         }
     });
 
-    // Effect for handling Escape key to close any open modal
+    // Effect for handling Escape key to close overlays
     effect((onCleanup) => {
-        const isAnyModalOpen = this.isMobileMenuOpen() || this.showPrivacyModal() || this.showTermsModal() || this.showAiBuddy();
-        if (isAnyModalOpen) {
+        if (this.isOverlayOpen() && isPlatformBrowser(this.platformId)) {
             const escapeListener = this.renderer.listen('document', 'keydown.escape', () => {
                 this.closeMobileMenu();
                 this.closePrivacyModal();
